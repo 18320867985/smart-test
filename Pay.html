@@ -1,0 +1,1058 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta name="format-detection" content="telephone=no" />
+<title>支付</title>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+  body{
+    background: url("./images/login_bg.jpg");
+    margin: 0 auto;
+  }
+  .homepage{background: none;}
+  .pay_process .step2{ color: #ffffff; }
+  .TerminalNumber b,.telephone b{color:#ffffff;}
+
+  .spinner {
+    margin: 100px auto 0;
+    width: 150px;
+    text-align: center;
+  }
+   
+  .spinner > div {
+    width: 30px;
+    height: 30px;
+    background-color: #ffffff;
+   
+    border-radius: 100%;
+    display: inline-block;
+    -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+    animation: bouncedelay 1.4s infinite ease-in-out;
+    /* Prevent first frame from flickering when animation starts */
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+   
+  .spinner .bounce1 {
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+  }
+   
+  .spinner .bounce2 {
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+  }
+   
+  @-webkit-keyframes bouncedelay {
+    0%, 80%, 100% { -webkit-transform: scale(0.0) }
+    40% { -webkit-transform: scale(1.0) }
+  }
+   
+  @keyframes bouncedelay {
+    0%, 80%, 100% {
+      transform: scale(0.0);
+      -webkit-transform: scale(0.0);
+    } 40% {
+      transform: scale(1.0);
+      -webkit-transform: scale(1.0);
+    }
+  }
+</style>
+</head>
+<body>
+    <div class="homepage">
+        <div class="pay_head" style="display: none;">
+            <div class="TerminalNumber"><span><b>终端编号：</b></span></div>
+            <div class="telephone"><span><b>客服电话：</b></span></div>
+        </div>
+        <div class="pay_process"><span>1.选票购买→</span><span class="step2">2.扫码支付</span><span>→3.出票</span></div>
+        <div class="pay_con">
+            <div class="row1" style="display: none">
+            	<div class="pay_btn">     
+                    <a href="javascript:;" id="paymentbutton" class="payment">立即付款</a>
+                    <a href="homepage.html" id="payment_re" class="payment_re">返回首页</a>
+                    <span class="leftTime" style="position: relative;left: 120px;color:#c63635"></span>
+                </div>
+            </div>    
+              
+            <div class="pay_bottom" style="display: none">
+                <span>请确认以下购票信息，选择付款方式进行付款&nbsp;&nbsp;&nbsp;&nbsp;</span>  
+            </div>
+
+
+            <div class="pay_con_main clear">
+                <div class="pay_left">
+                    <div class="pay_wrap_img wximg">
+                        <img class="titleimg" src="images/wx_logo.png">
+                        <h3>欢迎使用微信支付</h3>
+                        <div class="rwm" id="qrcodeW">
+                          <div class="wxswitchloading">
+                             <div class="spinner">
+                                <div class="bounce1"></div>
+                                <div class="bounce2"></div>
+                                <div class="bounce3"></div>
+                              </div>
+                              <div style="font-size:24px;color:#ffffff">切换中...</div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="pay_wrap_img zfbimg">
+                        <img class="titleimg" src="images/zfb_logo.png">
+                        <h3>欢迎使用支付宝支付</h3>
+                        <div class="rwm" id="qrcodeA">
+                          <div class="zfbswitchloading">
+                             <div class="spinner">
+                                <div class="bounce1"></div>
+                                <div class="bounce2"></div>
+                                <div class="bounce3"></div>
+                              </div>
+                              <div style="font-size:24px;color:#ffffff">切换中...</div>
+                          </div>
+                        </div>
+                    </div>
+                    <img src="images/wx_zy.png" class="pay_bottom_img" style="visibility: hidden; display: block; margin: 20px auto 0;width: 72%;">
+                    <div></div>
+                </div>
+                <div class="pay_right">
+                    <div style="width: 90%;margin: 0 auto; box-sizing: border-box;">
+                      <div class="order_titles">购票信息</div>
+                      <div style="position: relative;width: 100%;padding-left: 30px;">
+                      <table class="table table-striped table-bordered" style=" white-space:nowrap;margin-bottom: 20px; font-size: 24px; width: 90%;">
+                          <thead>
+                              <tr>
+                                  <th>方案名称</th>
+                                  <th width="100" class="text-center">数量(张)</th>
+                                  <th width="100" class="text-center">单票金额(元)</th>
+                              </tr>
+                          </thead>
+                          <tbody id="payOrder">
+                              
+                          </tbody>
+                      </table>
+                      </div>
+                      <div style="font-size: 32px;height: 34px; line-height: 34px;">应付金额：<em class="pay_right_money" style="color:#c63635;font-weight: bold;font-style: normal;"></em></div>
+                    </div>
+                </div>
+            </div>
+            <ul class="pay_fs" style="display: none">
+               <li class="order_type">支付方式：</li>
+               <li><a href="javascript:;" id="wx_xz" class="click"><img src="images/wx.png"><img src="images/checked.gif" class="gou"></a></li>
+                <li><a href="javascript:;" id="zfb_xz"><img src="images/zfb.png"><img src="images/checked.gif" class="gou"></a></li>        
+            </ul>
+            <div class="pay_wraptip">
+              <span class="pay_tip"></span>
+            </div>
+            
+            <div class="pay_bottom">
+                <a href="javascript:;" class="pay_switch" id="pay_switch">
+
+        <span style="top:4px;margin-right: 10px" class="glyphicon glyphicon-retweet" aria-hidden="true"></span>切换支付方式</a>
+                <a href="javascript:;" class="pay_backhome">
+        <span style="top:4px;margin-right: 10px" class="glyphicon glyphicon-home" aria-hidden="true"></span>重新购买</a>
+            </div>
+         
+          
+      </div>
+      
+  </div>
+  	
+
+   <!--微信支付方式-statr-->
+   <div class="pay" id="wx_fs">
+      <div class="pay_wx">
+          <div class="top"><img src="images/wx_logo.png"></div>
+          <div class="con">
+            <h2>欢迎使用微信支付</h2>
+            <div class="rwm" id="qrcodeW"></div>
+			
+			<!--<div class="rwm"><img src="images/rwm.jpg"></div>
+            <h2 style="margin-top:50px;"><span>微信</span>扫描，完成付款</h2>-->
+            <img src="images/wx_zy.png" class="wx_bz">
+            <div class="payLeftTime"></div>
+            <span><a href="javascript:;" class="wx_qh">切换支付方式</a>&nbsp;&nbsp;&nbsp;<a href="javascript:;" class="wx_qhc">取消</a></span>
+            <!--<a href="javascript:;" class="">-->
+            <div class="wx_zy">付款指引</div>
+          </div>
+      </div>
+   </div>
+   <!--微信支付方式-end-->
+   
+   <!--支付宝支付方式-statr-->
+    <div class="pay" id="zfb_fs" >
+      <div class="pay_zfb">
+          <div class="top"><img src="images/zfb_logo.png"></div>
+          <div class="con">
+            <h2>欢迎使用支付宝支付</h2>
+            <div class="rwm" id="qrcodeA"></div>
+           <!-- <h2 style="margin-top:50px;"><span>微信</span>扫描，完成付款</h2>-->
+            <img src="images/wx_zy.png" class="zfb_bz">
+            <div class="payLeftTime"></div>
+            <span><a href="javascript:;" class="zfb_qh">切换支付方式</a>&nbsp;&nbsp;&nbsp;<a href="javascript:;" class="wx_qhc">取消</a></span>
+            <div class="zfb_zy">付款指引</div>
+          </div>
+      </div>
+   </div>
+<!--支付宝支付方式-end-->
+  
+  
+  <!--支付成功-statr-->
+  <div class="pay_succeed">
+     <div class="pay_succeed_img"><img src="images/pay_succeed.png"></div>
+     <p style="font-size: 48px">祝您好运!</p>
+     <div class="succeed_info">
+     	<p></p>    	 
+     </div>
+     <div class="fail_info">
+     	<p></p> 	 
+     </div>
+     <p>您的出票已完成，<span>30</span>秒后自动跳转！</p>
+     <div class="fail_tip">
+         <p style="color:#ff0000;font-size: 20px"></p>
+     </div>
+  </div>
+ <!--支付成功-end-->
+  <script src="js/common/jquery-1.8.0.y100.js" type="text/javascript"></script>
+  <script type="text/javascript" src="js/common/cysDialog.js"></script>
+  <script type="text/javascript" src="js/common/qrcode.js"></script>
+  <script type="text/javascript" src="properties.js"></script>
+  <script type="text/javascript" src="js/common/fastclick.js"></script>
+  
+  <script type="text/javascript">
+    var g_orderMessage = [];//订单的信息
+    var g_payOrder = [];    //订单的信息，保存到配置
+    var payTotalSum = 0;//交易总金额(元)
+    var g_qrcodeA = null;//支付宝二维码插件
+    var g_qrcodeW = null;//微信二维码插件
+    var g_orderinfo = "";//成功生成订单的信息
+    var g_reqsn = ''; //订单号
+    var g_cutCardResult = ''; //出票状态
+    var totalCount = null;  //实际支付金额
+     
+    /*出票配置*/
+    var staticMotorResult="none";
+    var executeInde = 0;
+    var staticOrderLen = 0;
+    var successNum = 0;    //出票成功数量
+    var failNum = 0;       //出票失败数量
+    var failMoney = 0;     //失败总额
+
+    var outPortLeftTimer = "";  //支付二维码定时器ID
+    var outPortTimer = "";      //检测支付
+    var outPortIndex = 0;
+    var switchNum=0;       //支付方式切换次数
+     function cancleLinkToHome(){
+        clearInterval(outPortLeftTimer);
+        clearInterval(outPortTimer);
+        $(".leftTime").html('');
+        $(".payLeftTime").html('');
+     }
+     $(function(){
+
+        g_qrcodeA = new QRCode(document.getElementById("qrcodeA"),{
+			width:240,
+			height:240
+		});
+		 g_qrcodeW = new QRCode(document.getElementById("qrcodeW"),{
+			width:240,
+			height:240
+		});
+
+      FastClick.attach(document.body);
+			document.getElementById('paymentbutton').addEventListener('touchstart',function(){
+				doCreateOrderPay();
+                cancleLinkToHome();
+			}, false);
+			document.getElementById('payment_re').addEventListener('touchstart',function(){
+				window.location.href="homepage.html";
+			}, false);
+
+
+            $(".pay_backhome").click(function(){
+                window.location.href="homepage.html";
+            })
+			
+			     $('.wx_qh').click(function(){
+					   g_payType = "A01";//支付宝支付
+				       doCreateOrderPay();
+                       cancleLinkToHome();
+                       return false;
+						
+				 });
+				  $('.wx_qhc').click(function(){
+					   $('#wx_fs').hide();
+					   $('.mask').remove();
+                       cancleLinkToHome();	
+				 });
+				 $('.zfb_qh').click(function(){
+					 	g_payType = "W01";//支付宝支付
+				       doCreateOrderPay();
+                       cancleLinkToHome();
+                       return false;
+				 });
+				 $('#wx_xz').click(function(){
+				       g_payType = "W01";//微信支付
+               clearInterval(outPortTimer);
+               clearInterval(outPortLeftTimer);
+               sessionStorage.setItem("g_payType", "W01"); 
+               doCreateOrderPay();
+               console.log("微信支付");
+               $(".wximg").show();
+               $(".zfbimg").hide();
+				 });
+         var pay_switch = document.getElementById("pay_switch");
+         pay_switch.addEventListener('touchstart',function(){
+		 
+		     switchNum++;
+            if(switchNum>=2){
+               $(".pay_switch").unbind("touchstart");
+            }
+            $(".zfbswitchloading").show();
+            $(".wxswitchloading").show();
+            if(g_payType == "A01"){
+              g_payType = "W01";
+              $(".wximg").show();
+              $(".zfbimg").hide();
+            }else{
+              g_payType = "A01";
+              $(".zfbimg").show();
+              $(".wximg").hide();
+            }
+            //clearInterval(outPortTimer);
+            clearInterval(outPortLeftTimer);
+            $(".pay_tip").html('');
+            sessionStorage.setItem("g_payType", g_payType); 
+            doCreateOrderPay();
+         });
+         /*
+         $(".pay_switch").click(function(){
+            $(".zfbswitchloading").show();
+            $(".wxswitchloading").show();
+            if(g_payType == "A01"){
+              g_payType = "W01";
+              $(".wximg").show();
+              $(".zfbimg").hide();
+            }else{
+              g_payType = "A01";
+              $(".zfbimg").show();
+              $(".wximg").hide();
+            }
+            clearInterval(outPortTimer);
+            clearInterval(outPortLeftTimer);
+            $(".pay_tip").html('');
+            sessionStorage.setItem("g_payType", g_payType); 
+            doCreateOrderPay();
+         });*/
+         $('#zfb_xz').click(function(){
+               g_payType = "A01";//支付宝支付
+               clearInterval(outPortTimer);
+               clearInterval(outPortLeftTimer);
+               sessionStorage.setItem("g_payType", "A01"); 
+               console.log("支付宝支付");
+               doCreateOrderPay();
+               $(".zfbimg").show();
+               $(".wximg").hide();
+         });
+				 $('#zfb_fs').click(function(){
+				       $('#zfb_fs').hide();
+					     $('.mask').remove();
+                       cancleLinkToHome();               
+				 });
+				 $('#wx_fs').click(function(){
+				       $('#wx_fs').hide();
+					   $('.mask').remove();
+                       cancleLinkToHome();
+				 });
+				 
+				 $('.pay_fs li').click(function(){
+				    $(this).find('a').addClass('click');
+					$(this).siblings().find('a').removeClass('click');
+                    $(".pay_tip").html("");
+				});
+				$('.select_add').click(function(){
+				     var num = parseInt($(this).prev().val());
+					 num +=1;
+					 $(this).prev().val(num);
+					 var num1 = $(this).parent().parent().next().find('span').text();
+					 var money = num*num1;
+					 $('.pay_btn em').html('￥'+ money);
+				   });
+			   $('.select_minus').click(function(){
+				     var num = parseInt($(this).next().val());
+					 num =num - 1;
+					 if(num <0){
+						    num=0;
+						 }
+					 $(this).next().val(num);
+					 var num1 = $(this).parent().parent().next().find('span').text();
+					 var money = num*num1;
+					$('.pay_btn em').html('￥'+ money);
+		
+				  });
+				 
+		 })
+		 
+		 var accessToken='';
+		 $(document).ready(function(){
+		accessToken = window.location.hash.substring(1);//获取路径中的access token
+		g_machineNo = gGetProperties("terminalNo");
+		//g_machineNo="956315585";
+		//g_machineNo="42010001";
+    //g_machineNo="202";
+    //g_machineNo="42010002";
+    	$.ajax({
+          type: 'GET',
+          url:  serviceUrl + '/payInfo/v1/getTerminalConfig?terminalNo='+g_machineNo+accessToken,
+          async: false,
+          dataType: "jsonp",
+          jsonp: "getTerminalConfig",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+          jsonpCallback:"getTerminalConfig",//自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写“?”jquery会自动处理
+          success: function(data){
+              g_machineNo=data;
+			  $("#ownerterminal_no").html("终端编号："+g_machineNo.terminalNo);
+			  if(data.terminalstatus != '1'){
+				  confirmCysDialog("无效终端，如有疑问请联系客服人员！","","关闭",function(){},function(){});
+				  window.location.href="login.html";
+			  }
+			  $(".TerminalNumber").html("<span><b>终端编号："+g_machineNo.terminalNo+"</b></span>");
+			  $(".telephone").html("<span><b>客服电话："+g_machineNo.serverPhone+"</b></span>");
+			  initOrder();
+          }
+    	});
+			// doCreateOrderPay("W01");
+		    //doGotoCard();
+		    
+		 });
+		 /**
+		 *加载订单数据
+		 */
+		 function initOrder(){
+			$.ajax({
+			  type: 'GET',
+			  url: serviceUrl + '/payInfo/v1/getTerminalTicket?terminalNo='+g_machineNo.terminalNo+accessToken,
+			  async: false,
+			  dataType: "jsonp",
+			  jsonp: "getTerminalTicket",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+			  jsonpCallback:"getTerminalTicket",//自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写“?”jquery会自动处理
+			  success: function(data){
+				  g_ownerSetData=data;
+                  g_orderMessage = [];//订单的信息
+				  if(g_ownerSetData.length != 0){
+						//payOrder
+					  var orderList = '';
+					  
+					  totalCount = 0;
+					  
+					  for(var i=0;i<g_ownerSetData.length;i++){
+						  var theOrder = g_ownerSetData[i];
+		                  
+						  if(parseInt(theOrder.saleNum) != 0&&theOrder.gameNo!=''){
+							 orderList+= '<tr data-item=\''+JSON.stringify(theOrder)+'\'>'
+									+ '   <td>'+theOrder.name+'</td>'
+							        + '<td class="text-center">'+theOrder.saleNum+'</td>'
+									+ '   <td class="text-center">'+theOrder.price+'</td>'
+									+ '</tr>';
+						
+							totalCount += parseFloat(theOrder.price)*parseInt(theOrder.saleNum);
+						    g_orderMessage.push(theOrder);
+						  }
+					  }
+					  $("#payOrder").html(orderList);
+					  //$(".pay_btn em").html("￥"+totalCount);
+            $(".pay_right_money").html("￥"+totalCount);
+
+            //订单信息
+            var copyorder = g_orderMessage.concat();
+            g_orderMessage = [];
+            for( var i=0; i<copyorder.length; i++){
+              var dataItem = copyorder[i];
+              var num = dataItem.saleNum;
+              payTotalSum += parseInt(num)*parseFloat(dataItem.price);
+              var len = parseInt(num);
+              dataItem.num = 1;
+              for(var j=0; j<len; j++){
+                  g_orderMessage.push(dataItem);
+              }
+              staticOrderLen = g_orderMessage.length;
+            }
+              
+              //配置支付
+       
+              if(payTotalSum <= 0){
+                 confirmCysDialog("您未选择票种，请选择票种后再支付","","关闭",function(){},function(){
+                     window.location.href="homepage.html";
+                 }); 
+                 return false;
+              }
+              var configmoney = g_machineNo.payMoney;
+              if(!configmoney){
+                payTotalSum *= 100;
+              }else if(configmoney == "0.01"){
+                payTotalSum = 1;
+              }else{
+                payTotalSum = configmoney;
+              }
+                      doCreateOrderPay();
+					}else{
+					
+					   //window.location.href="homepage.html";
+					}
+			  }
+			});	
+		   		      
+		 }
+ 
+		 /**
+		 *提交订单
+		 */
+     var g_payType = 'W01';
+     var temp_type = sessionStorage.getItem("g_payType");
+     if(temp_type){
+        g_payType = temp_type;
+     }
+     if(g_payType == 'W01'){
+       $('#wx_xz').addClass('click');
+       $('#zfb_xz').removeClass('click');
+     }else{
+       $('#zfb_xz').addClass('click');
+       $('#wx_xz').removeClass('click');
+     }
+		 
+		 function doCreateOrderPay(){
+         
+			  
+			  
+			  
+			  //alert("支付总额：" + payTotalSum);
+      var conn = new ConnectTimeout();
+            //conn.showTip();
+			var param="?terminalNo="+g_machineNo.terminalNo+"&trxamt="+payTotalSum+"&paytype="+g_payType+accessToken;
+		 	$.ajax({
+			  type: 'GET',
+			  url: serviceUrl + '/payInfo/v2/sendPayRequest'+param,
+			  async: false,
+			  dataType: "jsonp",
+			  jsonp: "sendPayRequest",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+			  jsonpCallback:"sendPayRequest",//自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写“?”jquery会自动处理
+			  success: function(data){
+                  g_orderinfo = data;
+                   console.log(data);
+                   conn.hideTip();
+                   if(data.retcode == "SUCCESS"){
+            
+                       //g_reqsn = data.reqsn; 
+                       if(!data.payinfo){
+                        confirmCysDialog("创建订单支付失败，请换一种支付方式或者请联系客服！","","关闭",function(){},function(){
+                            $('.mask').remove();
+                            clossCysDialog();
+                        });
+                        return false;
+                       }
+                       if(g_payType == "A01"){
+                           $(".zfbimg").show();
+                           $(".wximg").hide();
+                           g_qrcodeA.makeCode(data.payinfo);
+                           $(".zfbswitchloading").hide();
+
+                               
+                       }else if(g_payType == "W01"){
+                           $(".wximg").show();
+                           $(".zfbimg").hide();
+                           g_qrcodeW.makeCode(data.payinfo);
+                           $(".wxswitchloading").hide();
+                            
+                        }
+                        $(".pay_bottom_img").css("visibility","visible");
+                        
+                        startCheckPayResult(data.reqsn);
+                   }
+                   if(data.retcode == "FAIL"){
+                         confirmCysDialog("创建订单支付失败，请联系客服！","","关闭",function(){},function(){}); 
+                   }
+                   
+                   
+			  }
+    		});
+			   
+		 }
+		 function startCheckPayResult(reqsn){
+			 var timeOut=0;
+             var sumtime = 68;
+             var sumindex = 0;
+			 //var outPortTimerPay = setInterval(function (){window.location.href="Pay.html";},68000);
+             outPortLeftTimer = setInterval(function(){
+                var diff = sumtime - sumindex;
+                if(diff <= 60){
+                    //$(".leftTime").html(diff + "秒");
+                    $(".pay_tip").html('支付剩余<span class="leftTime">'+diff+'</span>秒');
+                }
+                sumindex ++;
+                if(sumindex > sumtime){
+                    outPortIndex += 2;
+                    clearInterval(outPortTimer);
+                    clearInterval(outPortLeftTimer);
+                    confirmCysDialog("支付超时，请重新购买！","","确定",function(){},function(){
+                        window.location.href="homepage.html";});
+                    setTimeout(function(){
+                        window.location.href="homepage.html";
+                    },10000);
+                } 
+             },1000);
+			 outPortTimer = setInterval(function (){
+				 timeOut++;
+				 /*if(timeOut>30){
+					 clearInterval(outPortTimer);
+					 confirmCysDialog("支付超时，请重新支付！","","确定",function(){},function(){window.location.href="Pay.html";}); 
+				 }*/
+				 $.ajax({
+				  type: 'GET',
+				  url: serviceUrl + '/payInfo/v1/getPayInfoList?reqsn='+reqsn+accessToken,
+				  async: false,
+				  dataType: "jsonp",
+				  jsonp: "getPayInfoList",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+				  jsonpCallback:"getPayInfoList",//自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写“?”jquery会自动处理
+				  success: function(data){
+					   if(data.retcode== "SUCCESS"){
+                           outPortIndex++;
+                           clearInterval(outPortTimer);
+                           if(outPortIndex == 1){
+						   g_reqsn = data.retmsg;
+                           g_orderinfo.reqsn=data.retmsg;
+                                //出票
+                               for(var index=0; index<g_orderMessage.length; index++){
+                                    var tempItem = g_orderMessage[index];
+                                    var obj = {"index":index,"terminalNo":tempItem.terminalNo,"gameNo":tempItem.gameNo,"num":tempItem.num,"motorNumber":tempItem.motorNumber,"price":tempItem.price,"gameName":tempItem.name,"reqsn":g_reqsn,"cutCardResult":-11};
+                                    g_payOrder.push(obj);
+                                }
+                               var tempresult = gSetProperties("ticketTypeData",JSON.stringify(g_payOrder));
+                               clearInterval(outPortLeftTimer);
+                               $(".pay_tip").html("");
+                               doGotoCard();
+                           }					   
+					   }else if(data.retcode== "FAIL"){
+						   clearInterval(outPortTimer);
+                           clearInterval(outPortLeftTimer);
+						   confirmCysDialog(data.retmsg+"，请重新支付！","","确定",function(){},function(){window.location.href="Pay.html";}); 
+					   }
+				  }
+    			});
+			},2000);
+		}
+
+			/**
+			*支付结果，安卓调用的函数
+			*/
+			function androidPlayResult(resultCode){
+				if(resultCode == "SUCCESS"){
+				     //confirmCysDialog("支付成功","","确定",function(){},function(){
+					       g_ownerSetData = gGetProperties("ownerSetData");
+						   if(g_ownerSetData != ""){
+								g_ownerSetData = JSON.parse(g_ownerSetData);
+							   for(var i=0;i<g_orderMessage.length;i++){
+								   var theOrder = g_orderMessage[i];
+								   for(var j=0;j<g_ownerSetData.length;j++){
+									   var theOSD = g_ownerSetData[j];
+									   if(theOrder.indexNo == theOSD.indexNo){
+										   var theOrderNum = parseInt(theOrder.num);
+										   var theOSDNum = parseInt(theOSD.num);
+										   
+										   if(theOrderNum<=theOSDNum){
+											   theOrder.num = 0; 
+											   theOSD.num = theOSDNum-theOrderNum;
+											   break;
+										   }else{
+											   theOrder.num = theOrderNum-theOSDNum; 
+											   theOSD.num = 0;
+										   }
+									   
+									   }
+								   }
+							   
+							   }
+							   //---------------------------------
+							   var result = gSetProperties("ownerSetData",JSON.stringify(g_ownerSetData));
+		                       //var result =  "SUCCESS";
+		 
+							 if(result == undefined){
+								 
+								  
+								  confirmCysDialog("链接后台失败","","关闭",function(){},function(){
+								     $('.mask').remove();
+									   $('#zfb_fs').hide();
+									   $('#wx_fs').hide();
+								  
+								  });
+							  }else if(result == "ERR"){
+								  if(actionMark == "nodelete"){
+									 
+									  confirmCysDialog("保存失败","","关闭",function(){},function(){
+									      $('.mask').remove();
+									   $('#zfb_fs').hide();
+									   $('#wx_fs').hide();
+									  });
+								  }else if(actionMark == "delete"){
+									 
+									 confirmCysDialog("删除失败","","关闭",function(){},function(){
+									     $('.mask').remove();
+									   $('#zfb_fs').hide();
+									   $('#wx_fs').hide();
+									  });
+								  }
+								  
+								 
+							  }else if(result == "NO PROPERTIES"){
+							  
+								  confirmCysDialog("没有权限操作","","关闭",function(){},function(){
+								      $('.mask').remove();
+									   $('#zfb_fs').hide();
+									   $('#wx_fs').hide();
+								  });
+								  
+							  }else if(result == "SUCCESS"){
+								   $('.mask').remove();
+								   $('#zfb_fs').hide();
+								   $('#wx_fs').hide();
+								   //window.location.href="homepage.html";
+								   doGotoCard();
+							  }
+							   
+							   
+						   }
+					// }); 
+				
+				}else if(resultCode == "FAIL"){
+				    confirmCysDialog("支付失败，将回到销售页面！","","确定",function(){},function(){window.location.href="homepage.html";}); 
+				}
+				
+			}
+			
+			/**
+			*支付请求的回调函数
+			*/
+			function androidPlayRequestResult(resultObject){
+			       resultObject = JSON.parse(resultObject);
+			
+			       $('.mask').remove();
+				   $('body').append("<div class='mask'></div>");
+				   $('.mask').show();
+				   
+				   if(g_payType == "A01"){
+					   g_qrcodeA.makeCode(resultObject.payinfo);
+					   $('#zfb_fs').show();
+					   $('#zfb_xz').attr('checked',true);
+					   $('#wx_fs').hide();
+				   }else if(g_payType == "W01"){
+					   g_qrcodeW.makeCode(resultObject.payinfo);
+					   $('#wx_fs').show();
+					   $('#wx_xz').attr('checked',true);
+					   $('#zfb_fs').hide();
+					}
+					
+					gStartPlay(resultObject.reqsn);
+			
+			}
+		
+
+            function getMotoResult(){
+                var dtd = $.Deferred(); 
+                staticMotorResult="none";
+                var motorNumberOut=g_orderMessage[0].motorNumber;             //机头
+                var price = parseInt(g_orderMessage[0].price);//价格
+                var result = gCutPaper(motorNumberOut,g_orderMessage[0].num); //出票结果
+                //调试
+                //result = -1;
+                staticMotorResult = result;
+                if(result != 1){
+                    failNum++;
+                    failMoney += price;
+                    setTerminalLengthFail(motorNumberOut); 
+                }
+                if(result == 1){
+                    successNum ++;
+                } 
+                if(staticMotorResult != "none"){
+                    dtd.resolve(); 
+                }else{
+                    dtd.reject(); 
+                }
+            　　
+
+            　　return dtd.promise();
+            };
+            function startGetMotoResult(){
+                $.when(getMotoResult())
+                .done(function(){ 
+
+                    var sendToServer = function(){
+                        var setToServerDsd = $.Deferred(); 
+                        var param = "?terminalNo=" +g_machineNo.terminalNo
+                        + "&num=" + g_orderMessage[0].num + "&price=" 
+                        + g_orderMessage[0].price + "&gameNo=" 
+                        + g_orderMessage[0].gameNo + "&gameName=" 
+                        + g_orderMessage[0].name + "&motorNumber="
+                        + g_orderMessage[0].motorNumber + "&reqsn="
+                        + g_reqsn + "&cutCardResult=" + staticMotorResult;
+                        $.ajax({
+                          type: 'GET',
+                          url: serviceUrl + '/payInfo/v1/saveTerminalSale' + param,
+                          dataType: "jsonp",
+                          jsonp: "saveTerminalSale",
+                          jsonpCallback:"saveTerminalSale",
+                          timeout:5000,
+                          success: function(data){
+                            if(data.retcode == "SUCCESS"){
+                                setToServerDsd.resolve(); 
+                            }else{
+                                setToServerDsd.reject();    
+                            }  
+                          },
+                          error: function(data){
+                            
+                            setToServerDsd.reject();    
+                          }
+                        });
+                        return setToServerDsd.promise();
+                    };
+
+                    //不管出票成功或失败调用保存销量接口
+                    $.when(sendToServer())
+                    .done(function(){ 
+                        
+                        var tempOrder = gGetProperties('ticketTypeData');
+                        tempOrder = JSON.parse(tempOrder);
+                        var len = tempOrder.length;
+                        if(len > 0){
+                            for(var innerIndex=0; innerIndex<tempOrder.length; innerIndex++){
+                                if(tempOrder[innerIndex].index == executeInde){
+                                     tempOrder.splice(innerIndex,1);
+                                }
+                            }
+
+                            var temresult = gSetProperties("ticketTypeData",JSON.stringify(tempOrder));
+                            
+                            g_orderMessage.splice(0,1);
+                            if(executeInde == staticOrderLen-1){
+                                clossCysDialog();
+                                showPaySuccess(successNum,failNum,failMoney);
+                            }
+                            if(g_orderMessage.length > 0){
+                                executeInde++;
+                                startGetMotoResult();
+                            }
+                                
+                        }
+                        //调试
+                        /*
+                        g_orderMessage.splice(0,1);
+                        if(g_orderMessage.length == 0){
+                          clossCysDialog();
+
+                          showPaySuccess(successNum,failNum,failMoney);
+                          
+                        }
+                        if(g_orderMessage.length > 0){
+                          executeInde++;
+                          startGetMotoResult();
+                        }*/
+                        
+                         
+                    })
+                    .fail(function(){ 
+                        var tempOrder = gGetProperties('ticketTypeData');
+                        tempOrder = JSON.parse(tempOrder);
+                        var len = tempOrder.length;
+                        if(len > 0){
+                            for(var innerIndex=0; innerIndex<tempOrder.length; innerIndex++){
+                                if(tempOrder[innerIndex].index == executeInde){
+                                    tempOrder[innerIndex].cutCardResult = staticMotorResult;
+                                }
+                            }
+                            gSetProperties("ticketTypeData",JSON.stringify(tempOrder));
+                            g_orderMessage.splice(0,1);
+                            if(executeInde == staticOrderLen-1){
+                                clossCysDialog();
+                                showPaySuccess(successNum,failNum,failMoney);
+                            }
+                            if(g_orderMessage.length > 0){
+                                executeInde++;
+                                startGetMotoResult();
+                            }        
+                            
+                        }
+                    });
+                    
+
+                    
+             
+                })
+                .fail(function(){
+                     
+                });
+            }
+
+
+			/*
+			*出票 
+			*/
+        
+			function doGotoCard(){
+				  confirmCysDialog("出票中...","","",function(){},function(){});
+          $(".pay_tip").html("");
+          successNum = 0;     
+          failNum = 0;        
+          failMoney = 0;      
+				  startGetMotoResult();
+			}
+			/*
+			*显示购买成功
+			*/
+      function showPaySuccess(successNum,failNum,failMoney){
+        var curIndex = 2;
+        if(totalCount == failMoney){
+          // console.log('失败金额等于总金额');
+          // console.log('totalCount:' + totalCount);
+          // console.log('failMoney:' + failMoney);
+          console.log('totalCount:' + totalCount);
+          console.log('failMoney:' + failMoney);
+          cancelOrder();
+          
+        }else{
+          tarchStartExit();   
+          $(".pay_succeed span").html("2");
+          $('.mask').remove();
+          $('body').append("<div class='paysuccessmask'></div>");
+          $('.paysuccessmask').show();
+          $(".succeed_info p").html("成功出票：" + successNum + "张!");
+          $(".fail_info p").html("失败出票：" + failNum + "张!");
+          if(failNum > 0){
+            curIndex = 15;
+            $(".pay_succeed span").html("15");
+            $(".fail_tip p").html("注意：已支付款项（出票失败金额"+failMoney+"元）将于5个工作日内退回");
+          }
+          $(".pay_succeed").show();
+          var curBeginTime = (new Date()).getTime();
+          var timer = setInterval(function(){
+              curIndex--;
+              if(curIndex <=0){  
+                clearInterval(timer);
+                window.location.href="homepage.html";
+            }else{
+               $(".pay_succeed span").html(curIndex);
+            } 
+              
+          },1000);
+        } 
+      }
+
+
+
+      function cancelOrder(){
+        var data = 'cusid='+g_orderinfo.cusid+'&appid='+g_orderinfo.appid+'&trxamt='+
+          payTotalSum+'&oldreqsn='+g_orderinfo.reqsn+'&oldtrxid='+g_orderinfo.trxid+
+          '&terminalNo='+g_machineNo.terminalNo+'&deviceId='+g_machineNo.deviceId;
+        console.log(data);
+        
+        $.ajax({
+          type: 'GET',
+          url: serviceUrl + '/payInfo/v1/sendOrderCancel?'+data,
+          async: false,
+          dataType: "jsonp",
+          jsonp: "sendOrderCancel",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+          jsonpCallback:"sendOrderCancel",//自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写“?”jquery会自动处理
+          success: function(data){
+            tarchStartExit();  
+            if(data.retcode== "SUCCESS"){
+              $(".pay_succeed span").html("15");
+              $('.mask').remove();
+              $('body').append("<div class='paysuccessmask'></div>");
+              $('.paysuccessmask').show();
+              $(".succeed_info p").html("成功出票：" + successNum + "张!");
+              $(".fail_info p").html("失败出票：" + failNum + "张!");
+              $(".pay_succeed_img img").attr("src","images/pay_error.png");
+              $(".pay_succeed_img").next('p').html("购票款退回！");
+              if(failNum > 0){
+                curIndex = 15;
+                $(".pay_succeed span").html("15");
+                $(".fail_tip p").html("出票失败，购票款已退回，请查看支付平台通知！");
+              }
+              $(".pay_succeed").show();
+              var curBeginTime = (new Date()).getTime();
+              var timer = setInterval(function(){
+                curIndex--;
+                if(curIndex <=0){  
+                  clearInterval(timer);
+                  window.location.href="homepage.html";
+                }else{
+                   $(".pay_succeed span").html(curIndex);
+                } 
+                  
+              },1000);
+            }else if(data.retcode== "FAIL"){
+                $(".pay_succeed span").html("15");
+                $('.mask').remove();
+                $('body').append("<div class='paysuccessmask'></div>");
+                $('.paysuccessmask').show();
+                $(".succeed_info p").html("成功出票：" + successNum + "张!");
+                $(".fail_info p").html("失败出票：" + failNum + "张!");
+                if(failNum > 0){
+                  curIndex = 15;
+                  $(".pay_succeed span").html("15");
+                  $(".fail_tip p").html("注意：已支付款项（出票失败金额"+failMoney+"元）将于5个工作日内退回");
+                }
+                $(".pay_succeed").show();
+                var curBeginTime = (new Date()).getTime();
+                var timer = setInterval(function(){
+                    curIndex--;
+                    if(curIndex <=0){  
+                      clearInterval(timer);
+                      window.location.href="homepage.html";
+                  }else{
+                     $(".pay_succeed span").html(curIndex);
+                  } 
+                    
+                },1000);
+            }
+          }
+        });
+      }
+
+      // 出票完成后点击屏幕回到销售页
+      function tarchStartExit(){
+        document.addEventListener('touchstart', function(){
+          window.location.href="homepage.html";
+        })
+      }
+			jQuery.event.special.tripleclick = {
+			setup: function(data, namespaces) {
+				var elem = this, $elem = jQuery(elem);
+				$elem.bind('click', jQuery.event.special.tripleclick.handler);
+			},
+			teardown: function(namespaces) {
+				var elem = this, $elem = jQuery(elem);
+				$elem.unbind('click', jQuery.event.special.tripleclick.handler);
+			},
+			handler: function(event) {
+				var elem = this, $elem = jQuery(elem), clicks = $elem.data('clicks') || 0;
+				clicks += 1;
+				if ( clicks === 3 ) {
+					clicks = 0;
+					// set event type to "tripleclick"
+					event.type = "tripleclick";
+					// let jQuery handle the triggering of "tripleclick" event handlers
+					jQuery.event.handle.apply(this, arguments)
+				}
+				$elem.data('clicks', clicks);
+			}
+		};
+		$('.telephone').bind('tripleclick', function (event) {
+			 //gExitApp();
+		});
+		$('.TerminalNumber').bind('tripleclick', function (event) {
+			 window.location.href="login.html";
+		});
+  </script>
+   
+</body>
+</html>

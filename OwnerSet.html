@@ -1,0 +1,955 @@
+<!doctype html>
+<html>
+<head>
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta charset="utf-8">
+<!--<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">-->
+<meta name="format-detection" content="telephone=no" />
+<title>业主设置</title>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="css/lq.datetimepick.css" rel="stylesheet" type="text/css">
+<link href="css/hDate.css" rel="stylesheet" type="text/css">
+</head>
+ 
+<body>
+  <div class="ownerset cst">
+     <div class="ownerset_head">
+     <img src="images/ggl.png">
+     <!--
+     <div id="ownerterminal_no" style="float: right;font-size:16px;"><b><span>终端编号：</b></span></div>-->
+     </div>
+     <div class="ownerset_data">
+
+        <!--<h2></h2>-->
+        <div class="operate">
+        	<span class="ownsetsys">设置</span>
+        	<span class="ownquery">销量</span>
+        	<span class="ownabout bigger">关于</span>
+        	<span class="ownhome">首页</span>
+        </div>
+
+      	<div id="ownsetsys" style="display: none">  
+	        <ul id="ownerListUl"></ul>
+	        <div class="startsale">
+	        	<!--<a href="homepage.html">开始销售</a> -->
+	        	<a id="ownerksxs">开始销售</a>
+	        </div>	
+        </div>
+
+        <div id="ownquery">
+        	<div class="wrapsearch">
+        		<div class="serach_head">
+        			<span>日期:</span><span class="btn prevday">上一天</span>
+        			<input type="text" readonly="true" id="resdate" name="date" placeholder="选择查询日期">
+        			<span class="btn nextday">下一天</span><span class="btn ownsearch">查询</span>
+        		</div>
+        		<div class="row_title">
+        			<span class="spanxh">序号</span>
+        			<span class="spansj">时间</span>
+        			<span class="spandm">方案代码</span>
+        			<span class="spanmc">方案名称</span>
+        			<span class="spandj">单票金额</span>
+        			<span class="spanzs">数量</span>
+        			<span class="spanze">合计</span>
+        		</div> 
+        		<div class="row_data">
+        			<div class="wrap_resdata">
+        			</div>
+        			<div class="wrap_total">
+        				<span>总计：</span><span>数量</span><span class="xsshuliang">0</span>
+        				<span class="total_money">张，销量：</span><span class="xszonge">0元</span>
+        			</div>
+        			
+        				
+        		
+        		</div>      	
+			</div>
+        </div>
+
+        <div id="ownabout" style="display: block;">
+	       	<div class="sysinfo">
+	       	  <!-- <img class="code" src="images/rwm.jpg"> -->
+	       	  <div class="list-row" style="display: none">
+	            <label><span>终</span><span>端</span><span>名</span><span>称</span></label>
+	            <span class="info">信息终端机(自助服务终端)</span>
+	          </div>
+            <div class="list-row">
+              <label id="quitsys"><span>终</span><span>端</span><span>编</span><span>号</span></label>
+              <span class="info" id="ownerterminal_no"></span>
+              <!--<input type="text"   value="42010002"/> -->
+              <span class="fixzdbh" style="display: none">修改</span>
+            </div> 
+	          <div class="list-row">
+	            <label><span>终</span><span>端</span><span>型</span><span>号</span></label>
+	            <span class="info" id="terminalType"></span>
+	          </div>
+            <div class="list-row">
+              <label><span>设</span><span>备</span><span>地</span><span>址</span></label>
+              <span class="info" id="macaddress"></span>
+            </div>
+            <div class="list-row">
+              <label><span>网</span><span>络</span><span>名</span><span>称</span></label>
+              <span class="info" id="wifiName"></span>
+            </div>
+            <div class="list-row">
+              <label><span>通</span><span>讯</span><span>端</span><span>口</span></label>
+              <span class="info" id="serial"></span>
+            </div>
+	          <!-- <div class="list-row">
+	            <label><span>Android</span><span>版</span><span>本</span></label>
+	            <span class="info" id="androidVersion"></span>
+	          </div> -->
+	          <div class="list-row">
+	            <label><span>系</span><span>统</span><span>版</span><span>本</span></label>
+	            <span class="info" id="systemVersion"></span>
+	          </div>
+	          
+	          <div class="list-row">
+	            <label><span>开</span><span>发</span><span>者</span></label>
+	            <span class="info">广州彩是路信息科技有限公司</span>
+	          </div> 
+	          <div class="list-end" style="display: none">         
+	            <a href="javascript:;" class="back">返回</a>
+	          </div> 
+	        </div>
+        </div>
+
+        <div class="ownsetinfo_confirm">
+        	 <div class="wrap_confirm">
+        	 	 <div class="wrap_tilte">终端存票信息确认</div>
+        	 	 
+        	 	 <div class="wrap_row">
+        	 	 
+        	 	 </div>
+        	 	 <div class="wrap_tip">
+        	 	 	警告：请仔细核对本机存票信息，如与实际不相符，会导致出票错误和资金损失，务必谨慎操作！
+        	 	 </div>
+        	 	 <div class="wrap_btn">
+        	 	 	<span class="ownfhxg">返回修改</span><span class="ownqrww">确认无误</span>
+        	 	 </div>
+        	 </div>
+        </div>
+      
+     </div>
+  </div>
+  
+  
+  <div class="ownerset_win">
+     <div class="search">
+        <input type="text" placeholder="方案代码&nbsp;/&nbsp;方案名称&nbsp;/&nbsp;单票金额">
+        <a href="javascript:;">搜 索</a>
+        <div class="search_data">
+           <ul id="search_data_ul">
+		   
+           </ul>
+        </div>
+     </div>
+     <div class="ownerset_win_data">
+        <div class="sp_img"><img src="" id="ownerset_win_data_img"></div>
+        <div class="sp_con">
+           <ul>
+              <li>方案代码：<span id="ownerset_win_data_no"></span></li>
+              <li>方案名称：<span id="ownerset_win_data_name"></span></li>
+           </ul>
+           <ul>
+              <li>数量：<input onkeyup="value=value.replace(/[^\d]/g,'')" type="number" min="0" value="0" id="ownerset_win_data_num" />
+             	       <div id="ownerset_win_data_motornumber" style=" display:none;">111</div>
+              </li>
+           </ul>
+		    <a href="javascript:;">确　定</a> 
+        </div>
+        
+     </div>
+  </div>
+  
+     <div class="del_window">
+          <h3>是否删除该彩票！</h3>
+          <div class="del_window_btn">
+             <a href="javascript:;"  class="no">否</a>
+              <a href="javascript:;" style="margin-right:35px;" class="yes">是</a>
+          </div>
+      </div>
+  <script src="js/common/jquery-1.8.0.y100.js" type="text/javascript"></script>
+  <script type="text/javascript" src="js/common/cysDialog.js"></script>
+  <script type="text/javascript" src="properties.js"></script>
+  <script type="text/javascript" src="js/common/fastclick.js"></script>
+  
+  <!--日期控件-->
+  <script type="text/javascript" src="js/common/selectUi.js"></script>
+  <script type="text/javascript" src="js/common/lq.datetimepick.js"></script>
+  <script type="text/javascript" src="js/common/hDate.js"></script>
+  <script type="text/javascript" src="js/common/moment.js"></script>
+  
+  <script type="text/javascript">
+  	 var cpstatus = false;   //票类数据是否修改
+     
+     $(function(){
+
+      FastClick.attach(document.body);
+      
+	     $('.add').click(function(){
+			   $('body').append("<div class='mask'></div>");
+				 $('.mask').show();
+				 $('.ownerset_win').show();
+			 });
+				 
+			 
+			 $('.search a').click(function(){
+				      $('.search_data').slideDown(200);
+				 });
+			 $('.ownerset_win_data a').click(function(){
+				      
+					  doEditfun();
+				 });
+				 
+				
+				$('.del_window_btn .no').click(function(){
+					   $('.mask').remove();
+					    $('.del_window').hide();
+				});
+			    
+			
+				$('.del_window_btn .yes').click(function(){
+						deleteOwnerDataLi();
+				});	
+
+        $("#ownerksxs").click(function(){
+          
+		   		confirmOwnerData();
+		   		//$('.ownsetinfo_confirm').show();
+        });
+
+        $(".ownfhxg").click(function(){
+          $('.mask').remove();
+          $('.ownsetinfo_confirm').hide();
+        });
+
+        $(".ownqrww").click(function(){
+          window.location.href="homepage.html";
+        });
+		 });
+		 
+var localImgArr = ['G0232','G0368','G0378','G0425','G0440','G0491','G0516','G0517','G0522','G0537','G0538','J0302','J0353','J0404','J0462','J0560','J0561','J0562','J0564','J0565','0288','0362','0373','0398'];
+
+var g_currentLi = {};//当前的票类li		 
+var accessToken='';
+$(document).ready(function(){
+		accessToken = window.location.hash.substring(1);//获取路径中的access token
+		g_machineNo = gGetProperties("terminalNo");
+		// g_machineNo="956315585";
+    //g_machineNo="202";
+    // g_machineNo="42010002";
+      
+      $("#ownerterminal_no").html(gGetProperties('terminalNo'));
+      $("#macaddress").html(gGetProperties('deviceId'));
+      $("#serial").html(gGetProperties('serial'));
+      $("#systemVersion").html(gGetProperties('appid'));
+      var wifistr = gNetWorkName();
+      var wifiName = wifistr.replace(/^\"+|\"+$/g,'');
+      $("#wifiName").html(wifiName);
+
+
+    	$.ajax({
+          type: 'GET',
+          url: serviceUrl + '/payInfo/v1/getTerminalConfig?terminalNo='+g_machineNo+accessToken,
+          async: false,
+          dataType: "jsonp",
+          jsonp: "getTerminalConfig",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+          jsonpCallback:"getTerminalConfig",//自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写“?”jquery会自动处理
+          success: function(data){
+            g_machineNo=data;
+			  //$("#ownerterminal_no").html("<b><span>终端编号："+g_machineNo.terminalNo+"</b></span>");
+    			  if(data.terminalstatus != '1'){
+    				  confirmCysDialog("无效终端，如有疑问请联系客服人员！","","关闭",function(){},function(){});
+    				  window.location.href="login.html";
+    			  }
+            $("#terminalType").html(g_machineNo.terminalType);
+          }
+    	});
+            /*tab切换*/
+      $(".ownerset_data .operate span").click(function(){
+        var index = $(".ownerset_data .operate span").index(this);
+        if(index !== 0 && cpstatus){
+        
+          confirmCysDialog("因您修改了存票信息，请点击开始销售按钮，以完成本次修改!","确认","",function(){},function(){});
+        }
+        if(!cpstatus){
+          $(".ownerset_data .operate span").removeClass("bigger");
+        }
+        if(index == 0){
+          confirmCysDialog("正在检测机头状态...","","",function(){},function(){});
+          loadOwnerData();
+          $("#ownsetsys").css("display","block");
+          $(this).addClass("bigger");
+          $("#ownquery").css("display","none");
+          $("#ownabout").css("display","none");
+        }else if(index == 1 && !cpstatus){
+          $("#ownsetsys").css("display","none");
+          $("#ownquery").css("display","block");
+          $(this).addClass("bigger");
+          $("#ownabout").css("display","none");
+          getTerminalSales($('#resdate').attr('date'));
+        }else if(index == 2 && !cpstatus){
+          $("#ownsetsys").css("display","none");
+          $("#ownquery").css("display","none");
+          $(this).addClass("bigger");
+
+          $("#ownabout").css("display","block");
+
+          $("#terminalType").html(g_machineNo.terminalType);
+          $("#ownerterminal_no").html(gGetProperties('terminalNo'));
+          /*$("#androidVersion").html(gGetProperties('version'));*/
+          $("#macaddress").html(gGetProperties('deviceId'));
+          $("#serial").html(gGetProperties('serial'));
+          $("#systemVersion").html(gGetProperties('appid'));
+          var wifistr = gNetWorkName();//gGetProperties('wifiName');
+          //var wifiName = wifistr.substring(1,wifistr.length-1);
+          var wifiName = wifistr.replace(/^\"+|\"+$/g,'');
+          $("#wifiName").html(wifiName);
+        }else if(index == 3 && !cpstatus){
+          
+          $.ajax({
+              type: 'GET',
+              url: serviceUrl + '/payInfo/v1/getTerminalTicket?terminalNo='+g_machineNo.terminalNo+accessToken,
+              async: false,
+              dataType: "jsonp",
+              jsonp: "getTerminalTicket",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+              jsonpCallback:"getTerminalTicket",//自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写“?”jquery会自动处理
+              success: function(data){
+                g_ownerSetData=[];
+                for(var i=0;i<g_machineNo.motorNum;i++){
+                  var ownerData=data[i]; 
+                  g_ownerSetData.push(ownerData);
+                }
+                // 终端编号不存在或者数量为0提示无法销售
+                if(!g_ownerSetData[0].gameNo || !g_ownerSetData[0].num){
+                    confirmCysDialog("未设置票种，无法销售","","关闭",function(){},function(){});
+                    return false;
+                }else{
+                  // window.location.href="homepage.html";
+                }
+                
+              }
+            }); 
+        }
+      }); 
+	////$.get("http://114.215.221.69:8081/billing/payInfo/v1/getTerminalConfig?terminalNo=956315585",function(data,status){
+    //alert("Data: " + data + "\nStatus: " + status);
+  //});
+	//ajax加载终端信息
+   //初始化加载数据
+   //initLoadData();
+
+    /*备用日期控件  
+      $("#resdate").on("click",function(e){
+        e.stopPropagation();
+        $(this).lqdatetimepicker({
+          css : 'datetime-day',
+          dateType : 'D',
+          selectback : function(){
+          }
+        });
+      }); */
+
+      //正在使用的日期控件
+      $("#resdate").click(function (e) {
+        var ths = this;
+        calendar.show({
+          id: this, ok: function () {
+            //alert(ths.value);
+          }
+        });
+      });
+      $('#resdate').attr('date',moment(new Date()).format('YYYY-MM-DD'));
+      $('#resdate').val($('#resdate').attr('date'));
+
+      //上一天
+      $("#ownquery .prevday").click(function(){
+        var str = $('#resdate').val();
+        if(str){
+          var addstr = moment(str).add('days',-1).format('YYYY-MM-DD');
+          $('#resdate').val(addstr);
+          $('#resdate').attr('date',addstr);
+        }
+      });
+
+      //下一天
+      $("#ownquery .nextday").click(function(){
+        var str = $('#resdate').val();
+        if(str){
+          var addstr = moment(str).add('days',1).format('YYYY-MM-DD');
+          $('#resdate').val(addstr);
+          $('#resdate').attr('date',addstr);
+        }
+      });
+     
+
+      $("#ownquery .ownsearch").click(function(){
+        var now = moment(new Date()).subtract(1, 'months').format('YYYY-MM-DD');
+        var date = $('#resdate').val();
+        console.log(now);
+        if(date){
+          var dateInput = new Date(date).getTime();
+          var dateNow = new Date(now).getTime();
+          if(dateInput >= dateNow){
+            getTerminalSales(date);
+          }else{
+            var str = '<div class="no_data">所选日期不在查询范围内</div>';
+            $('.wrap_resdata').html(str);
+            $('#ownquery .xsshuliang').html('0');
+            $('#ownquery .xszonge').html('0元');
+          }
+        }
+      });
+
+
+      $('#ownerset_win_data_num').bind('input propertychange', function() {
+          var input = $(this).val();
+
+            console.log(input);
+            var num = parseInt(input);
+            if(num <=0 || num > 300){
+              $('#ownerset_win_data_num').val(0);
+            }else{
+              $('#ownerset_win_data_num').val(input.replace(/^0+/,""));
+            }
+
+      });
+
+
+
+});
+
+
+
+
+
+function loadOwnerData(){
+	$.ajax({
+	  type: 'GET',
+	  url: serviceUrl + '/payInfo/v1/getTerminalTicket?terminalNo='+g_machineNo.terminalNo+accessToken,
+	  async: false,
+	  dataType: "jsonp",
+	  jsonp: "getTerminalTicket",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+	  jsonpCallback:"getTerminalTicket",//自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写“?”jquery会自动处理
+	  success: function(data){
+		  g_ownerSetData=[];
+		  for(var i=0;i<g_machineNo.motorNum;i++){
+			 var ownerData=data[i];
+			 
+			g_ownerSetData.push(ownerData);
+		  }
+		  //saveUserSetData(JSON.stringify(g_ownerSetData));
+		  initLoadData();
+	  }
+	});	
+}
+/*
+*初始化加载数据
+*/
+function initLoadData(){
+	//g_ownerSetData = gGetProperties("ownerSetData");
+//g_ownerSetData=[{"name":"ces","price":"10","indexNo":"J0353","image":"piao/J0353.jpg","num":"16","cardLength":"153","motorNumber":"1"}];
+	var list = '';
+	
+	   for(var i=0;i<g_machineNo.motorNum;i++){
+		    var data=g_ownerSetData[i];
+			
+			if(g_machineNo.motorNum==4){
+				$("#ownerListUl").css({width:"550px",height:"340px",paddingTop:"245px"});
+				//$("#ownerListUl").removeClass("ownersetdataul6");
+				//$("#ownerListUl").addClass("ownersetdataul4");	
+			}else{
+				$("#ownerListUl").css({width:"550px",height:"340px",paddingTop:"245px"});
+				//$("#ownerListUl").removeClass("ownersetdataul4");
+				//$("#ownerListUl").addClass("ownersetdataul6");
+			}
+			if(i!=0&&i%2==0&&g_machineNo.motorNum==4){
+				list+="<br>";
+			}
+      //图片路径修改
+			if(data.gameNo==''){
+				 list +='<li class="nodata">'
+				  + '  <div class="number">机头'+data.motorNumber+'<span class="tip"></span></div>'
+				  + '  <img src="images/piao/J0353.jpg">'
+				  + '  <div class="price"><span>J0353</spa好运十倍<span>￥10</span></div>'
+				  + '  <div class="gn_btn">'
+				  + '      <ol>'
+				  + '          <li class="change"><img src="images/change_owner.png"><div>修改</div></li>'
+				  + '          <li class="del"><img src="images/del_owner.png"><div>删除</div></li>'
+				  + '      </ol>'
+				  + '  </div>'
+				  + '  <div class="num">0张</div>'
+				  + '  <div class="adddata"><img src="images/add_bg.png"><p>添加彩票</p></div>'
+				  + '</li>';
+			}else{
+          var trueImgSrc = requestImgSrc + data.gameNo;
+          for(var k=0; k<localImgArr.length; k++){
+            if(data.gameNo == localImgArr[k]){
+              trueImgSrc = "images/piao/" + data.gameNo;
+            }
+          };
+					list +='<li data-item=\''+JSON.stringify(data)+'\'>'
+					  + '   <div class="number">机头'+data.motorNumber+'<span class="tip"></span></div>'
+					  + '   <img src="'+trueImgSrc+'.jpg">'
+					  + '   <div class="price">'+data.name+'<span>￥'+data.price+'</span></div>'
+					  + '   <div class="gn_btn">'
+					  + '       <ol>'
+					  + '           <li class="change"><img src="images/change_owner.png"><div>修改</div></li>'
+					  + '           <li class="del"><img src="images/del_owner.png"><div>删除</div></li>'
+					  + '       </ol>'
+					  + '   </div>'
+					  + '   <div class="num">'+data.num+'张</div>'
+					  + '</li>';
+			}
+	}
+	$("#ownerListUl").html(list);
+	
+	//-----------------------------------------------------------------------------------------
+	
+	var list2 = '';
+   //ticketTypeData = gGetProperties("ticketTypeData");
+	$.ajax({
+	  type: 'GET',
+	  url: serviceUrl + '/payInfo/v1/getSaleGameInfoList?terminalNo='+g_machineNo.terminalNo+accessToken,
+	  async: false,
+	  dataType: "jsonp",
+	  jsonp: "getSaleGameInfoList",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+	  jsonpCallback:"getSaleGameInfoList",//自定义的jsonp回调函数名，默认未jquery 自动生成的随机函数名，也可以写“?”jquery会自动处理
+	  success: function(data){
+		ticketTypeData=data;
+	   for(var i=0;i<ticketTypeData.length;i++){
+	     var theOne = ticketTypeData[i];
+	     list2 += '<li data-item=\''+JSON.stringify(theOne)+'\'><span>'+theOne.gameNo+'</span><span>'+theOne.gameName+'</span><span>'+theOne.gamePrice+'元</span></li>';
+	   }
+		$("#search_data_ul").html(list2);
+		actionEffect();
+
+
+      //设置关于
+      $("#ownabout").css("display","block");
+      $("#terminalType").html(g_machineNo.terminalType);
+      $("#ownerterminal_no").html(gGetProperties('terminalNo'));
+      /*$("#androidVersion").html(gGetProperties('version'));*/
+      $("#macaddress").html(gGetProperties('deviceId'));
+      $("#serial").html(gGetProperties('serial'));
+      $("#systemVersion").html(gGetProperties('appid'));
+      var wifistr = gNetWorkName();//gGetProperties('wifiName');
+      //var wifiName = wifistr.substring(1,wifistr.length-1);
+      var wifiName = wifistr.replace(/^\"+|\"+$/g,'');
+      $("#wifiName").html(wifiName);
+
+
+	  }
+	});	
+    console.log(g_ownerSetData);
+		for(var l=0;l<g_ownerSetData.length;l++){
+			if(g_ownerSetData[l].gameNo!=''){
+				saveUserSetData(g_ownerSetData[l].cardLength,g_ownerSetData[l].motorNumber);
+			}else{
+        saveUserSetData(51,g_ownerSetData[l].motorNumber);
+      }
+		}
+    clossCysDialog();
+}
+
+/**
+*事件绑定
+*/
+function actionEffect(){
+     /*修改和添加彩票*/
+	 $('.change,.adddata').off("click");
+	$('.change').click(function(){
+       
+		   var motorNo=$(this).parents("li").find('div').eq(0).html();
+		   motorNo=motorNo.substr(2,1);
+		   $('#ownerset_win_data_motornumber').html(motorNo);
+		   if($(this).is(".change")){
+		       g_currentLi = $(this).parents("li");
+		       $('.ownerset_win').attr("data-action","edit");
+			   var dataItem = JSON.parse(g_currentLi.attr("data-item"));
+			   
+			   //$('.ownerset_win').attr("data-editid",dataItem.id);
+			   $('.search input').val(dataItem.gameNo+"	"+dataItem.name+"  "+dataItem.price+"元");
+			   editShowMesg(g_currentLi.attr("data-item"));
+			   
+		   }else{
+		       $('.ownerset_win').attr("data-action","add");
+		   }
+
+       $('body').append("<div class='mask'></div>");
+       $('.mask').show();
+       $('.ownerset_win').show();
+       $('.ownerset_win_data').show();
+		   
+		   $('.mask').click(function(){
+		        $('.mask').remove();
+					  $('.ownerset_win').hide();
+					  $('.ownerset_win_data').hide();
+		   });
+
+	});
+
+  $('.adddata').click(function(){
+    var status = $(this).parents("li").find('div').eq(0).find('.tip').data('status');
+    // console.log(status);
+    // if(status != 1){
+    //   return false;
+    // }
+    var motorNo=$(this).parents("li").find('div').eq(0).html();
+       motorNo=motorNo.substr(2,1);
+       $('#ownerset_win_data_motornumber').html(motorNo);
+       if($(this).is(".change")){
+           g_currentLi = $(this).parents("li");
+           $('.ownerset_win').attr("data-action","edit");
+         var dataItem = JSON.parse(g_currentLi.attr("data-item"));
+         
+         //$('.ownerset_win').attr("data-editid",dataItem.id);
+         $('.search input').val(dataItem.gameNo+" "+dataItem.name+"  "+dataItem.price+"元");
+         editShowMesg(g_currentLi.attr("data-item"));
+         
+       }else{
+           $('.ownerset_win').attr("data-action","add");
+       }
+
+       $('body').append("<div class='mask'></div>");
+       $('.mask').show();
+       $('.ownerset_win').show();
+       $('.ownerset_win_data').show();
+       
+       $('.mask').click(function(){
+            $('.mask').remove();
+            $('.ownerset_win').hide();
+            $('.ownerset_win_data').hide();
+       });
+
+  });
+
+	//--------
+	$('.del').off("click");
+	$('.del').click(function(){
+		$('body').append("<div class='mask'></div>");
+	   $('.mask').show();
+		$('.del_window').show();
+		
+		g_currentLi = $(this).parents("li");
+	});
+	//----
+	$('.search_data ul li').off("click");
+	$('.search_data ul li').click(function(){
+		 var text = $(this).find('span').eq(0).html()+"　"+$(this).find('span').eq(1).html();
+		 $('.search input').val(text);
+		  $('.search_data').slideUp(200);
+		  $('.ownerset_win_data').show();
+		  
+		  g_currentLi = $(this);
+		  searchShowMesg(g_currentLi.attr("data-item"));
+		  
+		 
+	 });
+	
+}
+/**
+*删除该即开票
+*/
+function deleteOwnerDataLi(){
+    //g_currentLi.remove();
+	var motorNo=g_currentLi.find('div').html();
+	motorNo=motorNo.substr(2,1);
+	var param="terminalNo="+g_machineNo.terminalNo+"&motorNumber="+motorNo;
+  var conn = new ConnectTimeout();
+  conn.showTip();
+	$.ajax({
+	  type: 'GET',
+	  url: serviceUrl + '/payInfo/v1/updateTerminalTicket?'+param+accessToken,
+	  async: false,
+	  dataType: "jsonp",
+	  jsonp: "updateTerminalTicket",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+	  jsonpCallback:"updateTerminalTicket",//自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写“?”jquery会自动处理
+	  success: function(data){
+    conn.hideTip();
+		if(data.retcode=='FAIL'){
+			confirmCysDialog(data.retmsg,"","关闭",function(){},function(){});
+		}else{
+			cpstatus = true;
+			//console.log("删除成功！");
+				 $('.mask').remove();
+	         	$('.del_window').hide();
+				loadOwnerData();
+		}
+	  }
+	});	
+	
+}
+/**
+*显示即开票的内容
+*/
+function searchShowMesg(dataItem){
+     
+	var theOne = JSON.parse(dataItem);
+	//图片路径修改
+	//$("#ownerset_win_data_img").attr("src","images/"+theOne.imgPath);
+    var trueImgSrc = requestImgSrc + theOne.gameNo;
+    for(var i=0; i<localImgArr.length; i++){
+      if(theOne.gameNo == localImgArr[i]){
+        trueImgSrc = "images/piao/" + theOne.gameNo;
+      }
+    }
+    $("#ownerset_win_data_img").attr("src",trueImgSrc+".jpg");
+    $("#ownerset_win_data_no").html(theOne.gameNo);
+    $("#ownerset_win_data_name").html(theOne.gameName+" ￥"+theOne.gamePrice);
+    $("#ownerset_win_data_num").val("0");	
+}
+function editShowMesg(dataItem){
+	var theOne = JSON.parse(dataItem);
+  //$("#ownerset_win_data_img").attr("src","images/"+theOne.image);
+  var trueImgSrc = requestImgSrc + theOne.gameNo;
+  for(var i=0; i<localImgArr.length; i++){
+    if(theOne.gameNo == localImgArr[i]){
+      trueImgSrc = "images/piao/" + theOne.gameNo;
+    }
+  }
+	$("#ownerset_win_data_img").attr("src",trueImgSrc + ".jpg");
+    $("#ownerset_win_data_no").html(theOne.gameNo);
+    $("#ownerset_win_data_name").html(theOne.name+" ￥"+theOne.price);
+    $("#ownerset_win_data_num").val(theOne.num);	
+}
+/**
+*修改\添加即开票信息
+*/
+function doEditfun(){
+        var actionMark = $('.ownerset_win').attr("data-action");
+		if($("#ownerset_win_data_name").html().trim() == ""){
+			confirmCysDialog("请先选择即开票","","关闭",function(){},function(){});
+			return false;
+		}
+		var motorNumber = $('#ownerset_win_data_motornumber').html().substr(0,1);
+		var num=$("#ownerset_win_data_num").val().trim();
+		var gameNo=$("#ownerset_win_data_no").html().trim();
+		if(num == 0 ){
+			confirmCysDialog("票数0，请重新设置","","关闭",function(){},function(){
+				//保持用户配置的即开票信息
+				   //saveTerminalTicket(motorNumber,num,gameNo);
+			});
+		}else{
+        /*console.log('motorNumber:'+motorNumber);
+        console.log('num:'+num);
+        console.log('gameNo:'+gameNo);*/
+				saveTerminalTicket(motorNumber,num,gameNo);
+		}
+				   
+}
+/*开始销售确认数据*/
+function confirmOwnerData(){
+  var conn = new ConnectTimeout();
+  conn.showTip();
+	$(".wrap_confirm .wrap_row").html("");
+	$.ajax({
+	  type: 'GET',
+	  url: serviceUrl + '/payInfo/v1/getTerminalTicket?terminalNo='+g_machineNo.terminalNo+accessToken,
+	  async: false,
+	  dataType: "jsonp",
+	  jsonp: "getTerminalTicket",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+	  jsonpCallback:"getTerminalTicket",//自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写“?”jquery会自动处理
+	  success: function(data){
+      conn.hideTip();
+		  g_ownerSetData=[];
+
+		  for(var i=0;i<g_machineNo.motorNum;i++){
+  			var ownerData=data[i];
+  			if(ownerData.gameNo) {
+  				g_ownerSetData.push(ownerData);
+  			}
+		  }
+      if(!g_ownerSetData.length){
+        confirmCysDialog("未设置票种，无法销售","","关闭",function(){},function(){
+          
+        });
+        return false;
+      }
+		  console.log(g_ownerSetData);
+		  var list_row = '<div class="list_row">'
+        	 	 	+ '<span>位置</span>'
+        	 	 	+ '<span>方案代号</span>'
+        	 	 	+ '<span class="famc">方案名称</span>'
+        	 	 	+ '<span>单票金额</span>'
+        	 	 	+ '<span>数量</span></div>'
+		  var len = g_ownerSetData.length;
+
+		  if(len > 0){
+		  	for(var i=0; i<len; i++){
+
+		  		list_row += '<div class="list_row">'
+		  			+'<span>' + g_ownerSetData[i].motorNumber + '</span>'
+		  			+'<span>' + g_ownerSetData[i].gameNo + '</span>'
+		  			+'<span class="famc">' + g_ownerSetData[i].name + '</span>'
+		  			+'<span>' + g_ownerSetData[i].price + '元</span>'
+		  			+'<span>' + g_ownerSetData[i].num + '</span></div>';
+		  	}
+		  }
+		  
+	        	 	 	
+	    $('body').append("<div class='mask'></div>");
+      $('.mask').show();
+		  $(".wrap_confirm .wrap_row").html(list_row);
+		  $('.ownsetinfo_confirm').show();
+		 
+	  }
+	});	
+}
+
+
+function saveTerminalTicket(motorNumber,num,gameNo){
+	var setMotorNumber="";
+	for(var i=0;i<g_ownerSetData.length;i++){
+		var data=g_ownerSetData[i];
+		//alert("gameNo:"+gameNo+"  data.gameNo:"+data.gameNo+" data.motorNumber:"+data.motorNumber+" motorNumber:"+motorNumber);
+		if(data.gameNo==gameNo&&data.motorNumber!=motorNumber){
+			setMotorNumber=setMotorNumber+""+data.motorNumber+"  ";
+		}	
+	}
+	if(setMotorNumber!=""){
+			confirmCysDialog("机头"+setMotorNumber+"已设置该票，是否继续设置","取消","确定",function(){
+        return;},function(){
+					var param="terminalNo="+g_machineNo.terminalNo+"&motorNumber="+motorNumber+"&gameNo="+gameNo+"&num="+num;
+          var conn = new ConnectTimeout();
+          conn.showTip();
+					$.ajax({
+					  type: 'GET',
+					  url: serviceUrl + '/payInfo/v1/updateTerminalTicket?'+param+accessToken,
+					  async: false,
+					  dataType: "jsonp",
+					  jsonp: "updateTerminalTicket",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+					  jsonpCallback:"updateTerminalTicket",//自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写
+					  success: function(data){
+            conn.hideTip();
+						if(data.retcode=='FAIL'){
+							confirmCysDialog(data.retmsg,"","关闭",function(){},function(){});
+						}
+						cpstatus = true;
+						$('.mask').remove();
+						$('.ownerset_win').hide();
+						$('.ownerset_win_data').hide();
+						  loadOwnerData();
+					  }
+					});			
+			});
+	}else{
+			var param="terminalNo="+g_machineNo.terminalNo+"&motorNumber="+motorNumber+"&gameNo="+gameNo+"&num="+num;
+          var conn = new ConnectTimeout();
+          conn.showTip();
+					$.ajax({
+					  type: 'GET',
+					  url: serviceUrl + '/payInfo/v1/updateTerminalTicket?'+param+accessToken,
+					  async: false,
+					  dataType: "jsonp",
+					  jsonp: "updateTerminalTicket",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+					  jsonpCallback:"updateTerminalTicket",//自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写
+					  success: function(data){
+              conn.hideTip();
+						if(data.retcode=='FAIL'){
+							confirmCysDialog(data.retmsg,"","关闭",function(){},function(){});
+						}
+						cpstatus = true;
+						$('.mask').remove();
+						$('.ownerset_win').hide();
+						$('.ownerset_win_data').hide();
+						loadOwnerData();
+					  }
+					});		
+	}
+				
+}
+
+//终端销售量
+function getTerminalSales(argsdate){
+  var conn = new ConnectTimeout();
+  conn.showTip();
+  $.ajax({
+    type: 'GET',
+    url: serviceUrl + '/payInfo/v1/getTerminalSale?terminalNo='
+     + g_machineNo.terminalNo + '&date=' + argsdate,
+    async: false,
+    dataType: "jsonp",
+    jsonp: "getTerminalSale",
+    jsonpCallback:"getTerminalSale",
+    success: function(data){
+      conn.hideTip();
+      var list = data;
+      console.log(data);  
+      if(list instanceof Array){
+        var len = list.length;
+        var list_row = '';
+        var num = 0;
+        var allmoney = 0;
+        var row_money = 0;
+        if(len>0){
+          
+          for(var i=0; i<len; i++){
+            row_monye = list[i].num*list[i].price;
+            list_row +=  '<div class="wrap_row">'
+                  + '<span class="spanxh">'+ (i+1) +'</span>'
+                  + '<span class="spansj">'+ list[i].saleTime.substring(11) +'</span>'
+                  + '<span class="spandm">'+ list[i].gameNo +'</span>'
+                  + '<span class="spanmc">'+ list[i].gameName +'</span>'
+                  + '<span class="spandj spanrmb">'+ list[i].price +'</span>'
+                  + '<span class="spanzs">'+ list[i].num +'</span>'
+                  + '<span class="spanze spanrmb">'+ row_monye +'</span></div>';
+
+            num += parseInt(list[i].num);
+            allmoney += row_monye;
+            $('.wrap_resdata').html(list_row);
+          }
+        }else{
+            var str = '<div class="no_data">所选日期查无数据</div>';
+            $('.wrap_resdata').html(str);
+        }
+        
+        $('#ownquery .xsshuliang').html(num);
+        $('#ownquery .xszonge').html(allmoney + '元');
+
+      }
+      
+      
+
+      
+
+
+
+    }
+  });   
+}
+
+
+		jQuery.event.special.tripleclick = {
+			setup: function(data, namespaces) {
+				var elem = this, $elem = jQuery(elem);
+				$elem.bind('click', jQuery.event.special.tripleclick.handler);
+			},
+			teardown: function(namespaces) {
+				var elem = this, $elem = jQuery(elem);
+				$elem.unbind('click', jQuery.event.special.tripleclick.handler);
+			},
+			handler: function(event) {
+				var elem = this, $elem = jQuery(elem), clicks = $elem.data('clicks') || 0;
+				clicks += 1;
+				if ( clicks === 3 ) {
+					clicks = 0;
+					// set event type to "tripleclick"
+					event.type = "tripleclick";
+					// let jQuery handle the triggering of "tripleclick" event handlers
+					jQuery.event.handle.apply(this, arguments)
+				}
+				$elem.data('clicks', clicks);
+			}
+		};
+		$('#ownerterminal_no').bind('tripleclick', function (event) {
+			 gExitApp();
+		});
+    $('#quitsys').bind('tripleclick', function (event) {
+       gExitApp();
+    });
+  </script>
+   
+</body>
+</html>

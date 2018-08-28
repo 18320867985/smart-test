@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="js/common/jDialog/jDialog.css" type="text/css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<title>MD5加密</title>
+</head>
+
+<body>
+    <h3>MD5加密</h3>
+	<div>
+	    <label>源字符串:</label>
+	    <input type="text" value="" style="width:200;px;" id="sourceTest" /> 
+		<input type="button" value="加密" onclick="encodeMD()"/>
+	</div>
+	<div style="margin-top:20px;">
+	    <label>加密后:</label>
+	    <input type="text" value="" style="width:500px;" disabled  id="mdStr" /> 
+	</div>
+	<hr>
+	<div>
+	     <label>设置终端号:</label>
+	    <input type="text" value="" style="width:200;px;" id="terminalNo" /> 
+		<input type="button" value="加密" onclick="saveTerminalNo()"/>
+		<label>terminalNo:123454</label>
+	
+	</div>
+	
+	<div id='loading' style='width:100px;height:100px;position:fixed;top:50%;left:50%;z-index:10000'>nihao </div>
+	
+	<div class="cysShow_window">
+          <h3>是否删除该彩票！</h3>
+          <div class="cysShow_window_btn">
+             <a href="javascript:;"  class="no">否</a>
+              <a href="javascript:;" style="margin-right:35px;" class="yes">是</a>
+          </div>
+      </div>
+</body>
+  <script type="text/javascript" src="js/common/jquery-1.8.0.y100.js"></script>
+  
+  <script type="text/javascript" src="js/common/jDialog.js"></script>
+  <script type="text/javascript" src="js/common/cysDialog.js"></script>
+  <script type="text/javascript" src="js/common/MD5.js"></script>
+  <script type="text/javascript" >
+         /**
+		 *密码MD5加密
+		 */
+         function  encodeMD(){
+		       var value = $("#sourceTest").val().trim();
+			   if(value == ""){
+			       alert("请输入源码");
+				   return false;
+			   }
+			   var mdStr = hex_md5(value);
+			   //mdStr +="---"+b64_md5(value);
+			   $("#mdStr").val(mdStr);
+		 }
+		 /**
+		 *保持终端号
+		 */
+		 function saveTerminalNo(){
+		    
+		 }
+		 
+		 
+    function deleteClick(){
+	confirmDialog("确定删除考试？",function(){
+		//deleteExam();
+	},function(){},"","关闭");
+	 
+    }
+	
+	$(document).ready(function(){
+	    //confirmCysDialog("你是谁？","","确",function(){alert("关闭");},function(){alert("确定");});
+	   //deleteClick();
+	   
+	   doCreatePayOrder();
+	});
+	
+	function doCreatePayOrder(){
+	     $.ajax({
+			url: "http://114.215.221.69:8081/billing/payInfo/v1/sendPayRequest",
+			data:{"cusid":"270581048126335","appid":"00009018","trxamt":"2","paytype":"W01"},
+			type: "get",
+			dataType:'json',
+			success:function(data){
+			    alert(data);
+			},
+			error:function(er){
+			     alert(er);
+			}
+		});
+	}
+	//
+  </script>
+</html>

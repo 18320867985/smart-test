@@ -1,0 +1,354 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta name="viewport" content="minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta charset="utf-8">
+		<title>登录</title>
+
+		<link href="css/style.css" rel="stylesheet" type="text/css">
+		<style type="text/css">
+			body {
+				background: url("./images/login_bg.jpg");
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="login_con cst">
+			<div class="login_head">
+				<div class="TerminalNumber">终端编号：</div>
+				<div class="telephone">客服电话：</div>
+			</div>
+			<!--<div class="logo"></div>-->
+			<div class="login" id="login" >
+				<div class="login_img">
+					<img src="images/login_img.png">
+				</div>
+				<div class="login_tian">
+					<ul>
+						<li class="mb70">
+							<span>终端编码</span>
+							<span class="s1">：</span>
+							<span class="text" id="login_tian_span"></span>
+						</li>
+						<li>
+							<span>密 码</span>
+							<span class="s1">：</span>
+							<input type="password" placeholder="请输入密码" id="loginPW" />
+							<em style="display:none;">您输入的密码有误，请重新输入！</em>
+						</li>
+					</ul>
+					<div class="lj_btn">
+						<a href="javascript:;" class="login_a">登 录</a>
+						<a href="javascript:;" class="ChangePassword">修改密码</a>
+						<a href="homepage.html" class="BackHome">返回首页</a>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="login" id="ChangePassword" style="top:42%">
+				<div class="login_img">
+					<img src="images/alter.png">
+				</div>
+				<div class="login_tian">
+					<ul>
+						<li class="mb50">
+							<span>业主证件</span>
+							<span class="s1">：</span>
+							<input type="text" placeholder="请输入证件号码后四位" id="userId" />
+							<em style="display:none;">您输入的证件有误，请重新输入！</em>
+						</li>
+						<li class="mb50">
+							<span>新密码</span>
+							<span class="s1">：</span>
+							<input type="password" placeholder="请输入新密码" id="newPwOne" />
+							<em style="display:none;">两次密码不一致，请重新输入!</em>
+						</li>
+						<li>
+							<span>确认密码</span>
+							<span class="s1">：</span>
+							<input type="password" placeholder="请确认密码" id="newPwTwo" />
+							<em style="display:none;">两次密码不一致，请重新输入!</em>
+						</li>
+					</ul>
+					<div class="lj_btn">
+						<a href="javascript:;" class="OK">确 定</a>
+						<a href="javascript:;" class="cancel">取 消</a>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<!--弹窗框—start-->
+		<div class="createClass_window" style="display:none;">
+			<h3>密码修改成功！</h3>
+			<div class="createClass_window_btn">
+				<a href="javascript:;" class="cancel" id="eidtPwOk">确定</a>
+			</div>
+		</div>
+		<!--弹窗框—end-->
+		<!--编号-start-->
+		<div style=" position:fixed; bottom:5px; right:5px; font-size:20px; color:#1D63F1; opacity:0.5; font-family:Consolas, 'Andale Mono', 'Lucida Console', 'Lucida Sans Typewriter', Monaco, 'Courier New', monospace">编号：4.3</div>
+		<!--编号-end-->
+	</body>
+	<script type="text/javascript" src="js/common/jquery-1.8.0.y100.js"></script>
+	<script type="text/javascript" src="js/common/cysDialog.js"></script>
+	<script type="text/javascript" src="js/common/MD5.js"></script>
+	<script type="text/javascript" src="properties.js"></script>
+	<script type="text/javascript">
+		var g_machineNo = '';
+		var t_opera = '';
+
+		function loginInit() {
+			//获取终端号，服务电话
+			var g_machineno = gGetProperties("terminalNo");
+			//g_machineNo = "956315585";
+			//g_machineno = "1002";
+			var accessToken = window.location.hash.substring(1); //获取路径中的access token
+			//g_machineNo = gGetProperties("terminalNo");
+
+			$.ajax({
+				type: 'GET',
+				url: serviceUrl + '/payInfo/v1/getTerminalConfig?terminalNo=' + g_machineno + accessToken,
+				async: false,
+				dataType: "jsonp",
+				timeout: 3000,
+				jsonp: "getTerminalConfig", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+				jsonpCallback: "getTerminalConfig", //自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写“?”jquery会自动处理
+				success: function(data) {
+					g_machineNo = data;
+					if(data.terminalstatus != '1') {
+						confirmCysDialog("无效终端，如有疑问请联系客服人员！", "", "关闭", function() {}, function() {
+							gExitApp();
+						});
+						//window.location.href="login.html";
+					}
+					$(".TerminalNumber").html("<span><b>终端编号：" + g_machineNo.terminalNo + "</b></span>");
+					$(".telephone").html("<span><b>客服电话：" + g_machineNo.serverPhone + "</b></span>");
+					$("#login_tian_span").html(g_machineNo.terminalNo);
+				},
+				error: function(data) {
+					confirmCysDialog("网络连接已断开，无法发送请求", "", "关闭", function() {}, function() {});
+				}
+
+			});
+
+		}
+
+		loginInit();
+		t_opera = setTimeout(function() {
+			window.location.replace("homepage.html");
+		}, 600000);
+
+		$(function() {
+			//$(".TerminalNumber").html("终端编号："+g_machineNo);
+			//$(".telephone").html("客服电话："+g_servicePhone);
+
+			$('.ChangePassword').click(function() {
+				$("#userId").val("");
+				$("#newPwOne").val("");
+				$("#newPwTwo").val("");
+				$('#login').hide();
+				$('#ChangePassword').show();
+
+			});
+
+			$("#eidtPwOk").click(function() {
+				$('#loadMask').remove();
+				$(".createClass_window").hide();
+
+				$('#login').show();
+				$('#ChangePassword').hide();
+				$("#loginPW").val("");
+				$("#loginPW").next().hide();
+
+				loginInit();
+			});
+
+			$('.lj_btn .cancel').click(function() {
+				$('#ChangePassword').hide();
+				$('#login').show();
+			});
+
+			function isConnect() {
+				var hasnetwork = gNetWork();
+				if(!hasnetwork) {
+					confirmCysDialog("网络异常，请检查网络连接！", "", "关闭", function() {}, function() {
+						var pw = $("#loginPW").val().trim();
+						//window.location.href = "OwnerSet.html";
+						if(pw == "") {
+							$("#loginPW").next().html("请输入密码！");
+							$("#loginPW").next().show();
+							return false;
+						}
+						var pwMD = hex_md5(pw);
+						//获取配置文件中的密码
+						var g_loginPW = gGetProperties("userPassword");
+
+						if(pwMD != g_loginPW) {
+							$("#loginPW").next().html("您输入的密码有误，请重新输入！");
+							$("#loginPW").next().show();
+						} else if(pwMD == g_loginPW) {
+							window.location.href = "OwnerSet.html";
+						}
+					});
+					return hasnetwork;
+				}
+				loginInit();
+				return hasnetwork;
+			}
+
+			$(".login_a").click(function() {
+				var pw = $("#loginPW").val().trim();
+				var linktoset = isConnect();
+				if(!linktoset) {
+					return false;
+				}
+				if(pw == "") {
+					$("#loginPW").next().html("请输入密码！");
+					$("#loginPW").next().show();
+					return false;
+				}
+
+				var pwMD = hex_md5(pw);
+
+				//获取配置文件中的密码
+				var g_loginPW = g_machineNo.password; //gGetProperties("userPassword");
+				if(!g_loginPW) {
+					confirmCysDialog("网络异常，请检查网络连接！", "", "关闭", function() {}, function() {});
+					return false;
+				}
+
+				if(pwMD != g_loginPW) {
+					$("#loginPW").next().html("您输入的密码错误，请重新输入！");
+					$("#loginPW").next().show();
+				} else if(pwMD == g_loginPW) {
+					window.location.href = "OwnerSet.html";
+				}
+
+			});
+
+			$(".lj_btn .OK").click(function() {
+				var userId = $("#userId").val().trim();
+
+				var g_userIdentifyId = gGetProperties("identifyId");
+
+				if(userId == "") {
+					$("#userId").next().html("请输入证件后四位！");
+					$("#userId").next().show();
+					return false;
+				} else if(userId != g_machineNo.idcard.substring(g_machineNo.idcard.length - 4)) {
+					$("#userId").next().html("您输入的证件号码有误，请重新输入！");
+					$("#userId").next().show();
+					return false;
+				}
+				var newPwOne = $("#newPwOne").val().trim();
+				var newPwTwo = $("#newPwTwo").val().trim();
+
+				if(newPwOne == "") {
+					$("#newPwOne").next().html("请输入密码");
+					$("#newPwOne").next().show();
+					return false;
+				} else if(newPwOne.replace(/[0-9]{6,15}/, "") != "") {
+					$("#newPwOne").next().html("格式：6~15字符,仅支持数字");
+					$("#newPwOne").next().show();
+					return false;
+				}
+
+				if(newPwTwo == "") {
+					$("#newPwTwo").next().html("请输入密码");
+					$("#newPwTwo").next().show();
+					return false;
+				} else if(newPwTwo.replace(/[0-9]{6,15}/, "") != "") {
+					$("#newPwTwo").next().html("格式：6~15字符,仅支持数字");
+					$("#newPwTwo").next().show();
+					return false;
+				}
+
+				if(newPwOne != newPwTwo) {
+					$("#newPwTwo").next().html("两次密码不一致，请重新输入!");
+					$("#newPwTwo").next().show();
+					return false;
+				}
+				var pass = hex_md5(newPwOne);
+				var result = gSetProperties("userPassword", pass);
+				if(result == undefined) {
+
+					confirmCysDialog("链接后台失败", "", "关闭", function() {}, function() {});
+				} else if(result == "ERR") {
+
+					confirmCysDialog("修改失败", "", "关闭", function() {}, function() {});
+
+				} else if(result == "NO PROPERTIES") {
+
+					confirmCysDialog("没有权限操作", "", "关闭", function() {}, function() {});
+
+				} else if(result == "SUCCESS") {
+					$.ajax({
+						type: 'GET',
+						url: serviceUrl + '/payInfo/v1/updateTerminalNo?terminalNo=' + g_machineNo.terminalNo + '&serial=' + g_machineNo.serial + '&deviceId=' + g_machineNo.deviceId + '&password=' + pass,
+						async: false,
+						dataType: "jsonp",
+						jsonp: "updateTerminalNo", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+						jsonpCallback: "updateTerminalNo", //自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写“?”jquery会自动处理
+						success: function(data) {
+							if(data.retcode == 'SUCCESS') {
+								$('body').append("<div class='mask' id='loadMask' style='width:100%;height:100%;position:fixed;'></div>");
+								$('#loadMask').show();
+								$(".createClass_window").show();
+							} else if(data.retcode == 'FAIL') {
+
+							}
+
+						}
+					});
+				}
+
+			});
+
+			$("#ChangePassword input,#loginPW").focus(function() {
+				$(this).next().hide();
+
+			});
+
+		});
+
+		jQuery.event.special.tripleclick = {
+			setup: function(data, namespaces) {
+				var elem = this,
+					$elem = jQuery(elem);
+				$elem.bind('click', jQuery.event.special.tripleclick.handler);
+			},
+			teardown: function(namespaces) {
+				var elem = this,
+					$elem = jQuery(elem);
+				$elem.unbind('click', jQuery.event.special.tripleclick.handler);
+			},
+			handler: function(event) {
+				var elem = this,
+					$elem = jQuery(elem),
+					clicks = $elem.data('clicks') || 0;
+				clicks += 1;
+				if(clicks === 3) {
+					clicks = 0;
+					// set event type to "tripleclick"
+					event.type = "tripleclick";
+					// let jQuery handle the triggering of "tripleclick" event handlers
+					jQuery.event.handle.apply(this, arguments)
+				}
+				$elem.data('clicks', clicks);
+			}
+		};
+		$('.telephone').bind('tripleclick', function(event) {
+			// gExitApp();
+		});
+		$('.TerminalNumber').bind('tripleclick', function(event) {
+			window.location.href = "login.html";
+		});
+	</script>
+
+</html>
