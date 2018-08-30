@@ -1552,11 +1552,12 @@ body {
 	left: 50%;
 	margin-left: -200px;
 	padding-top: 20px;
-	margin-top: -70px;
+	margin-top: -175px;
 	background: #fff;
 	z-index: 10000;
 	display: none;
-	box-shadow: 1px 1px 2px #ccc,-1px -1px 2px #ccc;
+	border: 1px solid #ddd;
+	box-shadow:  0 5px 10px rgba(0,0,0,.5);
 }
 
 .del_window h3 {
@@ -1564,7 +1565,7 @@ body {
 	font-size: 16px;
 	text-align: center;
 	margin-bottom: 20px;
-	color:red;
+	color:#333;
 }
 
 .del_window_btn {
