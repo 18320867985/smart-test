@@ -1,0 +1,27 @@
+/*重构*/
+
+@media only screen and (min-width: 1024px) {
+	.login.init {
+		width: 500px;
+		height: 430px;
+		padding-bottom: 10px;
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		margin-left: -250px;
+		margin-top: -215px;
+		box-shadow: 0px 5px 7px rgba(196, 47, 51, 0.7);
+		background: #fff;
+	}
+	.init .login_tian ul {
+		width: 100%;
+		margin-left: 70px;
+	}
+	.login .login-ttl {
+    font-size: 30px;
+    padding: 44px 0 0;
+}
+.login.init .login_tian {
+    margin-top: -10px;
+}
+}

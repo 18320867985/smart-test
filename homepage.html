@@ -1,704 +1,770 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-  <meta name="format-detection" content="telephone=no" />
-  <title>销售</title>
-  <link href="css/style.css" rel="stylesheet" type="text/css">
-  <link href="css/swiper.min.css" rel="stylesheet" type="text/css">
-  <link href="css/jquery.fullPage.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-  <style type="text/css"> 
-    body{
-    background: url("./images/login_bg.jpg");
-    }
-    #preload b { opacity: 0.5; animation: preload 1s infinite ease-in-out; }
-    #preload b:nth-child(2) { animation-delay: .2s; }
-    #preload b:nth-child(3) { animation-delay: .4s; }
-    #preload b:nth-child(4) { animation-delay: .6s; }
-    #preload b:nth-child(5) { animation-delay: .8s; }
-    @keyframes preload {
-      0% { opacity: 0.3; }
-      50% { opacity: 1; }
-      100% { opacity: 0.3; }
-    }
-    @-webkit-keyframes preload {
-      0% { opacity: 0.3; }
-      50% { opacity: 1; }
-      100% { opacity: 0.3; }
-    }
-    
-  </style>
-</head>
- 
-<body>
-  <div class="homepage home" id="homepage">
-    <!-- 头部start -->
-  	<div class="head">
-  		<div class="TerminalNumber"><span><b data-flag="no">终端编号：</b></span><span id="preload">正在获取终端信息<b>.</b><b>.</b><b>.</b><b>.</b><b>.</b></span></div>
-  		<div class="telephone"><span><b>客服电话：</b></span></div>
-  	</div>
-    <!-- 头部end -->
 
-    <div style="display: none"><img class="head_bg" src="images/head_bg.png"/></div>
-    
-    <!-- 轮播start -->
-    <div class="swiper-container" id="swiper1">
-      	<div class="swiper-wrapper" id="swiper-wrapper-div"></div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
-         <!-- Add Arrows -->
-        <div class="swiper-button-next" style="display:none;"></div>
-        <div class="swiper-button-prev" style="display:none;"></div>
-  	</div>
-    <!-- 轮播end -->
-    
-    <!-- 底部start -->
-    <div class="clickbig">点击图片放大</div>
-    <div class="wrap_bottom">  
-      <div class="bottom" style="display: none;">
-        <div class="data">
-          <b>已选票数</b><span id="haveSelectNum">0</span><b>张</b>
-        </div>
-        <div class="data">
-          <b>已选金额</b><span id="haveSelectCound">0</span><b>元</b>
-        </div> 
-      </div>
-      <div class="bottom" style="border-radius: 0;">
-        <!-- <a href="javascript:;" class="cancel" id="cancelpay"><span style="top:4px;margin-right: 10px" class="glyphicon glyphicon-remove" aria-hidden="true"></span>重 选</a>  -->
-        <a href="javascript:;" class="submit" id="dopay"><span style="top:4px;margin-right: 10px" class="glyphicon glyphicon-ok" aria-hidden="true"></span>结 算</a>
-      </div>
-    </div>
-    <!-- 底部end -->
-    
-    <!-- 登录初始化start -->
-    <div class="login" id="login" style="display: block;">
-      <div class="login-ttl" style="text-align: center;color: #666666; ">初始化设置</div>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+		<meta name="format-detection" content="telephone=no" />
+		<title>销售</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css">
+		<link href="css/swiper.min.css" rel="stylesheet" type="text/css">
+		<link href="css/jquery.fullPage.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<style type="text/css">
+			body {
+				background: url("./images/login_bg.jpg");
+			}
+			
+			#preload b {
+				opacity: 0.5;
+				animation: preload 1s infinite ease-in-out;
+			}
+			
+			#preload b:nth-child(2) {
+				animation-delay: .2s;
+			}
+			
+			#preload b:nth-child(3) {
+				animation-delay: .4s;
+			}
+			
+			#preload b:nth-child(4) {
+				animation-delay: .6s;
+			}
+			
+			#preload b:nth-child(5) {
+				animation-delay: .8s;
+			}
+			
+			@keyframes preload {
+				0% {
+					opacity: 0.3;
+				}
+				50% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0.3;
+				}
+			}
+			
+			@-webkit-keyframes preload {
+				0% {
+					opacity: 0.3;
+				}
+				50% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0.3;
+				}
+			}
+			
+			.head_bg {
+				width: 100%;
+				max-height: 60px;
+			}
+			/*轮播图*/
+			
+			.swiper-container {
+				position: relative;
+				width: 100%;
+				height: 100%;
+			}
+			
+			.swiper-wrapper li {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.swiper-wrapper img {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.swiper-button-next,
+			.swiper-button-prev {
+				position: absolute;
+				top: 50%;
+				width: 50px;
+				height: 80px;
+				margin-top: -40px;
+				z-index: 10;
+				cursor: pointer;
+				-moz-background-size: 20px 35px;
+				-webkit-background-size: 20px 35px;
+				background-size: 20px 35px;
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+		</style>
+	</head>
 
-      <div class="login_tian" >
-        <ul>
-          <li class="">
-             <span>终端编码</span>
-             <span class="s1">：</span>
-             <input type="text" placeholder="请输入终端编码" id="terminalno" />
-             <em style=""></em>
-          </li>
-          <li class="">
-             <span>通讯端口</span>
-             <span class="s1">：</span>
-             <input type="text" placeholder="请输入通讯端口" id="port" />
-             <em style=""></em>
-          </li>
-          <li>
-             <span>密 码</span>
-             <span class="s1">：</span>
-             <input type="password" placeholder="请输入密码" id="onepass" />
-             <em style=""></em>
-          </li>
-          <li>
-             <span>确认密码</span>
-             <span class="s1">：</span>
-             <input type="password" placeholder="请输入确认密码" id="twopass" />
-             <em style=""></em>
-          </li>
-        </ul>
-        <div class="lj_btn" style="">
-          <a href="javascript:;" class="login_a" style="">初始化设置</a>
-          <a href="javascript:;" class="login_close" style=" background-color: #c42f33;">关闭</a>
-        </div>
-    </div>
-    <!-- 登录初始化end -->
-  </div>
-  
-  <!-- 图片预览start -->
-  <div class="big_img">
-    <img>
-    <a style="display: none;" href="javascript:;">×</a>
-  </div>  
-  <!-- 图片预览end -->
+	<body>
+		<div class="homepage home" id="homepage">
+			<!-- 头部start -->
+			<div class="head">
+				<div class="TerminalNumber"><span><b data-flag="no">终端编号：</b></span><span id="preload">正在获取终端信息<b>.</b><b>.</b><b>.</b><b>.</b><b>.</b></span></div>
+				<div class="telephone"><span><b>客服电话：</b></span></div>
+			</div>
+			<!-- 头部end -->
 
-  <!-- 图片和视频展示区start -->
-  <div id="wrapmedia" style="display: none">
-  
-    <!-- <video id="video" loop="loop"><source src="video.mp4" type="video/mp4"/>不支持视频</video> -->
-          <!-- <div class="swiper-slide">
+			<div style="display: none"><img class="head_bg" src="images/head_bg.png" /></div>
+
+			<!-- 轮播start -->
+			<div class="swiper-container" id="swiper1">
+				<div class="swiper-wrapper" id="swiper-wrapper-div">
+					<ul>
+						<!--<li><img src="images/piao/J0302.jpg" alt="" /></li>-->
+					</ul>
+				</div>
+				<!-- Add Pagination -->
+				<div class="swiper-pagination"></div>
+				<!-- Add Arrows -->
+				<div class="swiper-button-next" style="display:none;"></div>
+				<div class="swiper-button-prev" style="display:none;"></div>
+			</div>
+			<!-- 轮播end -->
+
+			<!-- 底部start -->
+			<div class="clickbig">点击图片放大</div>
+			<div class="wrap_bottom">
+				<div class="bottom" style="display: none;">
+					<div class="data">
+						<b>已选票数</b><span id="haveSelectNum">0</span><b>张</b>
+					</div>
+					<div class="data">
+						<b>已选金额</b><span id="haveSelectCound">0</span><b>元</b>
+					</div>
+				</div>
+				<div class="bottom" style="border-radius: 0;">
+					<!-- <a href="javascript:;" class="cancel" id="cancelpay"><span style="top:4px;margin-right: 10px" class="glyphicon glyphicon-remove" aria-hidden="true"></span>重 选</a>  -->
+					<a href="javascript:;" class="submit" id="dopay"><span style="top:4px;margin-right: 10px" class="glyphicon glyphicon-ok" aria-hidden="true"></span>结 算</a>
+				</div>
+			</div>
+			<!-- 底部end -->
+
+			<!-- 登录初始化start -->
+			<div class="login" id="login" style="display: none;">
+				<div class="login-ttl" style="text-align: center;color: #666666; ">初始化设置</div>
+
+				<div class="login_tian">
+					<ul>
+						<li class="">
+							<span>终端编码</span>
+							<span class="s1">：</span>
+							<input type="text" placeholder="请输入终端编码" id="terminalno" />
+							<em style=""></em>
+						</li>
+						<li class="">
+							<span>通讯端口</span>
+							<span class="s1">：</span>
+							<input type="text" placeholder="请输入通讯端口" id="port" />
+							<em style=""></em>
+						</li>
+						<li>
+							<span>密 码</span>
+							<span class="s1">：</span>
+							<input type="password" placeholder="请输入密码" id="onepass" />
+							<em style=""></em>
+						</li>
+						<li>
+							<span>确认密码</span>
+							<span class="s1">：</span>
+							<input type="password" placeholder="请输入确认密码" id="twopass" />
+							<em style=""></em>
+						</li>
+					</ul>
+					<div class="lj_btn" style="">
+						<a href="javascript:;" class="login_a" style="">初始化设置</a>
+						<a href="javascript:;" class="login_close" style=" background-color: #c42f33;">关闭</a>
+					</div>
+				</div>
+				<!-- 登录初始化end -->
+			</div>
+
+			<!-- 图片预览start -->
+			<div class="big_img">
+				<img src="images/login_bg.jpg">
+				<a style="display: none;" href="javascript:;">×</a>
+			</div>
+			<!-- 图片预览end -->
+
+			<!-- 图片和视频展示区start -->
+			<div id="wrapmedia" style="display: none">
+
+				<!-- <video id="video" loop="loop"><source src="video.mp4" type="video/mp4"/>不支持视频</video> -->
+				<!-- <div class="swiper-slide">
             <img data-src="http://idowebok.u.qiniudn.com/77/1.jpg" class="swiper-lazy">
             <div class="swiper-lazy-preloader"></div>
           </div>-->
-      <!-- <video id="video" preload webkit-playsinline ><source src="https://terminal.caishilu.com/manager/assets/terminal/video/video.mp4" type="video/mp4"/>不支持视频</video> -->
-  </div>
-  <!-- 图片和视频展示区end   -->
-</body>
+				<!-- <video id="video" preload webkit-playsinline ><source src="https://terminal.caishilu.com/manager/assets/terminal/video/video.mp4" type="video/mp4"/>不支持视频</video> -->
+			</div>
+			<!-- 图片和视频展示区end   -->
+	</body>
 
-<script src="js/common/jquery-1.8.0.y100.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/common/cysDialog.js"></script>
-<script src="js/common/style.js" type="text/javascript"></script>
-<script src="js/common/swiper.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/common/MD5.js"></script>
-<script type="text/javascript" src="properties.js"></script>
-<script type="text/javascript" src="js/common/fastclick.js"></script>
-<script>
-    var localImgArr = ['G0232','G0368','G0378','G0425','G0440','G0491','G0516','G0517','G0522','G0537','G0538','J0302','J0353','J0404','J0462','J0560','J0561','J0562','J0564','J0565','0288','0362','0373','0398'];
-    var updateInter;//更新上传定时器；
-    $(function(){
-      var imgSrc = "";
-      var imgSrcIndex = 1;
-      var viewImgTimer = "";  //点击预览图片，无操作自动关闭
-        FastClick.attach(document.body);
-        $(document).on('click','.swiper-slide ul li .article',function(){
-          clearTimeout(viewImgTimer);
-          viewImgTimer = setTimeout(function(){
-            $('.mask').remove();
-            $('.big_img').hide();
-            imgSrcIndex = 1;
-          },5000);
-          //图片路径修改
-    		  //var imgSrc = "images/bgjpg/"+$(this).attr('src');
-          imgSrc = requestImgSrc + "back/";
-          var truestr = $(this).attr('src');
-          console.log(truestr);
-          var index = truestr.lastIndexOf("\/");  
-          var endindex = truestr.lastIndexOf("\.");
-          imgSrc = imgSrc + truestr.substring(index + 1, truestr.length);
-          var trueImsrc = truestr.substring(index+1,endindex);
-          for(var i=0; i<localImgArr.length; i++){
-            if(trueImsrc == localImgArr[i]){
-              imgSrc = "images/bgjpg/images/piao/" + trueImsrc + ".jpg";
-            }
-          }
+	<script src="js/common/jquery-1.8.0.y100.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/common/cysDialog.js"></script>
+	<script src="js/common/style.js" type="text/javascript"></script>
+	<script src="js/common/swiper.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/common/MD5.js"></script>
+	<script type="text/javascript" src="properties.js"></script>
+	<script type="text/javascript" src="js/common/fastclick.js"></script>
+	<script>
+		var localImgArr = ['G0232', 'G0368', 'G0378', 'G0425', 'G0440', 'G0491', 'G0516', 'G0517', 'G0522', 'G0537', 'G0538', 'J0302', 'J0353', 'J0404', 'J0462', 'J0560', 'J0561', 'J0562', 'J0564', 'J0565', '0288', '0362', '0373', '0398'];
+		var updateInter; //更新上传定时器；
+		$(function() {
+			var imgSrc = "";
+			var imgSrcIndex = 1;
+			var viewImgTimer = ""; //点击预览图片，无操作自动关闭
+			FastClick.attach(document.body);
+			$(document).on('click', '.swiper-slide ul li .article', function() {
+				clearTimeout(viewImgTimer);
+				viewImgTimer = setTimeout(function() {
+					$('.mask').remove();
+					$('.big_img').hide();
+					imgSrcIndex = 1;
+				}, 5000);
+				//图片路径修改
+				//var imgSrc = "images/bgjpg/"+$(this).attr('src');
+				imgSrc = requestImgSrc + "back/";
+				var truestr = $(this).attr('src');
+				console.log(truestr);
+				var index = truestr.lastIndexOf("\/");
+				var endindex = truestr.lastIndexOf("\.");
+				imgSrc = imgSrc + truestr.substring(index + 1, truestr.length);
+				var trueImsrc = truestr.substring(index + 1, endindex);
+				for(var i = 0; i < localImgArr.length; i++) {
+					if(trueImsrc == localImgArr[i]) {
+						imgSrc = "images/bgjpg/images/piao/" + trueImsrc + ".jpg";
+					}
+				}
 
-    			$('.big_img img').attr('src',truestr);
-    		  $('body').append("<div class='mask'></div>");
-    			$('.mask').show();
-          $('.big_img').show();
+				$('.big_img img').attr('src', truestr);
+				$('body').append("<div class='mask'></div>");
+				$('.mask').show();
+				$('.big_img').show();
 
-          var bigImgW;
-          var bigImgH;
-          //图片加载完获取高宽
-          var img = new Image();
-          img.src = $('.big_img img').attr("src");
-          //获取屏幕高宽
-          var screenH = $(window).height();
-          var screenW = $(window).width();
-          //移除上次的高宽
-          $('.big_img img').removeAttr('height');
-          $('.big_img img').removeAttr('width');
-          img.onload = function(){
-            var imgWidth = img.width;
-            var imgHeight = img.height;
+				var bigImgW;
+				var bigImgH;
+				//图片加载完获取高宽
+				var img = new Image();
+				img.src = $('.big_img img').attr("src");
+				//获取屏幕高宽
+				var screenH = $(window).height();
+				var screenW = $(window).width();
+				//移除上次的高宽
+				$('.big_img img').removeAttr('height');
+				$('.big_img img').removeAttr('width');
+				img.onload = function() {
+					var imgWidth = img.width;
+					var imgHeight = img.height;
 
-            var scale = imgHeight / imgWidth;
+					var scale = imgHeight / imgWidth;
 
-            if(scale >= 1){
+					if(scale >= 1) {
 
-              imgHeight = screenH * 0.8;
-              imgWidth = imgHeight / scale;
+						imgHeight = screenH * 0.8;
+						imgWidth = imgHeight / scale;
 
-              bigImgH = imgHeight / 2;
-              bigImgW = imgWidth /2;
-            }
-            if(scale < 1){
-              imgWidth = screenW * 0.8;
-              imgHeight = imgWidth * scale;
-              bigImgH = imgHeight / 2;
-              bigImgW = imgWidth /2;
+						bigImgH = imgHeight / 2;
+						bigImgW = imgWidth / 2;
+					}
+					if(scale < 1) {
+						imgWidth = screenW * 0.8;
+						imgHeight = imgWidth * scale;
+						bigImgH = imgHeight / 2;
+						bigImgW = imgWidth / 2;
 
-            }
+					}
 
-            $('.big_img img').css({'height':imgHeight,'width':imgWidth,'margin-top':-bigImgH,'margin-left':-bigImgW});
-         
+					$('.big_img img').css({
+						'height': imgHeight,
+						'width': imgWidth,
+						'margin-top': -bigImgH,
+						'margin-left': -bigImgW
+					});
 
-          }
-          
-    			/*var bigImgW = $('.big_img img').width()/2;
-    			var bigImgH = $('.big_img img').height()/2;*/
-          
+				}
 
-          
-    			/*$('.big_img img').css({'margin-top':-bigImgH,'margin-left':-bigImgW});*/
-    		});
-        
-        $('.big_img').click(function(){
+				/*var bigImgW = $('.big_img img').width()/2;
+				var bigImgH = $('.big_img img').height()/2;*/
 
-            imgSrcIndex ++;
-            clearTimeout(viewImgTimer);
-            viewImgTimer = setTimeout(function(){
-              $('.mask').remove();
-              $('.big_img').hide();
-              imgSrcIndex = 1;
-            },5000);
-            if(imgSrcIndex == 2){
-              $('.big_img img').attr('src',imgSrc);
-              var bigImgW;
-              var bigImgH;
-              //图片加载完获取高宽
-              var img = new Image();
-              img.src = $('.big_img img').attr("src");
-              //获取屏幕高宽
-              var screenH = $(window).height();
-              var screenW = $(window).width();
-              //移除上次的高宽
-              $('.big_img img').removeAttr('height');
-              $('.big_img img').removeAttr('width');
-              img.onload = function(){
-                var imgWidth = img.width;
-                var imgHeight = img.height;
+				/*$('.big_img img').css({'margin-top':-bigImgH,'margin-left':-bigImgW});*/
+			});
 
-                var scale = imgHeight / imgWidth;
+			$('.big_img').click(function() {
 
-                if(scale >= 1){
+				imgSrcIndex++;
+				clearTimeout(viewImgTimer);
+				viewImgTimer = setTimeout(function() {
+					$('.mask').remove();
+					$('.big_img').hide();
+					imgSrcIndex = 1;
+				}, 5000);
+				if(imgSrcIndex == 2) {
+					$('.big_img img').attr('src', imgSrc);
+					var bigImgW;
+					var bigImgH;
+					//图片加载完获取高宽
+					var img = new Image();
+					img.src = $('.big_img img').attr("src");
+					//获取屏幕高宽
+					var screenH = $(window).height();
+					var screenW = $(window).width();
+					//移除上次的高宽
+					$('.big_img img').removeAttr('height');
+					$('.big_img img').removeAttr('width');
+					img.onload = function() {
+						var imgWidth = img.width;
+						var imgHeight = img.height;
 
-                  imgHeight = screenH * 0.8;
-                  imgWidth = imgHeight / scale;
+						var scale = imgHeight / imgWidth;
 
-                  bigImgH = imgHeight / 2;
-                  bigImgW = imgWidth /2;
-                }
-                if(scale < 1){
-                  imgWidth = screenW * 0.8;
-                  imgHeight = imgWidth * scale;
-                  bigImgH = imgHeight / 2;
-                  bigImgW = imgWidth /2;
+						if(scale >= 1) {
 
-                }
+							imgHeight = screenH * 0.8;
+							imgWidth = imgHeight / scale;
 
-                $('.big_img img').css({'height':imgHeight,'width':imgWidth,'margin-top':-bigImgH,'margin-left':-bigImgW});
-             
+							bigImgH = imgHeight / 2;
+							bigImgW = imgWidth / 2;
+						}
+						if(scale < 1) {
+							imgWidth = screenW * 0.8;
+							imgHeight = imgWidth * scale;
+							bigImgH = imgHeight / 2;
+							bigImgW = imgWidth / 2;
 
-              }
-            }
-            if(imgSrcIndex > 2){
-              clearTimeout(viewImgTimer);
-              $('.mask').remove();
-              $('.big_img').hide();
-              imgSrcIndex = 1;
-            }
-        });		
-    });
- 
- 
-    
-    var g_orderFormArr = [];//所有的订单
-    var accessToken='';
+						}
 
-    var checktimes = 100;      //检测网络次数
-    var checkindex = 0;       //当前检测次数
-    var checksecodes = 5000;  //一秒检测一次
-    var checkId = '';         //检测网络定时器id
+						$('.big_img img').css({
+							'height': imgHeight,
+							'width': imgWidth,
+							'margin-top': -bigImgH,
+							'margin-left': -bigImgW
+						});
 
-    var afterCheckId = ""     //网络存在，检测是否有终端编号定时器id
-    var afterIntervalId = ""  //不断重载页面，直到能获取获取终端编号定时器id
+					}
+				}
+				if(imgSrcIndex > 2) {
+					clearTimeout(viewImgTimer);
+					$('.mask').remove();
+					$('.big_img').hide();
+					imgSrcIndex = 1;
+				}
+			});
+		});
 
-    
+		var g_orderFormArr = []; //所有的订单
+		var accessToken = '';
 
+		var checktimes = 100; //检测网络次数
+		var checkindex = 0; //当前检测次数
+		var checksecodes = 5000; //一秒检测一次
+		var checkId = ''; //检测网络定时器id
 
-	$(document).ready(function(){
-	    accessToken = window.location.hash.substring(1);//获取路径中的access token
-		  g_machineNo = gGetProperties("terminalNo");
-		//g_machineNo="956315585";
-		//g_machineNo="88888888";
-    //g_machineNo="102";  
-  		$(".login_a").click(function(){
-      		var terminalno = $("#terminalno").val().trim();
-            	var port = $("#port").val().trim();
-            	var onepass = $("#onepass").val().trim();
-           	var twopass = $("#twopass").val().trim();
+		var afterCheckId = "" //网络存在，检测是否有终端编号定时器id
+		var afterIntervalId = "" //不断重载页面，直到能获取获取终端编号定时器id
 
-              if(terminalno == ""){
-                  $("#terminalno").next().html("请输入终端编码！");
-                  return false;
-              }
-              if(port == ""){
-                  $("#port").next().html("请输入通讯端口！");
-                  return false;
-              }
-              if(onepass == ""){
-                  $("#onepass").next().html("请输入密码！");
-                  return false;
-              }
-              if(twopass == ""){
-                  $("#twopass").next().html("请输入确认密码！");
-                  return false;
-              }
-              if(onepass.length<6){
-                  $("#twopass").next().html("");
-                  $("#onepass").next().html("请输入大于6位数的密码！");
-                  return false;
-              }
-              if(onepass.replace(/[0-9]{6,15}/,"") !=""){
-                $("#twopass").next().html("");
-                $("#onepass").next().html("格式：6~15字符,仅支持数字");
-                return false;
-              }
-              if(onepass != twopass){
-                  $("#onepass").next().html("");
-                  $("#twopass").next().html("请输入的密码不一致！");
-                  return false;
-              }
-              var pass = hex_md5(onepass);
-              var deviceId = gGetProperties('deviceId');
-              //isConnect();
-              //terminalno = 999999999999;
-              //deviceId = "dddddddd";
-              $.ajax({
-                  type: 'GET',
-                  url: serviceUrl + '/payInfo/v1/updateTerminalNo?terminalNo='+terminalno+'&serial='+port+'&deviceId='+deviceId+'&password='+pass,
-                  async: false,
-                  dataType: "jsonp",
-                  jsonp: "updateTerminalNo",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
-                  jsonpCallback:"updateTerminalNo",//自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写“?”jquery会自动处理
-                  success: function(data){
-                        if(data.retcode == 'SUCCESS'){
-                          gSetProperties('terminalNo',terminalno);
-                          gSetProperties('serial',port);
-                          gSetProperties('userPassword',pass); 
-                          var arr = [];
-                          gSetProperties("ticketTypeData",JSON.stringify(arr));
-                          window.location.href="homepage.html"; 
-                          $('.mask').remove();   
-                          $("#login").hide();    
-                        }else if(data.retcode == 'FAIL'){
-                          confirmCysDialog(data.retmsg,"","关闭",function(){},function(){
-                              /*$("#terminalno").val('');
-                              $("#port").val('');
-                              $("#onepass").val('');
-                              $("#twopass").val('');*/
-                          });
-                        }
+		$(document).ready(function() {
+			accessToken = window.location.hash.substring(1); //获取路径中的access token
+			g_machineNo = gGetProperties("terminalNo");
+			//g_machineNo="956315585";
+			//g_machineNo="88888888";
+			//g_machineNo="102";  
+			$(".login_a").click(function() {
+				var terminalno = $("#terminalno").val().trim();
+				var port = $("#port").val().trim();
+				var onepass = $("#onepass").val().trim();
+				var twopass = $("#twopass").val().trim();
 
-                    /*if(data.terminalstatus=='无效'){
-                      confirmCysDialog("无效终端，如有疑问请联系客服人员！","","关闭",function(){},function(){});
-                      window.location.href="login.html";
-                    }*/
-                  
-                  }
-              });
-              
-  		});
-  		$(".login_close").click(function(){
-  			location.reload();
-  		});
-  		//限制终端编号、密码、确认密码，只能输入15位
-	    $('#terminalno,#onepass,#twopass').bind('input propertychange', function() {
-	        var str = $(this).val();
-	        var len = str.length;
-	        if(len>15){
-	            $(this).val(str.substring(0,15));            
-	        }
-	    });
-	    //限制通讯端口只能一位输入大于0的整数
-	    $('#port').bind('input propertychange', function() {
-	        var str = $(this).val();
-	        var len = str.length;
-	        if(len>0){
-	            $(this).val(str.substring(0,1).replace(/[^1-9]/ig,""));            
-	        }
-	    });
-  		
-
-      var hasNetWork = gNetWork();
-      //hasNetWork = true;
-      if(hasNetWork){
-      	getConfig();
-      }else{
-          confirmCysDialog('正在检测网络<span class="checkdot"></span>',"","",function(){},function(){});
-
-          checkId = setInterval(function(){
-              if(checkindex < checktimes){
-                checkindex ++;
-                hasNetWork = gNetWork();
-                $(".checkdot").html(checkindex + "%");
-                if(hasNetWork){
-                  window.location.href = "homepage.html";
-                  clearInterval(checkId);
-                  clossCysDialog();
-                  //window.location.reload();
-                  //window.location.href = "homepage.html";
-                  //getConfig();
-                }
-              }else{
-                clearInterval(checkId);
-                confirmCysDialog("网络未连接！","","关闭",function(){},function(){
-                    if(g_machineNo==''){
-                        gExitApp(); 
-                    }else{
-                        window.location.href="login.html"; 
-                    }          
-                });
-              }
-              
-          },checksecodes);
-      }
-		  checkNetReload();
-	    var hompagehandle  = document.getElementById("homepage");
-      hompagehandle.addEventListener("touchstart",function(){
-        clearTimeout(afterCheckId);
-        checkNetReload();
-      },false);
-		
-	});
-
-  /**
-   * 本页面断网会有终端编号，但点击购买的10秒后有提醒 
-   * 如果其他页面断网进入本页面，没有终端编号，10分钟后启动自检定时器，有终端编号停止
-   * 如果初始化页面也会执行
-   */
-  function checkNetReload(){
-    afterCheckId = setTimeout(function(){
-      var len = $(".TerminalNumber b").eq(0).html().length;
-      if(len < 6){
-        afterIntervalId = setInterval(function(){
-          window.location.href="homepage.html"; 
-        },10000);
-      }
-      if(len > 6){
-        window.location.href="homepage.html"; 
-      }
-    },300000);
-  }
-
-  function getConfig(){
-    if(!g_machineNo){
-      
-        $('body').append("<div class='mask'></div>");
-        $('.mask').show();
-        $("#login").show();
-        return false;
-    }else{
-        $.ajax({
-          type: 'GET',
-          url: serviceUrl + '/payInfo/v1/getTerminalConfig?terminalNo='+g_machineNo+accessToken,
-          async: false,
-          cache:false,
-          dataType: "jsonp",
-          jsonp: "getTerminalConfig",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
-          jsonpCallback:"getTerminalConfig",//自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写“?”jquery会自动处理
-          success: function(data){
-            g_machineNo=data;
-            $("#ownerterminal_no").html("终端编号："+g_machineNo.terminalNo);
-            if(data.terminalstatus != '1'){
-              confirmCysDialog("无效终端，如有疑问请联系客服人员！","","关闭",function(){},function(){});
-              window.location.href="login.html";
-            }
-            gSetProperties("serial",g_machineNo.serial);
-            gSetProperties("appid",data.version);
-           // var version=g_ownerSetData = "1.0.0";//gGetProperties("appid");
-           /** if(version!=data.version){
-            //window.location.href="http://114.215.221.69:8081/cgb/down/downApk";  
-            }else{
-              gSetProperties("",);
-            }**/
-            var tempOrder = gGetProperties('ticketTypeData');
-            /*tempOrder = '[{"index":0,"terminalNo":"1002","gameNo":"G0232","num":1,"motorNumber":"1","price":"2","gameName":"美梦成真","reqsn":"201707260019578174_1002","cutCardResult":1},{"index":1,"terminalNo":"1002","gameNo":"G0232","num":1,"motorNumber":"1","price":"2","gameName":"美梦成真","reqsn":"201707260019578174_1002","cutCardResult":1},{"index":2,"terminalNo":"1002","gameNo":"G0232","num":1,"motorNumber":"2","price":"2","gameName":"美梦成真","reqsn":"201707260019578174_1002","cutCardResult":1}]';*/
-            //tempOrder = '[]';
-            tempOrder = JSON.parse(tempOrder);
-            var copyTempOrder = tempOrder.concat();
-            var len = tempOrder.length;
-            if(len == 0){   
-              homepageInit();
-            }
-            if(len > 0){
-                /*confirmCysDialog("正在更新数据！","","",function(){},function(){});*/
-                var index = 0;
-                updateInter = setInterval(function(){
-                    var result = tempOrder[index].cutCardResult;
-                    if(result != 1){
-                       setTerminalLengthFail(tempOrder[index].motorNumber);
-                    }
-                    var params = "?terminalNo=" +g_machineNo.terminalNo
-                      + "&num=" + tempOrder[index].num + "&price=" 
-                      + tempOrder[index].price + "&gameNo=" 
-                      + tempOrder[index].gameNo + "&gameName=" 
-                      + tempOrder[index].gameName + "&motorNumber="
-                      + tempOrder[index].motorNumber + "&reqsn="
-                      + tempOrder[index].reqsn + "&cutCardResult="
-                      + tempOrder[index].cutCardResult + "&rand="+ Math.random();
-                    $.ajax({
-                      type: 'GET',
-                      url: serviceUrl + '/payInfo/v1/saveTerminalSale' + params,
-                      dataType: "jsonp",
-                      jsonp: "saveTerminalSale",
-                      jsonpCallback:"saveTerminalSale",
-                      async: false,
-                      success: function(data){
-                        clossCysDialog();
-                        var thatindex = 0;
-                        var reindex;
-                        var result = "ERR";
-                        if(data.retcode == "SUCCESS"){
-                          for(thatindex = 0; thatindex < copyTempOrder.length; thatindex++){
-                            if(tempOrder[index].index == copyTempOrder[thatindex].index){
-                              reindex = thatindex;
-                              copyTempOrder.splice(reindex,1);
-                              result = gSetProperties("ticketTypeData",JSON.stringify(copyTempOrder)); 
-                            }
-                          }
-                          if(result == "SUCCESS"){
-                            index++;
-                          }
-                          if(index >= len){
-                            clearInterval(updateInter);
-                            homepageInit();
-                          }
-                          
-                        }
-                                       
-                      }
-                    });
-                },1000);
-               /* for(var index=0; index<g_orderMessage.length; index++){
-                            var tempItem = g_orderMessage[index];
-                            var obj = {"index":index,"terminalNo":tempItem.terminalNo,"gameNo":tempItem.gameNo,"num":tempItem.num,"motorNumber":tempItem.motorNumber,"price":tempItem.price,"gameName":tempItem.name,"reqsn":g_reqsn,"cutCardResult":-7};
-                            g_payOrder.push(obj);
-                        }*/
-            }
-            
-          }
-      });
-
-    }
-    
-  }
-	
-  function homepageInit(){
-       //获取终端号，服务电话        
-  	$(".TerminalNumber").html("<span><b>终端编号："+g_machineNo.terminalNo+"</b></span>");
-  	$(".telephone").html("<span><b>客服电话："+g_machineNo.serverPhone+"</b></span>");
-  	
-  	
-  	$("#haveSelectNum").html("0");
-  	$("#haveSelectCound").html("0");
-  	$.ajax({
-  	  type: 'GET',
-  	  url: serviceUrl + '/payInfo/v1/getTerminalTicket?terminalNo='+g_machineNo.terminalNo+accessToken,
-  	  async: false,
-  	  dataType: "jsonp",
-  	  jsonp: "getTerminalTicket",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
-  	  jsonpCallback:"getTerminalTicket",//自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写“?”jquery会自动处理
-  	  success: function(data){
-  	  	  //console.log(data);
-  		  //g_ownerSetData=data;
-  		  g_ownerSetData=[];
-  		  for(var i=0;i<g_machineNo.motorNum;i++){
-  			 var ownerData=data[i];
-         var num = parseInt(ownerData.num);
-  			if((ownerData.gameNo!='') && (num>0)){
-  				saveUserSetData(ownerData.cardLength,ownerData.motorNumber);
-  				g_ownerSetData.push(ownerData);
-  			}  
-  		  }
-  		  //gSetProperties("ownerSetData",JSON.stringify(g_ownerSetData));
-  		  initDataList();
-  	  }
-  	});	
-    	
-  }
-	
-	
-	
-	/**
-	*加载页面销售即开票数据列表
-	*/
-  var appversion = gGetProperties("acctualVersion");
-	function initDataList(){
-	    //g_ownerSetData = gGetProperties("ownerSetData");
-		   //g_ownerSetData = JSON.parse(g_ownerSetData);
-		//分组
-		//即开票的个数
-		
-		var saleData=[];
-
-    
-
-
-		for(var l=0;l<g_ownerSetData.length;l++){
-			if(g_ownerSetData[l].gameNo==''){
-				continue;
-			}
-			saleData.push(g_ownerSetData[l]);	
-			
-		}
-		if(saleData.length==0){
-			window.location.href="login.html";
-		}
-		for(var i=0;i<saleData.length;i++){
-			    var param="terminalNo="+g_machineNo.terminalNo+"&motorNumber="+saleData[i].motorNumber+"&saleNum=0&realVersion="+appversion;
+				if(terminalno == "") {
+					$("#terminalno").next().html("请输入终端编码！");
+					return false;
+				}
+				if(port == "") {
+					$("#port").next().html("请输入通讯端口！");
+					return false;
+				}
+				if(onepass == "") {
+					$("#onepass").next().html("请输入密码！");
+					return false;
+				}
+				if(twopass == "") {
+					$("#twopass").next().html("请输入确认密码！");
+					return false;
+				}
+				if(onepass.length < 6) {
+					$("#twopass").next().html("");
+					$("#onepass").next().html("请输入大于6位数的密码！");
+					return false;
+				}
+				if(onepass.replace(/[0-9]{6,15}/, "") != "") {
+					$("#twopass").next().html("");
+					$("#onepass").next().html("格式：6~15字符,仅支持数字");
+					return false;
+				}
+				if(onepass != twopass) {
+					$("#onepass").next().html("");
+					$("#twopass").next().html("请输入的密码不一致！");
+					return false;
+				}
+				var pass = hex_md5(onepass);
+				var deviceId = gGetProperties('deviceId');
+				//isConnect();
+				//terminalno = 999999999999;
+				//deviceId = "dddddddd";
 				$.ajax({
-				  type: 'GET',
-				  url: serviceUrl + '/payInfo/v1/updateTerminalPayOrder?'+param+accessToken,
-				  async: false,
-				  dataType: "jsonp",
-				  jsonp: "updateTerminalPayOrder",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
-				  jsonpCallback:"updateTerminalPayOrder",//
-				  success: function(data){
-					
-				  }
-				});	
-		}
-        
-       
-        //轮播的总数
-		var totalCount = saleData.length;
+					type: 'GET',
+					url: serviceUrl + '/payInfo/v1/updateTerminalNo?terminalNo=' + terminalno + '&serial=' + port + '&deviceId=' + deviceId + '&password=' + pass,
+					async: false,
+					dataType: "jsonp",
+					jsonp: "updateTerminalNo", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+					jsonpCallback: "updateTerminalNo", //自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写“?”jquery会自动处理
+					success: function(data) {
+						if(data.retcode == 'SUCCESS') {
+							gSetProperties('terminalNo', terminalno);
+							gSetProperties('serial', port);
+							gSetProperties('userPassword', pass);
+							var arr = [];
+							gSetProperties("ticketTypeData", JSON.stringify(arr));
+							window.location.href = "homepage.html";
+							$('.mask').remove();
+							$("#login").hide();
+						} else if(data.retcode == 'FAIL') {
+							confirmCysDialog(data.retmsg, "", "关闭", function() {}, function() {
+								/*$("#terminalno").val('');
+								$("#port").val('');
+								$("#onepass").val('');
+								$("#twopass").val('');*/
+							});
+						}
 
-		
-		//一组的轮播数量
-		var groupNum = parseInt(g_machineNo.motorNum);    
+						/*if(data.terminalstatus=='无效'){
+						  confirmCysDialog("无效终端，如有疑问请联系客服人员！","","关闭",function(){},function(){});
+						  window.location.href="login.html";
+						}*/
 
-		//console.log("group：" + groupNum + "totalCount: " + totalCount);
-		//至少discuss组，residue==0 ，discuss组，residue>0,discuss+1组
-		var discuss = parseInt(totalCount/groupNum);   
-		var residue = totalCount%groupNum; 
-		//下标数组
-		var lenIndexArray = [];
-		for(var i=0;i<discuss;i++){
-		    lenIndexArray.push([i*groupNum,i*groupNum+(groupNum-1)]);
-		}
-		if(residue != 0){
-		   lenIndexArray.push([groupNum*discuss,groupNum*discuss+residue-1]);
-		}
-		//console.log(lenIndexArray);	
-		var datalist = '';
-		for(var i=0;i<lenIndexArray.length;i++){
-		    var theIndex = lenIndexArray[i];
-			var theBeginNo = theIndex[0];
-			var theEndNo = theIndex[1];
-			
-			datalist += '<div class="swiper-slide swiper-list">'
-                      + '   <ul>';
-			
-			for(var j=theBeginNo;j<=theEndNo;j++){
-			    var cardItem = saleData[j];
-          var trueImgSrc = requestImgSrc + cardItem.gameNo;
-          for(var k=0; k<localImgArr.length; k++){
-            if(cardItem.gameNo == localImgArr[k]){
-              trueImgSrc = "images/piao/" + cardItem.gameNo;
-            }
-          }
-				  //图片路径修改 <img src="images/'+cardItem.image+'" class="article">'
-				datalist += '<li data-item=\''+JSON.stringify(cardItem)+'\'>'
-                          + '   <div class="title">'+cardItem.name+'　￥'+cardItem.price+'</div>'
-                          + '   <div class="content">'
-                          + '       <img data-img='+cardItem.gameNo+' src="'+trueImgSrc+'.jpg" class="article">'
-                          + '       <div class="yp">余票'+cardItem.num+'张</div>'
-                          + '   </div>'
-						  
-						  //+ '       <div class="yp">有票'+cardItem.num+'张</div>'
-						  
-                          + '   <div class="swiper-slide_btn">'
-                          + '       <a href="javascript:;" class="minus" onclick="doReduce(this)"><span class="glyphicon glyphicon-minus"></span></a>'
-                          + '       <div class="num">0</div>'
-                          + '       <a href="javascript:;" class="add" onclick="doIncrease(this)"><span class="glyphicon glyphicon-plus"></span></a>'
-                          + '   </div>'
-                          + '</li>';
+					}
+				});
+
+			});
+			$(".login_close").click(function() {
+				location.reload();
+			});
+			//限制终端编号、密码、确认密码，只能输入15位
+			$('#terminalno,#onepass,#twopass').bind('input propertychange', function() {
+				var str = $(this).val();
+				var len = str.length;
+				if(len > 15) {
+					$(this).val(str.substring(0, 15));
+				}
+			});
+			//限制通讯端口只能一位输入大于0的整数
+			$('#port').bind('input propertychange', function() {
+				var str = $(this).val();
+				var len = str.length;
+				if(len > 0) {
+					$(this).val(str.substring(0, 1).replace(/[^1-9]/ig, ""));
+				}
+			});
+
+			var hasNetWork = gNetWork();
+			//hasNetWork = true;
+			if(hasNetWork) {
+				getConfig();
+			} else {
+				confirmCysDialog('正在检测网络<span class="checkdot"></span>', "", "", function() {}, function() {});
+
+				checkId = setInterval(function() {
+					if(checkindex < checktimes) {
+						checkindex++;
+						hasNetWork = gNetWork();
+						$(".checkdot").html(checkindex + "%");
+						if(hasNetWork) {
+							window.location.href = "homepage.html";
+							clearInterval(checkId);
+							clossCysDialog();
+							//window.location.reload();
+							//window.location.href = "homepage.html";
+							//getConfig();
+						}
+					} else {
+						clearInterval(checkId);
+						confirmCysDialog("网络未连接！", "", "关闭", function() {}, function() {
+							if(g_machineNo == '') {
+								gExitApp();
+							} else {
+								window.location.href = "login.html";
+							}
+						});
+					}
+
+				}, checksecodes);
 			}
-			
-			datalist += '  </ul>'
-			          + '</div>';
+			checkNetReload();
+			var hompagehandle = document.getElementById("homepage");
+			hompagehandle.addEventListener("touchstart", function() {
+				clearTimeout(afterCheckId);
+				checkNetReload();
+			}, false);
+
+		});
+
+		/**
+		 * 本页面断网会有终端编号，但点击购买的10秒后有提醒 
+		 * 如果其他页面断网进入本页面，没有终端编号，10分钟后启动自检定时器，有终端编号停止
+		 * 如果初始化页面也会执行
+		 */
+		function checkNetReload() {
+			afterCheckId = setTimeout(function() {
+				var len = $(".TerminalNumber b").eq(0).html().length;
+				if(len < 6) {
+					afterIntervalId = setInterval(function() {
+						window.location.href = "homepage.html";
+					}, 10000);
+				}
+				if(len > 6) {
+					window.location.href = "homepage.html";
+				}
+			}, 300000);
 		}
 
-        /*
+		function getConfig() {
+			if(!g_machineNo) {
+
+				$('body').append("<div class='mask'></div>");
+				$('.mask').show();
+				$("#login").show();
+				return false;
+			} else {
+				$.ajax({
+					type: 'GET',
+					url: serviceUrl + '/payInfo/v1/getTerminalConfig?terminalNo=' + g_machineNo + accessToken,
+					async: false,
+					cache: false,
+					dataType: "jsonp",
+					jsonp: "getTerminalConfig", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+					jsonpCallback: "getTerminalConfig", //自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写“?”jquery会自动处理
+					success: function(data) {
+						g_machineNo = data;
+						$("#ownerterminal_no").html("终端编号：" + g_machineNo.terminalNo);
+						if(data.terminalstatus != '1') {
+							confirmCysDialog("无效终端，如有疑问请联系客服人员！", "", "关闭", function() {}, function() {});
+							window.location.href = "login.html";
+						}
+						gSetProperties("serial", g_machineNo.serial);
+						gSetProperties("appid", data.version);
+						// var version=g_ownerSetData = "1.0.0";//gGetProperties("appid");
+						/** if(version!=data.version){
+						 //window.location.href="http://114.215.221.69:8081/cgb/down/downApk";  
+						 }else{
+						   gSetProperties("",);
+						 }**/
+						var tempOrder = gGetProperties('ticketTypeData');
+						/*tempOrder = '[{"index":0,"terminalNo":"1002","gameNo":"G0232","num":1,"motorNumber":"1","price":"2","gameName":"美梦成真","reqsn":"201707260019578174_1002","cutCardResult":1},{"index":1,"terminalNo":"1002","gameNo":"G0232","num":1,"motorNumber":"1","price":"2","gameName":"美梦成真","reqsn":"201707260019578174_1002","cutCardResult":1},{"index":2,"terminalNo":"1002","gameNo":"G0232","num":1,"motorNumber":"2","price":"2","gameName":"美梦成真","reqsn":"201707260019578174_1002","cutCardResult":1}]';*/
+						//tempOrder = '[]';
+						tempOrder = JSON.parse(tempOrder);
+						var copyTempOrder = tempOrder.concat();
+						var len = tempOrder.length;
+						if(len == 0) {
+							homepageInit();
+						}
+						if(len > 0) {
+							/*confirmCysDialog("正在更新数据！","","",function(){},function(){});*/
+							var index = 0;
+							updateInter = setInterval(function() {
+								var result = tempOrder[index].cutCardResult;
+								if(result != 1) {
+									setTerminalLengthFail(tempOrder[index].motorNumber);
+								}
+								var params = "?terminalNo=" + g_machineNo.terminalNo +
+									"&num=" + tempOrder[index].num + "&price=" +
+									tempOrder[index].price + "&gameNo=" +
+									tempOrder[index].gameNo + "&gameName=" +
+									tempOrder[index].gameName + "&motorNumber=" +
+									tempOrder[index].motorNumber + "&reqsn=" +
+									tempOrder[index].reqsn + "&cutCardResult=" +
+									tempOrder[index].cutCardResult + "&rand=" + Math.random();
+								$.ajax({
+									type: 'GET',
+									url: serviceUrl + '/payInfo/v1/saveTerminalSale' + params,
+									dataType: "jsonp",
+									jsonp: "saveTerminalSale",
+									jsonpCallback: "saveTerminalSale",
+									async: false,
+									success: function(data) {
+										clossCysDialog();
+										var thatindex = 0;
+										var reindex;
+										var result = "ERR";
+										if(data.retcode == "SUCCESS") {
+											for(thatindex = 0; thatindex < copyTempOrder.length; thatindex++) {
+												if(tempOrder[index].index == copyTempOrder[thatindex].index) {
+													reindex = thatindex;
+													copyTempOrder.splice(reindex, 1);
+													result = gSetProperties("ticketTypeData", JSON.stringify(copyTempOrder));
+												}
+											}
+											if(result == "SUCCESS") {
+												index++;
+											}
+											if(index >= len) {
+												clearInterval(updateInter);
+												homepageInit();
+											}
+
+										}
+
+									}
+								});
+							}, 1000);
+							/* for(var index=0; index<g_orderMessage.length; index++){
+							             var tempItem = g_orderMessage[index];
+							             var obj = {"index":index,"terminalNo":tempItem.terminalNo,"gameNo":tempItem.gameNo,"num":tempItem.num,"motorNumber":tempItem.motorNumber,"price":tempItem.price,"gameName":tempItem.name,"reqsn":g_reqsn,"cutCardResult":-7};
+							             g_payOrder.push(obj);
+							         }*/
+						}
+
+					}
+				});
+
+			}
+
+		}
+
+		function homepageInit() {
+			//获取终端号，服务电话        
+			$(".TerminalNumber").html("<span><b>终端编号：" + g_machineNo.terminalNo + "</b></span>");
+			$(".telephone").html("<span><b>客服电话：" + g_machineNo.serverPhone + "</b></span>");
+
+			$("#haveSelectNum").html("0");
+			$("#haveSelectCound").html("0");
+			$.ajax({
+				type: 'GET',
+				url: serviceUrl + '/payInfo/v1/getTerminalTicket?terminalNo=' + g_machineNo.terminalNo + accessToken,
+				async: false,
+				dataType: "jsonp",
+				jsonp: "getTerminalTicket", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+				jsonpCallback: "getTerminalTicket", //自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写“?”jquery会自动处理
+				success: function(data) {
+					//console.log(data);
+					//g_ownerSetData=data;
+					g_ownerSetData = [];
+					for(var i = 0; i < g_machineNo.motorNum; i++) {
+						var ownerData = data[i];
+						var num = parseInt(ownerData.num);
+						if((ownerData.gameNo != '') && (num > 0)) {
+							saveUserSetData(ownerData.cardLength, ownerData.motorNumber);
+							g_ownerSetData.push(ownerData);
+						}
+					}
+					//gSetProperties("ownerSetData",JSON.stringify(g_ownerSetData));
+					initDataList();
+				}
+			});
+
+		}
+
+		/**
+		 *加载页面销售即开票数据列表
+		 */
+		var appversion = gGetProperties("acctualVersion");
+
+		function initDataList() {
+			//g_ownerSetData = gGetProperties("ownerSetData");
+			//g_ownerSetData = JSON.parse(g_ownerSetData);
+			//分组
+			//即开票的个数
+
+			var saleData = [];
+
+			for(var l = 0; l < g_ownerSetData.length; l++) {
+				if(g_ownerSetData[l].gameNo == '') {
+					continue;
+				}
+				saleData.push(g_ownerSetData[l]);
+
+			}
+			if(saleData.length == 0) {
+				window.location.href = "login.html";
+			}
+			for(var i = 0; i < saleData.length; i++) {
+				var param = "terminalNo=" + g_machineNo.terminalNo + "&motorNumber=" + saleData[i].motorNumber + "&saleNum=0&realVersion=" + appversion;
+				$.ajax({
+					type: 'GET',
+					url: serviceUrl + '/payInfo/v1/updateTerminalPayOrder?' + param + accessToken,
+					async: false,
+					dataType: "jsonp",
+					jsonp: "updateTerminalPayOrder", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+					jsonpCallback: "updateTerminalPayOrder", //
+					success: function(data) {
+
+					}
+				});
+			}
+
+			//轮播的总数
+			var totalCount = saleData.length;
+
+			//一组的轮播数量
+			var groupNum = parseInt(g_machineNo.motorNum);
+
+			//console.log("group：" + groupNum + "totalCount: " + totalCount);
+			//至少discuss组，residue==0 ，discuss组，residue>0,discuss+1组
+			var discuss = parseInt(totalCount / groupNum);
+			var residue = totalCount % groupNum;
+			//下标数组
+			var lenIndexArray = [];
+			for(var i = 0; i < discuss; i++) {
+				lenIndexArray.push([i * groupNum, i * groupNum + (groupNum - 1)]);
+			}
+			if(residue != 0) {
+				lenIndexArray.push([groupNum * discuss, groupNum * discuss + residue - 1]);
+			}
+			//console.log(lenIndexArray);	
+			var datalist = '';
+			for(var i = 0; i < lenIndexArray.length; i++) {
+				var theIndex = lenIndexArray[i];
+				var theBeginNo = theIndex[0];
+				var theEndNo = theIndex[1];
+
+				datalist += '<div class="swiper-slide swiper-list">' +
+					'   <ul>';
+
+				for(var j = theBeginNo; j <= theEndNo; j++) {
+					var cardItem = saleData[j];
+					var trueImgSrc = requestImgSrc + cardItem.gameNo;
+					for(var k = 0; k < localImgArr.length; k++) {
+						if(cardItem.gameNo == localImgArr[k]) {
+							trueImgSrc = "images/piao/" + cardItem.gameNo;
+						}
+					}
+					//图片路径修改 <img src="images/'+cardItem.image+'" class="article">'
+					datalist += '<li data-item=\'' + JSON.stringify(cardItem) + '\'>' +
+						'   <div class="title">' + cardItem.name + '　￥' + cardItem.price + '</div>' +
+						'   <div class="content">' +
+						'       <img data-img=' + cardItem.gameNo + ' src="' + trueImgSrc + '.jpg" class="article">' +
+						'       <div class="yp">余票' + cardItem.num + '张</div>' +
+						'   </div>'
+
+						//+ '       <div class="yp">有票'+cardItem.num+'张</div>'
+
+						+
+						'   <div class="swiper-slide_btn">' +
+						'       <a href="javascript:;" class="minus" onclick="doReduce(this)"><span class="glyphicon glyphicon-minus"></span></a>' +
+						'       <div class="num">0</div>' +
+						'       <a href="javascript:;" class="add" onclick="doIncrease(this)"><span class="glyphicon glyphicon-plus"></span></a>' +
+						'   </div>' +
+						'</li>';
+				}
+
+				datalist += '  </ul>' +
+					'</div>';
+			}
+
+			/*
 		var discuss = parseInt(totalCount/6);   
 		var residue = totalCount%6;   	
 		console.log(discuss);
@@ -746,186 +812,204 @@
 			datalist += '  </ul>'
 			          + '</div>';
 		}  */
-		
-		$("#swiper-wrapper-div").html(datalist);
-		
-		setTimeout(function(){
-		      $('.swiper-wrapper ul li').each(function() {
-               var thisImgW = $(this).find('img').width();
-			   var thisImgH = $(this).find('img').height();
-			   
-				if(thisImgH-thisImgW >= 100 ){
-				       $(this).find('.article').css({'width':'98%','max-height':'400px'});
-					   
-				   }else if(thisImgH-thisImgW >=70 ){
-					    $(this).find('.article').css({'width':'98%','max-height':'400px'});
-						
-					   }else{
-						       $(this).find('.article').css({'width':'98%','max-height':'400px'});
-							   //$(this).find('.content').css('margin-top','30px')
-						   }
-			});
 
-			var swiper = new Swiper('.swiper-container', {
-				pagination: '.swiper-pagination',
-				paginationClickable: true,
-				nextButton: '.swiper-button-next',
-				prevButton: '.swiper-button-prev',
-				spaceBetween: 30,
+			$("#swiper-wrapper-div").html(datalist);
+
+			setTimeout(function() {
+				$('.swiper-wrapper ul li').each(function() {
+					var thisImgW = $(this).find('img').width();
+					var thisImgH = $(this).find('img').height();
+
+					if(thisImgH - thisImgW >= 100) {
+						$(this).find('.article').css({
+							'width': '98%',
+							'max-height': '400px'
+						});
+
+					} else if(thisImgH - thisImgW >= 70) {
+						$(this).find('.article').css({
+							'width': '98%',
+							'max-height': '400px'
+						});
+
+					} else {
+						$(this).find('.article').css({
+							'width': '98%',
+							'max-height': '400px'
+						});
+						//$(this).find('.content').css('margin-top','30px')
+					}
+				});
+
+				var swiper = new Swiper('.swiper-container', {
+					pagination: '.swiper-pagination',
+					paginationClickable: true,
+					nextButton: '.swiper-button-next',
+					prevButton: '.swiper-button-prev',
+					spaceBetween: 30,
+				});
+			}, 1000);
+			//绑定事件
+			doEffectFun();
+
+		}
+
+		/**
+		 *绑定事件函数
+		 */
+		function doEffectFun() {
+
+			$('.swiper-wrapper ul li').off("click");
+			$('.swiper-wrapper ul li').click(function() {
+				$('.swiper-wrapper ul li').removeClass('click');
+				//$(this).addClass('click');
 			});
-		},1000);
-        //绑定事件
-        doEffectFun();	
-		
-	}
-	
-	
-	/**
-	*绑定事件函数
-	*/
-	function doEffectFun(){
-	     
-		 $('.swiper-wrapper ul li').off("click");
-		 $('.swiper-wrapper ul li').click(function(){
-			   $('.swiper-wrapper ul li').removeClass('click');
-			    //$(this).addClass('click');
-			 }); 
-	}
-	
-	/**
-	*减少
-	*/
-	function doReduce(el){
-	    //g_orderFormArr =[{"id":"1","indexNo":"J0555","name":"幸运双星J","price":2,"num":50,"image":"piao/J0555_幸运双星J.jpg"}];
-		var curNum = parseInt($(el).next().html().trim());
-		
-		if(curNum == 0){
-		   return false;
-		}else{
-		    var liItem = JSON.parse($(el).parents("li").attr("data-item"));
-			$(el).next().html((curNum-1));
-			for(var i=0;i<g_orderFormArr.length;i++){
-			    var theOrder = g_orderFormArr[i]; 
-				if(liItem.motorNumber == theOrder.motorNumber){
-				   theOrder.num = parseInt(theOrder.num)-1;
-				   break;
+		}
+
+		/**
+		 *减少
+		 */
+		function doReduce(el) {
+			//g_orderFormArr =[{"id":"1","indexNo":"J0555","name":"幸运双星J","price":2,"num":50,"image":"piao/J0555_幸运双星J.jpg"}];
+			var curNum = parseInt($(el).next().html().trim());
+
+			if(curNum == 0) {
+				return false;
+			} else {
+				var liItem = JSON.parse($(el).parents("li").attr("data-item"));
+				$(el).next().html((curNum - 1));
+				for(var i = 0; i < g_orderFormArr.length; i++) {
+					var theOrder = g_orderFormArr[i];
+					if(liItem.motorNumber == theOrder.motorNumber) {
+						theOrder.num = parseInt(theOrder.num) - 1;
+						break;
+					}
 				}
 			}
+			//统计订单
+			statisticsOrder();
+
 		}
-		//统计订单
-		statisticsOrder();
-		
-	}
-	/**
-	*增加
-	*/
-	function doIncrease(el){
-	    var liItem = JSON.parse($(el).parents("li").attr("data-item"));
-		var curNum = parseInt($(el).prev().html().trim());
-	     
-		if(curNum == parseInt(liItem.num)){
-		    return false;
-		}else{
-		    $(el).prev().html((curNum+1));
-			
-			var addMark = true;
-			for(var i=0;i<g_orderFormArr.length;i++){
-			    var theOrder = g_orderFormArr[i]; 
-				if(liItem.motorNumber == theOrder.motorNumber){
-				   theOrder.num = parseInt(theOrder.num)+1;
-				   addMark = false;
-				   break;
+		/**
+		 *增加
+		 */
+		function doIncrease(el) {
+			var liItem = JSON.parse($(el).parents("li").attr("data-item"));
+			var curNum = parseInt($(el).prev().html().trim());
+
+			if(curNum == parseInt(liItem.num)) {
+				return false;
+			} else {
+				$(el).prev().html((curNum + 1));
+
+				var addMark = true;
+				for(var i = 0; i < g_orderFormArr.length; i++) {
+					var theOrder = g_orderFormArr[i];
+					if(liItem.motorNumber == theOrder.motorNumber) {
+						theOrder.num = parseInt(theOrder.num) + 1;
+						addMark = false;
+						break;
+					}
+				}
+
+				if(addMark) {
+					g_orderFormArr.push({
+						"gameNo": liItem.gameNo,
+						"name": liItem.name,
+						"price": parseFloat(liItem.price),
+						"num": parseInt($(el).prev().html().trim()),
+						"image": liItem.image,
+						"motorNumber": liItem.motorNumber,
+						"cardLength": liItem.cardLength
+					});
 				}
 			}
-			
-			if(addMark){
-			    g_orderFormArr.push({"gameNo":liItem.gameNo,"name":liItem.name,"price":parseFloat(liItem.price),"num":parseInt($(el).prev().html().trim()),"image":liItem.image,"motorNumber":liItem.motorNumber,"cardLength":liItem.cardLength});
-			}
+
+			//统计订单
+			statisticsOrder();
 		}
-		
-		//统计订单
-		statisticsOrder();
-	}
-	
-	
-	/**
-	*统计订单
-	*/
-	function statisticsOrder(){
-	     var selectNum = 0;
-		var selectPrice = 0;
-		
-		for(var i=0;i<g_orderFormArr.length;i++){
-			    var theOrder = g_orderFormArr[i]; 
-				
+
+		/**
+		 *统计订单
+		 */
+		function statisticsOrder() {
+			var selectNum = 0;
+			var selectPrice = 0;
+
+			for(var i = 0; i < g_orderFormArr.length; i++) {
+				var theOrder = g_orderFormArr[i];
+
 				selectNum += parseInt(theOrder.num);
-				selectPrice += parseFloat(parseInt(theOrder.num)*parseFloat(theOrder.price));
-		}
-		
-		$("#haveSelectNum").html(selectNum);
-		$("#haveSelectCound").html(selectPrice);
-	}
-	
+				selectPrice += parseFloat(parseInt(theOrder.num) * parseFloat(theOrder.price));
+			}
 
-  var cancelpay = document.getElementById('cancelpay');
-  cancelpay.addEventListener('touchstart',function(){
-      $(".swiper-list ul li").each(function(){
-        $(this).find(".num").html('0');
-        //订单数组
-        g_orderFormArr = [];
-        //票数，金额置0
-        $("#haveSelectNum").html('0');
-        $("#haveSelectCound").html('0');
-      });
-  }, false);  
-	/**
-	*跳转到支付页面
-	*/
-	var dopay = document.getElementById('dopay');
-	dopay.addEventListener('touchstart',doGoToPay, false);  
-				
-	function doGoToPay(){
-	   var haveNum = parseInt($("#haveSelectNum").html().trim());
-	   if(haveNum == 0){
-		   confirmCysDialog("请选择即开票","","关闭",function(){},function(){});
-		   return false;
-	    }else{
-			for(var i=0;i<g_orderFormArr.length;i++){
-			    var param="terminalNo="+g_machineNo.terminalNo+"&motorNumber="+g_orderFormArr[i].motorNumber+"&saleNum="+g_orderFormArr[i].num +"&realVersion="+appversion;
-        var conn = new ConnectTimeout();
-        //conn.showTip();
-				$.ajax({
-				  type: 'GET',
-				  url: serviceUrl + '/payInfo/v1/updateTerminalPayOrder?'+param+accessToken,
-				  async: false,
-				  dataType: "jsonp",
-				  jsonp: "updateTerminalPayOrder",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
-				  jsonpCallback:"updateTerminalPayOrder",//自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写“?”jquery会自动处理
-				  success: function(data){
-            //conn.hideTip();
-  					if(data.retcode=='FAIL'){
-  						confirmCysDialog(data.retmsg,"","关闭",function(){},function(){});
-  					}else{
-  						window.location.href="Pay.html";
-  					}
-				  }
-				});	
+			$("#haveSelectNum").html(selectNum);
+			$("#haveSelectCound").html(selectPrice);
+		}
+
+		//var cancelpay = document.getElementById('cancelpay');
+		//cancelpay.addEventListener('touchstart',function(){
+		//    $(".swiper-list ul li").each(function(){
+		//      $(this).find(".num").html('0');
+		//      //订单数组
+		//      g_orderFormArr = [];
+		//      //票数，金额置0
+		//      $("#haveSelectNum").html('0');
+		//      $("#haveSelectCound").html('0');
+		//    });
+		//}, false);  
+		/**
+		 *跳转到支付页面
+		 */
+		var dopay = document.getElementById('dopay');
+		dopay.addEventListener('touchstart', doGoToPay, false);
+
+		function doGoToPay() {
+			var haveNum = parseInt($("#haveSelectNum").html().trim());
+			if(haveNum == 0) {
+				confirmCysDialog("请选择即开票", "", "关闭", function() {}, function() {});
+				return false;
+			} else {
+				for(var i = 0; i < g_orderFormArr.length; i++) {
+					var param = "terminalNo=" + g_machineNo.terminalNo + "&motorNumber=" + g_orderFormArr[i].motorNumber + "&saleNum=" + g_orderFormArr[i].num + "&realVersion=" + appversion;
+					var conn = new ConnectTimeout();
+					//conn.showTip();
+					$.ajax({
+						type: 'GET',
+						url: rem / $rem + '/payInfo/v1/updateTerminalPayOrder?' + param + accessToken,
+						async: false,
+						dataType: "jsonp",
+						jsonp: "updateTerminalPayOrder", //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+						jsonpCallback: "updateTerminalPayOrder", //自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写“?”jquery会自动处理
+						success: function(data) {
+							//conn.hideTip();
+							if(data.retcode == 'FAIL') {
+								confirmCysDialog(data.retmsg, "", "关闭", function() {}, function() {});
+							} else {
+								window.location.href = "Pay.html";
+							}
+						}
+					});
+				}
 			}
 		}
-	}
 		jQuery.event.special.tripleclick = {
 			setup: function(data, namespaces) {
-				var elem = this, $elem = jQuery(elem);
+				var elem = this,
+					$elem = jQuery(elem);
 				$elem.bind('click', jQuery.event.special.tripleclick.handler);
 			},
 			teardown: function(namespaces) {
-				var elem = this, $elem = jQuery(elem);
+				var elem = this,
+					$elem = jQuery(elem);
 				$elem.unbind('click', jQuery.event.special.tripleclick.handler);
 			},
 			handler: function(event) {
-				var elem = this, $elem = jQuery(elem), clicks = $elem.data('clicks') || 0;
+				var elem = this,
+					$elem = jQuery(elem),
+					clicks = $elem.data('clicks') || 0;
 				clicks += 1;
-				if ( clicks === 3 ) {
+				if(clicks === 3) {
 					clicks = 0;
 					// set event type to "tripleclick"
 					event.type = "tripleclick";
@@ -935,34 +1019,32 @@
 				$elem.data('clicks', clicks);
 			}
 		};
-	
-	$('.head .TerminalNumber').bind('tripleclick', function (event) {
-    	window.location.href = "login.html";
-	});
-	$('.telephone').bind('tripleclick', function (event) {
-    	//gExitApp();
-	});
-    </script>
 
+		$('.head .TerminalNumber').bind('tripleclick', function(event) {
+			window.location.href = "login.html";
+		});
+		$('.telephone').bind('tripleclick', function(event) {
+			//gExitApp();
+		});
 
+		// 设置轮播图高度
+		$(function() {
+
+			setSwiper();
+
+			function setSwiper() {
+				var window_h = $(window).height();
+				var head_h = $(".head").height();
+				var head_bg_h = $(".head_bg").height();
+				$(".swiper-container").height(window_h - head_h - head_bg_h);
+
+			}
+
+			$(window).resize(function() {
+				setSwiper();
+
+			});
+		})
+	</script>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
