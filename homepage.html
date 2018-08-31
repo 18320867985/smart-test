@@ -62,43 +62,7 @@
 				}
 			}
 			
-			.head_bg {
-				width: 100%;
-				max-height: 60px;
-			}
-			/*轮播图*/
 			
-			.swiper-container {
-				position: relative;
-				width: 100%;
-				height: 100%;
-			}
-			
-			.swiper-wrapper li {
-				width: 100%;
-				height: 100%;
-			}
-			
-			.swiper-wrapper img {
-				width: 100%;
-				height: 100%;
-			}
-			
-			.swiper-button-next,
-			.swiper-button-prev {
-				position: absolute;
-				top: 50%;
-				width: 50px;
-				height: 80px;
-				margin-top: -40px;
-				z-index: 10;
-				cursor: pointer;
-				-moz-background-size: 20px 35px;
-				-webkit-background-size: 20px 35px;
-				background-size: 20px 35px;
-				background-position: center;
-				background-repeat: no-repeat;
-			}
 		</style>
 	</head>
 
@@ -213,6 +177,10 @@
 	<script type="text/javascript" src="properties.js"></script>
 	<script type="text/javascript" src="js/common/fastclick.js"></script>
 	<script>
+		console.log("offsetWidth:"+document.documentElement.offsetWidth);
+		console.log("offsetHeight:"+document.documentElement.offsetHeight);
+		
+		
 		var localImgArr = ['G0232', 'G0368', 'G0378', 'G0425', 'G0440', 'G0491', 'G0516', 'G0517', 'G0522', 'G0537', 'G0538', 'J0302', 'J0353', 'J0404', 'J0462', 'J0560', 'J0561', 'J0562', 'J0564', 'J0565', '0288', '0362', '0373', '0398'];
 		var updateInter; //更新上传定时器；
 		$(function() {
