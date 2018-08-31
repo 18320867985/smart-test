@@ -1,5 +1,22 @@
 /*重构*/
 
+.login.init { 
+	   position: fixed;
+    width: 400px;
+    height: 400px;
+    padding-bottom: 10px;
+    left: 50%;
+    right: 50%;
+    top: 50%;
+    margin-left: -200px;
+    margin-top: -200px;
+    box-shadow: 0px 5px 7px rgba(196, 47, 51, 0.7);
+    background: #fff;
+    border-radius: 5px;
+    z-index: 10000;
+    
+}
+
 @media only screen and (min-width: 1024px) {
 	.login.init {
 		width: 500px;
@@ -25,3 +42,6 @@
     margin-top: -10px;
 }
 }
+
+
+
