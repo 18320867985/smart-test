@@ -62,6 +62,10 @@
 				}
 			}
 			
+			/*放大图片*/
+			.clickbig{
+				display: none;
+			}
 			
 		</style>
 	</head>
@@ -177,9 +181,9 @@
 	<script type="text/javascript" src="properties.js"></script>
 	<script type="text/javascript" src="js/common/fastclick.js"></script>
 	<script>
-		console.log("offsetWidth:"+document.documentElement.offsetWidth);
-		console.log("offsetHeight:"+document.documentElement.offsetHeight);
-		
+		/*检测屏幕*/
+//		console.log("offsetWidth:"+document.documentElement.offsetWidth);
+//		console.log("offsetHeight:"+document.documentElement.offsetHeight);
 		
 		var localImgArr = ['G0232', 'G0368', 'G0378', 'G0425', 'G0440', 'G0491', 'G0516', 'G0517', 'G0522', 'G0537', 'G0538', 'J0302', 'J0353', 'J0404', 'J0462', 'J0560', 'J0561', 'J0562', 'J0564', 'J0565', '0288', '0362', '0373', '0398'];
 		var updateInter; //更新上传定时器；
