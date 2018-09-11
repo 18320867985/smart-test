@@ -172,3 +172,107 @@
    
     width: 60%;
 }
+
+
+
+/*======new=======*/
+
+/*.pay_con_main .pay_left, .pay_con_main .pay_right {
+    /*position: relative;
+    background: #ffffff;
+    box-sizing: content-box;
+    padding: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}*/*/
+
+
+.pay_con_main .pay_left, .pay_con_main .pay_right {
+    position: relative;
+    background: #ffffff;
+    box-sizing: content-box;
+    padding: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.pay_con_main .pay_left {
+    width: 48%;
+    float: left;
+}
+.pay_con_main .pay_left {
+    min-height: 468px;
+}
+.pay_con_main .pay_left, .pay_con_main .pay_right {
+    position: relative;
+    background: #ffffff;
+    box-sizing: content-box;
+    padding: 10px 0;
+    border-radius: 20px;
+}
+
+
+
+.pay_con_main .pay_right {
+    position: relative;
+    background: none;
+    box-sizing: content-box;
+    padding: 10px 0;
+    border-radius: 20px;
+    box-shadow: none;
+}
+
+.pay_con_main .pay_right {
+    min-height: 100px;
+}
+.pay_con_main .pay_left, .pay_con_main .pay_right {
+    position: relative;
+    background: #ffffff;
+    box-sizing: content-box;
+    padding: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.pay_con_main .pay_right {
+    width: 48%;
+    float: right;
+    margin-top: 0px;
+}
+
+.pay_con .pay_bottom.last.max-1024 {
+    position: relative;
+    display: block;
+    width: auto;
+    right: 0;
+    top: 100px;
+    text-align: center;
+}
+
+.pay_con .pay_bottom.last.max-1024 a {
+    display: block;
+    width: 350px;
+    margin: 0 auto;
+    height: 60px;
+    line-height: 30px;
+    margin-bottom: 20px;
+}
+
+ .pay_con_main .pay_right {
+    position: relative;
+    background: none;
+    box-sizing: content-box;
+     box-shadow: none;
+    
+}
+
+.pay-list {
+    padding: 15px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 5px 13px rgba(0, 0, 0, 0.5);
+}
+
+.pay_con .pay_bottom.last {
+   display: none;
+}

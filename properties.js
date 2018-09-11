@@ -1,4 +1,5 @@
-//终端编号
+//终端编号 
+// appw.caishilu.com
 var g_machineNo = "r09131200008";
 //服务电话
 var g_servicePhone = "0755-42358562";

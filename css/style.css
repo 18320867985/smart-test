@@ -186,9 +186,9 @@ body {
 }
 
 .swiper-slide ul li .content img {
-	vertical-align: top;
+	/*vertical-align: top;
 	max-height: 650px;
-	min-height: 650px;
+	min-height: 650px;*/
 }
 
 .swiper-slide ul li .content .price {
@@ -250,7 +250,7 @@ body {
 }
 
 .swiper-slide ul li .swiper-slide_btn a span {
-	display: block;
+	/*display: block;
 	width: 68px;
 	height: 68px;
 	border-radius: 50%;
@@ -262,11 +262,11 @@ body {
 	bottom: 0;
 	box-shadow: 0px 0px 4px #fff;
 	text-decoration: none;
-	border: 2px solid #fff;
+	border: 2px solid #fff;*/
 }
 
 .swiper-slide ul li .swiper-slide_btn a.minus {
-	left: 140px;
+	/*left: 140px;*/
 }
 
 .swiper-slide ul li .swiper-slide_btn a.minus.disabled {
@@ -1731,6 +1731,8 @@ body {
 		width: 100%;
 		margin-left: 0px !important;
 	}
+	
+	/*
 	.swiper-slide ul {
 		width: 100%;
 		height: 480px;
@@ -1839,7 +1841,9 @@ body {
 	}
 	.swiper-slide ul li.click .content {
 		top: 92px;
-	}
+	}*/
+	
+	
 	.bottom {
 		height: 60px;
 		overflow: hidden;
@@ -1851,7 +1855,7 @@ body {
 		line-height: 45px;
 		/*float: left;*/
 		margin-top: 10px;
-		margin-left: 30px;
+		/*//margin-left: 30px;*/
 	}
 	.homepage .bottom .data {
 		color: #fff;
@@ -3500,25 +3504,25 @@ body {
 	}
 	
 	.swiper-slide ul li .title {
-		position: absolute;
+		/*position: absolute;
 		right: -124px;
-		top: 60px;
+		top: 60px;*/
 	}
 	
 	.swiper-slide ul li .content img {
-		min-height: 500px;
-		max-height: 500px;
+		/*min-height: 500px;
+		max-height: 500px;*/
 	}
 	
 	.swiper-slide ul li .content .yp {
-		position: absolute;
+		/*position: absolute;
 		top: 130px;
 		left: 574px;
 		width: 200px;
 		height: 50px;
 		line-height: 50px;
 		background: none;
-		color: #fff;
+		color: #fff;*/
 	}
 	
 	.swiper-slide ul li .swiper-slide_btn {
@@ -3530,22 +3534,22 @@ body {
 	}
 	
 	.swiper-slide ul li .swiper-slide_btn a span {
-		width: 60px;
+		/*width: 60px;
 		height: 60px;
 		line-height: 60px;
 		margin-top: 0;
-		margin-left: 0;
+		margin-left: 0;*/
 	}
 	
 	.swiper-slide ul li .swiper-slide_btn a {
-		width: 60px !important;
+		/*width: 60px !important;
 		height: 60px !important;
-		line-height: 60px;
+		line-height: 60px;*/
 	}
 	
 	.swiper-slide ul li .swiper-slide_btn a.add {
-		right: 70px;
-		top: 0px;
+		/*right: 70px;
+		top: 0px;*/
 	}
 	
 	.swiper-slide ul li .swiper-slide_btn a.minus {
@@ -3554,13 +3558,13 @@ body {
 	}
 	
 	.swiper-slide ul li .swiper-slide_btn .num {
-		margin-top: 9px !important;
+		/*margin-top: 9px !important;
 		margin-left: 125px !important;
 		width: 105px !important;
 		height: 50px;
 		line-height: 50px;
 		font-size: 40px;
-		color: #fff;
+		color: #fff;*/
 	}
 	
 	.swiper-slide_btn #cancelpay {
@@ -3594,11 +3598,11 @@ body {
 	}
 	
 	.bottom a.submit {
-		width: 180px;
+		/*width: 180px;
 		height: 50px;
 		font-size: 34px;
 		line-height: 50px;
-		margin: 0 !important;
+		margin: 0 !important;*/
 	}
 	
 	.bottom a span {
@@ -3668,4 +3672,8 @@ body {
 	.login.init {
 		top: 50%;
 	}
+}
+
+.homepage .bottom .data {
+   display: block;
 }
