@@ -2778,7 +2778,7 @@ body {
 #ownquery,
 #ownabout {
 	display: none;
-	padding-top: 180px;
+	/*padding-top: 180px;*/
 }
 #ownquery .wrapsearch {
 	position: relative;

@@ -1,21 +1,25 @@
 /*重构*/
 
-
-.pay_con_main .pay_left, .pay_con_main .pay_right {
-    position: relative;
-    background: #ffffff;
-    box-sizing: content-box;
-    padding: 10px 0;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+.pay_con_main .pay_left,
+.pay_con_main .pay_right {
+	position: relative;
+	background: #ffffff;
+	box-sizing: content-box;
+	padding: 10px 0;
+	border-radius: 10px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 }
+
 .pay_process {
-	text-align: center;
-	font-size: 30px;
-	height: 60px;
-	line-height: 60px;
+    text-align: center;
+    font-size: 24px;
+    height: 30px;
+    line-height: 40px;
 }
-
+.pay_process .step2 {
+    font-size: 24px;
+    color: #c63635;
+}
 .pay_con .pay_bottom.last {
 	width: 100%;
 	text-align: center;
@@ -23,7 +27,7 @@
 }
 
 .pay_con .pay_bottom a {
-	font-size: 28px;
+	font-size: 22px;
 	padding-left: 25px !important;
 	padding-right: 25px !important;
 }
@@ -33,9 +37,9 @@
 }
 
 .pay_right .order_titles {
-	font-size: 28px;
-	height: 34px;
-	line-height: 34px;
+	font-size: 22px;
+	height: 30px;
+	line-height: 30px;
 	margin-bottom: 10px;
 }
 
@@ -79,27 +83,23 @@
 	.pay_con .pay_bottom.last {
 		display: none;
 	}
-	
 	.pay_con_main .pay_right {
-     min-height: 100px
-  
-		}
-		
-.pay_con_main .pay_right {
-    position: relative;
-    background: none;
-    box-sizing: content-box;
-    padding: 10px 0;
-    border-radius: 20px;
-    	box-shadow: none;
-}
-
-.pay-list{
-	padding: 15px;
-	background: #fff;
-	border-radius:5px ;
-	box-shadow: 0 5px 13px rgba(0, 0, 0, 0.5);
-}
+		min-height: 100px
+	}
+	.pay_con_main .pay_right {
+		position: relative;
+		background: none;
+		box-sizing: content-box;
+		padding: 10px 0;
+		border-radius: 20px;
+		box-shadow: none;
+	}
+	.pay-list {
+		padding: 15px;
+		background: #fff;
+		border-radius: 5px;
+		box-shadow: 0 5px 13px rgba(0, 0, 0, 0.5);
+	}
 }
 
 
@@ -144,38 +144,38 @@
 	color: #fff;
 }
 
+
 /*支付成功弹框*/
+
 .pay_succeed {
-    width: 400px;
-    height: 400px;
-  
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-left: -200px;
-    margin-top: -200px;
-    background: #fff;
-    box-shadow: 0 5px 13px rgba(0, 0, 0, 0.5);
-    text-align: center;
-    padding: 5px;
-    display: none;
-    z-index: 10002;
+	width: 400px;
+	height: 400px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -200px;
+	margin-top: -200px;
+	background: #fff;
+	box-shadow: 0 5px 13px rgba(0, 0, 0, 0.5);
+	text-align: center;
+	padding: 5px;
+	display: none;
+	z-index: 10002;
 }
 
 .pay_succeed .pay_succeed_img {
-    width: 100%;
-    margin-top: 40px;
-    text-align: center;
+	width: 100%;
+	margin-top: 40px;
+	text-align: center;
 }
 
 .pay_succeed .pay_succeed_img img {
-   
-    width: 60%;
+	width: 60%;
 }
 
 
-
 /*======new=======*/
+
 
 /*.pay_con_main .pay_left, .pay_con_main .pay_right {
     /*position: relative;
@@ -184,95 +184,151 @@
     padding: 10px 0;
     border-radius: 10px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
-}*/*/
+}*/
 
+.pay_con_main {
+	width: 85% !important;
+	margin: 0 auto;
+}
 
-.pay_con_main .pay_left, .pay_con_main .pay_right {
-    position: relative;
-    background: #ffffff;
-    box-sizing: content-box;
-    padding: 10px 0;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+.pay_con_main .pay_left,
+.pay_con_main .pay_right {
+	position: relative;
+	background: #ffffff;
+	box-sizing: content-box;
+	padding: 10px 0;
+	border-radius: 10px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 }
 
 .pay_con_main .pay_left {
-    width: 48%;
-    float: left;
+	width: 48%;
+	float: left;
 }
+
 .pay_con_main .pay_left {
-    min-height: 468px;
-}
-.pay_con_main .pay_left, .pay_con_main .pay_right {
-    position: relative;
-    background: #ffffff;
-    box-sizing: content-box;
-    padding: 10px 0;
-    border-radius: 20px;
+	min-height: 468px;
 }
 
-
-
+.pay_con_main .pay_left,
 .pay_con_main .pay_right {
-    position: relative;
-    background: none;
-    box-sizing: content-box;
-    padding: 10px 0;
-    border-radius: 20px;
-    box-shadow: none;
+	position: relative;
+	background: #ffffff;
+	box-sizing: content-box;
+	padding: 10px 0;
+	border-radius: 20px;
 }
 
 .pay_con_main .pay_right {
-    min-height: 100px;
-}
-.pay_con_main .pay_left, .pay_con_main .pay_right {
-    position: relative;
-    background: #ffffff;
-    box-sizing: content-box;
-    padding: 10px 0;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+	position: relative;
+	background: none;
+	box-sizing: border-box;
+	padding: 10px 0;
+	border-radius: 20px;
+	box-shadow: none;
 }
 
 .pay_con_main .pay_right {
-    width: 48%;
-    float: right;
-    margin-top: 0px;
+	min-height: 100px;
+}
+
+.pay_con_main .pay_left,
+.pay_con_main .pay_right {
+	position: relative;
+	background: #ffffff;
+	box-sizing: content-box;
+	padding: 10px 0;
+	border-radius: 10px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.pay_con_main .pay_right {
+	width: 50%;
+	float: right;
+	margin-top: 0px;
+	margin-right: -20px;
 }
 
 .pay_con .pay_bottom.last.max-1024 {
-    position: relative;
-    display: block;
-    width: auto;
-    right: 0;
-    top: 100px;
-    text-align: center;
+	position: relative;
+	display: block;
+	width: auto;
+	right: 0;
+	top: 70px;
+	text-align: center;
 }
 
 .pay_con .pay_bottom.last.max-1024 a {
     display: block;
     width: 350px;
     margin: 0 auto;
-    height: 60px;
-    line-height: 30px;
+    height: 50px;
+    line-height: 16px;
     margin-bottom: 20px;
 }
 
- .pay_con_main .pay_right {
-    position: relative;
-    background: none;
-    box-sizing: content-box;
-     box-shadow: none;
-    
+.pay_con_main .pay_right {
+	position: relative;
+	background: none;
+	box-sizing: content-box;
+	box-shadow: none;
 }
 
 .pay-list {
-    padding: 15px;
-    background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 5px 13px rgba(0, 0, 0, 0.5);
+	padding: 15px;
+	background: #fff;
+	border-radius: 5px;
+	box-shadow: 0 5px 13px rgba(0, 0, 0, 0.5);
 }
 
 .pay_con .pay_bottom.last {
-   display: none;
+	display: none;
+}
+
+
+/*支付*/
+
+.pay_wrap_img h3 {
+	width: 100%;
+	text-align: center;
+	line-height: 32px;
+	color: #454545;
+	font-size: 21px;
+	letter-spacing: 10px;
+	font-weight: normal;
+	border: none;
+}
+
+.pay_wrap_img .rwm {
+	position: relative;
+	width: 240px;
+	height: 240px;
+	padding: 10px;
+	margin: 0 auto;
+	background: url(../images/wx_bg.png) no-repeat center center;
+	background-size: 200px 200px;
+	margin-top: 10px;
+}
+
+.wxswitchloading,
+.zfbswitchloading {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 240px;
+	height: 240px;
+	z-index: 100;
+	background: rgba(0, 0, 0, 0.9);
+}
+
+.pay_con_main .pay_left {
+	min-height: 400px;
+}
+
+.pay_con {
+     margin: 0;
+     padding: 0;
+    padding-top: 30px;
+   
+    
 }

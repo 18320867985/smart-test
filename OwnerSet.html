@@ -9,6 +9,7 @@
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="css/lq.datetimepick.css" rel="stylesheet" type="text/css">
 <link href="css/hDate.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/ownerset.css"/>
 </head>
  
 <body>
@@ -28,9 +29,37 @@
         	<span class="ownhome">首页</span>
         </div>
 
-      	<div id="ownsetsys" style="display: none">  
-	        <ul id="ownerListUl"></ul>
-	        <div class="startsale">
+      	<div id="ownsetsys" style="display: block">  
+	        <ul id="ownerListUl" style="  padding-top: 0 !important;">
+	        	<!--<li class="nodata">
+				    <div class="number">机头<span class="tip"></span></div>
+				    <img src="images/piao/J0353.jpg">
+				   <div class="price"><span>J0353</spa好运十倍<span>￥10</span></div>
+				    <div class="gn_btn">
+				        <ol>
+				           <li class="change"><img src="images/change_owner.png"><div>修改</div></li>
+				          <li class="del"><img src="images/del_owner.png"><div>删除</div></li>'
+				       </ol>
+				    </div>
+				   <div class="num">0张</div>
+				   <div class="adddata"><img src="images/add_bg.png"><p>添加彩票</p></div>
+			</li>-->
+							
+				<!--<li data-item="“">
+					     <div class="number">机头<span class="tip"></span></div>
+					     <img src="images/piao/G0440.jpg">
+					    <div class="price">单价<span>￥77</span></div>
+					    <div class="gn_btn">
+					        <ol>
+					           <li class="change"><img src="images/change_owner.png"><div>修改</div></li>
+					           <li class="del"><img src="images/del_owner.png"><div>删除</div></li>
+					      </ol>
+					    </div>
+					     <div class="num">55张</div>
+					  </li>-->
+					  
+	        </ul>
+	        <div class="startsale" >
 	        	<!--<a href="homepage.html">开始销售</a> -->
 	        	<a id="ownerksxs">开始销售</a>
 	        </div>	
@@ -134,7 +163,7 @@
   </div>
   
   
-  <div class="ownerset_win">
+  <div class="ownerset_win" >
      <div class="search">
         <input type="text" placeholder="方案代码&nbsp;/&nbsp;方案名称&nbsp;/&nbsp;单票金额">
         <a href="javascript:;">搜 索</a>
@@ -144,11 +173,12 @@
            </ul>
         </div>
      </div>
-     <div class="ownerset_win_data">
+     <div class="ownerset_win_data" >
         <div class="sp_img"><img src="" id="ownerset_win_data_img"></div>
         <div class="sp_con">
            <ul>
               <li>方案代码：<span id="ownerset_win_data_no"></span></li>
+              <br>
               <li>方案名称：<span id="ownerset_win_data_name"></span></li>
            </ul>
            <ul>
@@ -169,8 +199,9 @@
               <a href="javascript:;" style="" class="yes">是</a>
           </div>
       </div>
+      
   <script src="js/common/jquery-1.8.0.y100.js" type="text/javascript"></script>
-  <script type="text/javascript" src="js/common/cysDialog.js"></script>
+<script type="text/javascript" src="js/common/cysDialog.js"></script>
   <script type="text/javascript" src="properties.js"></script>
   <script type="text/javascript" src="js/common/fastclick.js"></script>
   
@@ -456,11 +487,11 @@ function initLoadData(){
 		    var data=g_ownerSetData[i];
 			
 			if(g_machineNo.motorNum==4){
-				$("#ownerListUl").css({width:"550px",height:"340px",paddingTop:"245px"});
+				$("#ownerListUl").css({width:"550px",height:"340px",paddingTop:"30px"});
 				//$("#ownerListUl").removeClass("ownersetdataul6");
 				//$("#ownerListUl").addClass("ownersetdataul4");	
 			}else{
-				$("#ownerListUl").css({width:"550px",height:"340px",paddingTop:"245px"});
+				$("#ownerListUl").css({width:"550px",height:"340px",paddingTop:"30px"});
 				//$("#ownerListUl").removeClass("ownersetdataul4");
 				//$("#ownerListUl").addClass("ownersetdataul6");
 			}

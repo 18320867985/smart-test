@@ -165,7 +165,7 @@
 	height: auto;
 	max-height: 80%;
 	left: 10%;
-	top: 5%;
+	top: 3%;
 }
 
 .swiper-slide ul li .content .yp {
@@ -293,22 +293,22 @@
 
 .bottom+.bottom {
 	margin-top: 10px;
-	;
+	
 }
 
 .bottom a.submit {
 	display: inline-block;
-	width: 170px;
-	height: 40px;
-	color: #C42F33;
-	font-size: 28px;
-	line-height: 40px;
-	text-align: center;
-	background-color: #fff;
-	border-radius: 10px;
-	/* margin-top: 2rem; */
-	font-weight: bold;
-	margin-left: -250px;
+    width: 160px;
+    height: 40px;
+    color: #C42F33;
+    font-size: 24px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    /* margin-top: 2rem; */
+    font-weight: bold;
+    margin-left: -250px;
 }
 
 .swiper-slide ul li .swiper-slide_btn .num {
