@@ -3,13 +3,14 @@
 .login.init { 
 	   position: fixed;
     width: 400px;
-    height: 400px;
+    height: 360px;
+    min-height: 300px;
     padding-bottom: 10px;
     left: 50%;
     right: 50%;
     top: 50%;
     margin-left: -200px;
-    margin-top: -200px;
+    margin-top: -180px;
     box-shadow: 0px 5px 7px rgba(196, 47, 51, 0.7);
     background: #fff;
     border-radius: 5px;
@@ -43,5 +44,42 @@
 }
 }
 
+
+
+.login_tian ul li {
+    height: 30px;
+    /* margin-bottom: 20px; */
+    color: #ccc;
+    font-size: 16px;
+    line-height: 35px;
+    position: relative;
+    float: left;
+       margin-bottom: 22px;
+}
+
+.login_tian ul li input {
+    font-size: 18px;
+    transition: all 0.2s;
+    width: 200px;
+    border: 0px;
+    border-bottom: 1px solid #000;
+    height: 35px;
+    float: left;
+}
+
+.login_tian ul li em {
+    font-style: normal;
+    position: absolute;
+    left: 130px;
+    font-size: 14px;
+    bottom: -31px;
+    color: red;
+}
+
+ .login .login-ttl {
+    font-size: 26px;
+    padding-top: 26px;
+}
+ 
 
 
