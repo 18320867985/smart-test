@@ -17,6 +17,7 @@
 				background: url("./images/login_bg.jpg");
 			}
 			
+			
 			#preload b {
 				opacity: 0.5;
 				animation: preload 1s infinite ease-in-out;
@@ -66,6 +67,7 @@
 			.clickbig {
 				display: none;
 			}
+			
 		</style>
 	</head>
 
@@ -83,13 +85,14 @@
 			<!-- 轮播start -->
 			<div class="swiper-container" id="swiper1">
 				<div class="swiper-wrapper" id="swiper-wrapper-div">
-					<!--<div class="swiper-slide swiper-list">
+<!--					
+					<div class="swiper-slide swiper-list">
 						<ul>
 							<li data-item="1">
 								<div class="title">幸运草　￥ 100</div>
 
 								<div class="content">
-									<img data-img="" src="images/piao/G0517.jpg" class="article">'
+									<img data-img="" src="images/piao/0398.jpg" class="article">'
 									<div class="yp">余票 55 张</div>
 								</div>
 								<div class="swiper-slide_btn">
@@ -101,6 +104,7 @@
 
 						</ul>
 					</div>-->
+					
 				</div>
 				<!-- Add Pagination -->
 				<div class="swiper-pagination"></div>
@@ -112,6 +116,7 @@
 
 			<!-- 底部start -->
 			<div class="clickbig">点击图片放大</div>
+			
 			<div class="wrap_bottom">
 				<div class="bottom" style="display: none;">
 					<div class="data">
@@ -123,10 +128,14 @@
 				</div>
 				<div class="bottom" style="border-radius: 0;">
 					<!-- <a href="javascript:;" class="cancel" id="cancelpay"><span style="top:4px;margin-right: 10px" class="glyphicon glyphicon-remove" aria-hidden="true"></span>重 选</a>  -->
-					<a href="javascript:;" class="submit" id="dopay"><span style="top:4px;margin-right: 10px" class="glyphicon glyphicon-ok" aria-hidden="true"></span>结 算</a>
+					<a href="javascript:;" class="submit" id="dopay">
+						<!--<span style="top:4px;margin-right: 10px" class="glyphicon glyphicon-ok" aria-hidden="true"></span>-->
+						结 算
+					</a>
 				</div>
 			</div>
-			<!-- 底部end -->
+		
+		<!-- 底部end -->
 
 			<!-- 登录初始化start -->
 			<div class="login" id="login" style="display: none;">
@@ -207,12 +216,14 @@
 			var viewImgTimer = ""; //点击预览图片，无操作自动关闭
 			FastClick.attach(document.body);
 			$(document).on('click', '.swiper-slide ul li .article', function() {
+				
 				clearTimeout(viewImgTimer);
 				viewImgTimer = setTimeout(function() {
 					$('.mask').remove();
 					$('.big_img').hide();
 					imgSrcIndex = 1;
 				}, 5000);
+				
 				//图片路径修改
 				//var imgSrc = "images/bgjpg/"+$(this).attr('src');
 				imgSrc = requestImgSrc + "back/";
@@ -290,6 +301,8 @@
 					$('.big_img').hide();
 					imgSrcIndex = 1;
 				}, 5000);
+				
+				
 				if(imgSrcIndex == 2) {
 					$('.big_img img').attr('src', imgSrc);
 					var bigImgW;
@@ -355,6 +368,7 @@
 		var afterIntervalId = "" //不断重载页面，直到能获取获取终端编号定时器id
 
 		$(document).ready(function() {
+			
 			accessToken = window.location.hash.substring(1); //获取路径中的access token
 			g_machineNo = gGetProperties("terminalNo");
 			//g_machineNo="956315585";
@@ -461,9 +475,10 @@
 			//hasNetWork = true;
 			if(hasNetWork) {
 				getConfig();
+				//$(".wrap_bottom").show();
 			} else {
 				confirmCysDialog('正在检测网络<span class="checkdot"></span>', "", "", function() {}, function() {});
-
+				//$(".wrap_bottom").hide();
 				checkId = setInterval(function() {
 					if(checkindex < checktimes) {
 						checkindex++;
@@ -524,6 +539,7 @@
 				$('body').append("<div class='mask'></div>");
 				$('.mask').show();
 				$("#login").show();
+				
 				return false;
 			} else {
 				$.ajax({
@@ -660,6 +676,7 @@
 		var appversion = gGetProperties("acctualVersion");
 
 		function initDataList() {
+			
 			//g_ownerSetData = gGetProperties("ownerSetData");
 			//g_ownerSetData = JSON.parse(g_ownerSetData);
 			//分组
@@ -801,6 +818,8 @@
 		}  */
 
 			$("#swiper-wrapper-div").html(datalist);
+			
+			$(".wrap_bottom").show();  // 结算按钮显示
 
 			setTimeout(function() {
 				$('.swiper-wrapper ul li').each(function() {
@@ -810,19 +829,19 @@
 					if(thisImgH - thisImgW >= 100) {
 						$(this).find('.article').css({
 							'width': '98%',
-							'max-height': '400px'
+//							'max-height': '400px'
 						});
 
 					} else if(thisImgH - thisImgW >= 70) {
 						$(this).find('.article').css({
 							'width': '98%',
-							'max-height': '400px'
+							//'max-height': '400px'
 						});
 
 					} else {
 						$(this).find('.article').css({
 							'width': '98%',
-							'max-height': '400px'
+							//'max-height': '400px'
 						});
 						//$(this).find('.content').css('margin-top','30px')
 					}

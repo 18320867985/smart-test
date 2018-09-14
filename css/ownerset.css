@@ -11,11 +11,11 @@
 	.ownerset_data .operate span {
 		position: relative;
 		display: inline-block;
-		width: 29px;
+		width: 30px;
 		margin: 10px 20px;
-		padding: 0 5px;
+		padding: 3px 9px;
 		background-color: #c42f33;
-		font-size: 16px;
+		font-size: 20px;
 		color: #fff;
 	}
 	
@@ -35,12 +35,12 @@
 	
 	.ownerset .ownerset_data ul li {
 		background: #ffeecc;
-		width: 280px;
-		height: 300px;
+		width: 340px;
+		height: 340px;
 		border: 1px solid #ffd077;
 		/*margin-bottom: 50px;*/
 		padding: 20px;
-		margin-right: 45px;
+		margin-left: 30px;
 		float: left;
 		position: relative;
 	}
@@ -49,7 +49,7 @@
 		position: absolute;
 		top: -30px;
 		font-size: 20px;
-		color: #c42f33;
+		color: #666;
 		width: 81%;
 		text-align: center;
 		overflow: hidden;
@@ -145,8 +145,8 @@
 	
 	.ownerset .ownerset_data ul li .adddata {
 		text-align: center;
-		width: 340px;
-		height: 340px;
+		width: 380px;
+		height: 380px;
 		background: rgba(0, 0, 0, 0.8);
 		position: absolute;
 		top: 0px;
@@ -156,7 +156,7 @@
 	.ownerset .ownerset_data ul li .adddata img {
 		width: 90px;
 		height: auto;
-		margin-top: 105px;
+		margin-top: 130px;
 	}
 	/*查詢*/
 	
@@ -237,11 +237,10 @@
 		float: left;
 		font-size: 14px;
 		color: #666666;
-		
 	}
 	
 	.ownerset_win .ownerset_win_data .sp_con ul:nth-child(2) {
-		padding:10px 0;
+		padding: 10px 0;
 	}
 	
 	.ownerset_win .ownerset_win_data a {
@@ -266,14 +265,21 @@
 		z-index: 1000;
 		display: none;
 		width: 570px;
-		height: 250px;
+		height: 270px;
 		margin-left: -300px;
-		margin-top: -125px;
+		margin-top: -135px;
 		background: #fff;
 		border-radius: 5px;
 		border: 1px solid #ddd;
 		overflow: auto;
-		box-shadow: 2px 2px 2px #ccc, -2px -2px 2px #ccc;
+		box-shadow: 2px 2px 5px #ddd, -2px -2px 5px #ddd;
+	}
+	
+	.ownsetinfo_confirm .wrap_confirm .wrap_btn {
+		position: relative;
+		text-align: center;
+		padding-bottom: 20px;
+		margin-top: 50px;
 	}
 	
 	.ownsetinfo_confirm .wrap_confirm .wrap_btn span {
@@ -288,11 +294,11 @@
 	}
 	
 	.ownsetinfo_confirm .wrap_confirm .wrap_tip {
-		font-size: 17px;
+		font-size: 18px;
 		padding: 0 15px;
 		line-height: 24px;
 		color: red;
-		padding-bottom: 10px;
+	
 	}
 	
 	.ownsetinfo_confirm .wrap_confirm .wrap_tilte {
@@ -303,10 +309,30 @@
 		font-size: 24px;
 	}
 	
-.ownerset_win .ownerset_win_data .sp_con ul li input {
-    width: 100px;
-    line-height: 24px;
-    text-indent: 10px;
-    border: none;
-    border-bottom:  1px solid #ddd;
-}
+	.ownerset_win .ownerset_win_data .sp_con ul li input {
+		width: 100px;
+		line-height: 24px;
+		text-indent: 10px;
+		border: none;
+		border-bottom: 1px solid #ddd;
+	}
+	
+	.ownerset_win {
+		width: 500px;
+		height: 520px;
+		padding: 30px 35px 0 35px;
+		background: #fff;
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		margin-left: -250px;
+		margin-top: -260px;
+		border: 1px solid #ddd;
+		box-shadow: 2px 2px 5px #ddd, -2px -2px 5px #ddd;
+	}
+	
+	.ownerset_win .ownerset_win_data .sp_img {
+		width: 300px;
+		height: 200px;
+		margin-top: 10px;
+	}
