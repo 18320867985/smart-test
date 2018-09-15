@@ -18,7 +18,7 @@
 			<div class="ownerset_head">
 				<img src="images/ggl.png">
 				<!--
-     <div id="ownerterminal_no" style="float: right;font-size:16px;"><b><span>终端编号：</b></span></div>-->
+    			 <div id="ownerterminal_no" style="float: right;font-size:16px;"><b><span>终端编号：</b></span></div>-->
 			</div>
 			<div class="ownerset_data">
 
@@ -63,8 +63,8 @@
 					      </ol>
 					    </div>
 					     <div class="num">55张</div>
-					  </li>
-					  -->
+					  </li>-->
+					  
 
 					</ul>
 					<div class="startsale">
@@ -149,7 +149,7 @@
 					</div>
 				</div>
 
-				<div class="ownsetinfo_confirm">
+				<div class="ownsetinfo_confirm" >
 					<div class="wrap_confirm">
 						<div class="wrap_tilte">终端存票信息确认</div>
 
@@ -194,7 +194,7 @@
 			</div>
 		</div>
 
-		<div class="ownerset_win">
+		<div class="ownerset_win" >
 			<div class="search">
 				<input type="text" placeholder="方案代码&nbsp;/&nbsp;方案名称&nbsp;/&nbsp;单票金额">
 				<a href="javascript:;">搜 索</a>
@@ -204,7 +204,7 @@
 					</ul>
 				</div>
 			</div>
-			<div class="ownerset_win_data">
+			<div class="ownerset_win_data" >
 				<div class="sp_img"><img src="" id="ownerset_win_data_img"></div>
 				<div class="sp_con">
 					<ul>
@@ -276,6 +276,11 @@
 
 					confirmOwnerData();
 					//$('.ownsetinfo_confirm').show();
+					
+					// 重新定位confirm 的top位置
+					var _h = $(".ownsetinfo_confirm").height();
+					$(".ownsetinfo_confirm").css("margin-top", -_h / 2);
+					
 				});
 
 				$(".ownfhxg").click(function() {
@@ -1007,7 +1012,7 @@
 			$(function() {
 
 				var _h = $(".ownsetinfo_confirm").height();
-				$(".ownsetinfo_confirm").css("margin-top", -_h / 2)
+				$(".ownsetinfo_confirm").css("margin-top", -_h / 2);
 
 			});
 		</script>

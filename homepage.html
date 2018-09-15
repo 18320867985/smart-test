@@ -17,7 +17,6 @@
 				background: url("./images/login_bg.jpg");
 			}
 			
-			
 			#preload b {
 				opacity: 0.5;
 				animation: preload 1s infinite ease-in-out;
@@ -67,7 +66,6 @@
 			.clickbig {
 				display: none;
 			}
-			
 		</style>
 	</head>
 
@@ -85,14 +83,14 @@
 			<!-- 轮播start -->
 			<div class="swiper-container" id="swiper1">
 				<div class="swiper-wrapper" id="swiper-wrapper-div">
-<!--					
-					<div class="swiper-slide swiper-list">
+
+					<!--<div class="swiper-slide swiper-list">
 						<ul>
 							<li data-item="1">
 								<div class="title">幸运草　￥ 100</div>
 
 								<div class="content">
-									<img data-img="" src="images/piao/0398.jpg" class="article">'
+									<img data-img="" src="images/piao/G0425.jpg" class="article">'
 									<div class="yp">余票 55 张</div>
 								</div>
 								<div class="swiper-slide_btn">
@@ -104,7 +102,7 @@
 
 						</ul>
 					</div>-->
-					
+
 				</div>
 				<!-- Add Pagination -->
 				<div class="swiper-pagination"></div>
@@ -116,7 +114,7 @@
 
 			<!-- 底部start -->
 			<div class="clickbig">点击图片放大</div>
-			
+
 			<div class="wrap_bottom">
 				<div class="bottom" style="display: none;">
 					<div class="data">
@@ -134,8 +132,8 @@
 					</a>
 				</div>
 			</div>
-		
-		<!-- 底部end -->
+
+			<!-- 底部end -->
 
 			<!-- 登录初始化start -->
 			<div class="login" id="login" style="display: none;">
@@ -203,11 +201,11 @@
 	<script type="text/javascript" src="js/common/MD5.js"></script>
 	<script type="text/javascript" src="properties.js"></script>
 	<script type="text/javascript" src="js/common/fastclick.js"></script>
-		<script>
+	<script>
 		/*检测屏幕*/
-//		console.log("offsetWidth:"+document.documentElement.offsetWidth);
-//		console.log("offsetHeight:"+document.documentElement.offsetHeight);
-		
+		//		console.log("offsetWidth:"+document.documentElement.offsetWidth);
+		//		console.log("offsetHeight:"+document.documentElement.offsetHeight);
+
 		var localImgArr = ['G0232', 'G0368', 'G0378', 'G0425', 'G0440', 'G0491', 'G0516', 'G0517', 'G0522', 'G0537', 'G0538', 'J0302', 'J0353', 'J0404', 'J0462', 'J0560', 'J0561', 'J0562', 'J0564', 'J0565', '0288', '0362', '0373', '0398'];
 		var updateInter; //更新上传定时器；
 		$(function() {
@@ -216,14 +214,14 @@
 			var viewImgTimer = ""; //点击预览图片，无操作自动关闭
 			FastClick.attach(document.body);
 			$(document).on('click', '.swiper-slide ul li .article', function() {
-				
+
 				clearTimeout(viewImgTimer);
 				viewImgTimer = setTimeout(function() {
 					$('.mask').remove();
 					$('.big_img').hide();
 					imgSrcIndex = 1;
 				}, 5000);
-				
+
 				//图片路径修改
 				//var imgSrc = "images/bgjpg/"+$(this).attr('src');
 				imgSrc = requestImgSrc + "back/";
@@ -278,10 +276,10 @@
 					}
 
 					$('.big_img img').css({
-						'height': imgHeight,
-						'width': imgWidth,
-						'margin-top': -bigImgH,
-						'margin-left': -bigImgW
+						//						'height': imgHeight,
+						//						'width': imgWidth,
+						'margin-top': -$('.big_img img').height() / 2,
+						'margin-left': -$('.big_img img').height() / 2
 					});
 
 				}
@@ -301,8 +299,7 @@
 					$('.big_img').hide();
 					imgSrcIndex = 1;
 				}, 5000);
-				
-				
+
 				if(imgSrcIndex == 2) {
 					$('.big_img img').attr('src', imgSrc);
 					var bigImgW;
@@ -339,10 +336,10 @@
 						}
 
 						$('.big_img img').css({
-							'height': imgHeight,
-							'width': imgWidth,
-							'margin-top': -bigImgH,
-							'margin-left': -bigImgW
+							//							'height': imgHeight,
+							//							'width': imgWidth,
+							'margin-top': -$('.big_img img').height() / 2,
+							'margin-left': -$('.big_img img').height() / 2
 						});
 
 					}
@@ -368,7 +365,7 @@
 		var afterIntervalId = "" //不断重载页面，直到能获取获取终端编号定时器id
 
 		$(document).ready(function() {
-			
+
 			accessToken = window.location.hash.substring(1); //获取路径中的access token
 			g_machineNo = gGetProperties("terminalNo");
 			//g_machineNo="956315585";
@@ -539,7 +536,7 @@
 				$('body').append("<div class='mask'></div>");
 				$('.mask').show();
 				$("#login").show();
-				
+
 				return false;
 			} else {
 				$.ajax({
@@ -676,7 +673,7 @@
 		var appversion = gGetProperties("acctualVersion");
 
 		function initDataList() {
-			
+
 			//g_ownerSetData = gGetProperties("ownerSetData");
 			//g_ownerSetData = JSON.parse(g_ownerSetData);
 			//分组
@@ -818,8 +815,8 @@
 		}  */
 
 			$("#swiper-wrapper-div").html(datalist);
-			
-			$(".wrap_bottom").show();  // 结算按钮显示
+
+			$(".wrap_bottom").show(); // 结算按钮显示
 
 			setTimeout(function() {
 				$('.swiper-wrapper ul li').each(function() {
@@ -829,7 +826,7 @@
 					if(thisImgH - thisImgW >= 100) {
 						$(this).find('.article').css({
 							'width': '98%',
-//							'max-height': '400px'
+							//							'max-height': '400px'
 						});
 
 					} else if(thisImgH - thisImgW >= 70) {

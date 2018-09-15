@@ -103,7 +103,7 @@
 /*查詢*/
 
 .ownerset_win .ownerset_win_data {
-	width: 100%;
+	width: 98%;
 	height: auto;
 	margin-top: 15px;
 	float: left;
@@ -236,6 +236,7 @@
 
 body {
 	padding-top: 80px;
+	padding-bottom: 40px;
 	 height: auto;
 }
 

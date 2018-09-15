@@ -340,8 +340,8 @@
 /*放大圖片*/
 
 .big_img {
-	width: 100%;
-	height: 100%;
+	width: 80%;
+	height: 80%;
 	position: fixed;
 	top: 0px;
 	left: 0px;
@@ -350,6 +350,9 @@
 }
 
 .big_img img {
+	
+	width: 50%;
+	height: 85%;
 	/*width: 45% !important;
 	max-height: 90% !important;
 	left: 45%;*/
