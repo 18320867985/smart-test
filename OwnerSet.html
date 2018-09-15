@@ -31,22 +31,28 @@
 				</div>
 
 				<div id="ownsetsys" style="display:none">
-					<ul id="ownerListUl" style="  padding-top: 0 !important;">
+					<ul id="ownerListUl" style="  padding-top: 50px !important;">
 						<!--<li class="nodata">
-				    <div class="number">机头<span class="tip"></span></div>
-				    <img src="images/piao/J0353.jpg">
-				   <div class="price"><span>J0353</spa好运十倍<span>￥10</span></div>
-				    <div class="gn_btn">
-				        <ol>
-				           <li class="change"><img src="images/change_owner.png"><div>修改</div></li>
-				          <li class="del"><img src="images/del_owner.png"><div>删除</div></li>'
-				       </ol>
-				    </div>
-				   <div class="num">0张</div>
-				   <div class="adddata"><img src="images/add_bg.png"><p>添加彩票</p></div>
-				</li>-->
-						<!--							
-				<li data-item="“">
+							<div class="number">机头<span class="tip"></span></div>
+							<img src="images/piao/J0353.jpg">
+							<div class="price"><span>J0353</spa好运十倍<span>￥10</span></div>
+							<div class="gn_btn">
+								<ol>
+									<li class="change"><img src="images/change_owner.png">
+										<div>修改</div>
+									</li>
+									<li class="del"><img src="images/del_owner.png">
+										<div>删除</div>
+									</li>'
+								</ol>
+							</div>
+							<div class="num">0张</div>
+							<div class="adddata"><img src="images/add_bg.png">
+								<p>添加彩票</p>
+							</div>
+						</li>-->
+
+						<!--<li data-item="">
 					     <div class="number">机头<span class="tip"></span></div>
 					     <img src="images/piao/G0440.jpg">
 					    <div class="price">单价<span>￥77</span></div>
@@ -59,6 +65,7 @@
 					     <div class="num">55张</div>
 					  </li>
 					  -->
+
 					</ul>
 					<div class="startsale">
 						<!--<a href="homepage.html">开始销售</a> -->
@@ -147,7 +154,33 @@
 						<div class="wrap_tilte">终端存票信息确认</div>
 
 						<div class="wrap_row">
-
+							<!--<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>
+							<p>dfgdfg 使对方的说法</p>-->
 						</div>
 						<div class="wrap_tip">
 							警告：请仔细核对本机存票信息，如与实际不相符，会导致出票错误和资金损失，务必谨慎操作！
@@ -475,17 +508,17 @@
 
 					if(g_machineNo.motorNum == 4) {
 						$("#ownerListUl").css({
-							width: "550px",
-							height: "340px",
-							paddingTop: "30px"
+							//width: "550px",
+							//height: "340px",
+							//paddingTop: "30px"
 						});
 						//$("#ownerListUl").removeClass("ownersetdataul6");
 						//$("#ownerListUl").addClass("ownersetdataul4");	
 					} else {
 						$("#ownerListUl").css({
-							width: "550px",
-							height: "340px",
-							paddingTop: "30px"
+							//width: "550px",
+							//height: "340px",
+							//paddingTop: "30px"
 						});
 						//$("#ownerListUl").removeClass("ownersetdataul4");
 						//$("#ownerListUl").addClass("ownersetdataul6");
@@ -968,6 +1001,14 @@
 			});
 			$('#quitsys').bind('tripleclick', function(event) {
 				gExitApp();
+			});
+
+			// 重新定温confirm box
+			$(function() {
+
+				var _h = $(".ownsetinfo_confirm").height();
+				$(".ownsetinfo_confirm").css("margin-top", -_h / 2)
+
 			});
 		</script>
 

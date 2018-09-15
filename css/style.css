@@ -2731,30 +2731,30 @@ body {
 	display: none;
 }
 .ownerset_data .operate {
-	position: absolute;
+	/*position: absolute;
 	width: 110px;
 	height: 60px;
 	line-height: 60px;
 	width: 100%;
 	top: 13px;
-	text-align: center;
+	text-align: center;*/
 }
 .ownerset_data .operate span {
-	position: relative;
+	/*position: relative;
 	display: inline-block;
 	width: 48px;
 	margin: 10px 20px;
 	padding: 10px 5px;
 	background-color: #c42f33;
 	font-size: 36px;
-	color: #fff;
+	color: #fff;*/
 }
 .ownerset_data .operate span.bigger {
-	transition: All 0.4s ease-in-out;
+	/*transition: All 0.4s ease-in-out;
 	-webkit-transition: All 0.4s ease-in-out;
 	-webkit-transform: scale(1.25);
 	transform: scale(1.25);
-	background-color: #b61b1f;
+	background-color: #b61b1f;*/
 }
 #ownsetsys .startsale {
 	position: relative;
