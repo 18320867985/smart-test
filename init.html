@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta charset="utf-8">
+<title>初始化设置</title>
+
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/init.css"/>
+</head>
+
+<body>
+<div class="login_con init">
+    <div class="logo"></div>
+    <div class="login init" id="login">
+        <div  class="login-ttl" style="text-align: center;color: #666666; padding: 24px 0 0;">初始化设置</div>
+       <div class="login_tian" >
+          <ul>
+            <li class="">
+               <span>终端编码</span>
+               <span class="s1">：</span>
+               <input type="text" placeholder="请输入终端编码" id="terminalno" />
+               <em style=""></em>
+            </li>
+            <li class="">
+               <span>通讯端口</span>
+               <span class="s1">：</span>
+               <input type="text" placeholder="请输入通讯端口" id="port" />
+               <em style=""></em>
+            </li>
+            <li>
+               <span>密 码</span>
+               <span class="s1">：</span>
+               <input type="password" placeholder="请输入密码" id="onepass" />
+               <em style=""></em>
+            </li>
+            <li>
+               <span>确认密码</span>
+               <span class="s1">：</span>
+               <input type="password" placeholder="请输入确认密码" id="twopass" />
+               <em style=""></em>
+            </li>
+          </ul>
+          <div class="lj_btn" style="">
+            <a href="javascript:;" class="login_a">初始化设置</a>
+          </div>
+      </div>
+      
+  </div>
+  
+  
+</div>  
+ 
+<!--弹窗框—start--> 
+ <div class="createClass_window" style="display:none;">
+          <h3>密码修改成功！</h3>
+          <div class="createClass_window_btn">
+             <a href="javascript:;"  class="cancel" id="eidtPwOk">确定</a>
+          </div>
+</div>
+<!--弹窗框—end--> 
+  <!--编号-start-->
+ <div style=" position:fixed; bottom:5px; right:5px; font-size:20px; color:#f1f1f1; opacity:0.5; font-family:Consolas, 'Andale Mono', 'Lucida Console', 'Lucida Sans Typewriter', Monaco, 'Courier New', monospace">编号：4.3</div>
+<!--编号-end-->
+</body>
+<script type="text/javascript" src="js/common/jquery-1.8.0.y100.js"></script>
+<script type="text/javascript" src="js/common/cysDialog.js"></script>
+<script type="text/javascript" src="js/common/MD5.js"></script>
+<script type="text/javascript" src="properties.js"></script>
+<script type="text/javascript">
+    //http://114.215.221.69:8081
+    var serviceUrl = 'http://terminal.caishilu.com:8080';
+
+    $(function(){	
+		$(".login_a").click(function(){
+		  var terminalno = $("#terminalno").val().trim();
+      var port = $("#port").val().trim();
+      var onepass = $("#onepass").val().trim();
+      var twopass = $("#twopass").val().trim();
+
+		  if(terminalno == ""){
+            $("#terminalno").next().html("请输入终端编码！");
+            return false;
+          }
+          if(port == ""){
+            $("#port").next().html("请输入通讯端口！");
+            return false;
+          }
+          if(onepass == ""){
+            $("#onepass").next().html("请输入密码！");
+            return false;
+          }
+          if(twopass == ""){
+            $("#twopass").next().html("请输入确认密码！");
+            return false;
+          }
+          if(onepass.length<6){
+            $("#twopass").next().html("");
+            $("#onepass").next().html("请输入大于6位数的密码！");
+            return false;
+          }
+          if(onepass != twopass){
+            $("#onepass").next().html("");
+            $("#twopass").next().html("请输入的密码不一致！");
+            return false;
+          }
+          var pass = hex_md5(onepass);
+          var deviceId = gGetProperties('deviceId');
+          //terminalno = 999999999999;
+          //deviceId = "dddddddd";
+          $.ajax({
+            type: 'GET',
+            url: 'http://114.215.221.69:8081' + '/billing/payInfo/v1/updateTerminalNo?terminalNo='+terminalno+'&serial='+port+'&deviceId='+deviceId+'&password='+pass,
+            async: false,
+            dataType: "jsonp",
+            jsonp: "updateTerminalNo",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+            jsonpCallback:"updateTerminalNo",//自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写“?”jquery会自动处理
+            success: function(data){
+              if(data.retcode == 'SUCCESS'){
+                gSetProperties('terminalNo',terminalno);
+                gSetProperties('serial',port);
+                gSetProperties('userPassword',pass); 
+                window.location.href="login.html";        
+              }else if(data.retcode == 'FAIL'){
+                confirmCysDialog(data.retmsg,"","关闭",function(){},function(){
+                    $("#terminalno").val('');
+                    $("#port").val('');
+                    $("#onepass").val('');
+                    $("#twopass").val('');
+                });
+              }
+
+              /*if(data.terminalstatus=='无效'){
+                confirmCysDialog("无效终端，如有疑问请联系客服人员！","","关闭",function(){},function(){});
+                window.location.href="login.html";
+              }*/
+            
+            }
+          });
+
+
+			 
+	
+		
+		});
+
+    //限制终端编号、密码、确认密码，只能输入15位
+    $('#terminalno,#onepass,#twopass').bind('input propertychange', function() {
+        var str = $(this).val();
+        var len = str.length;
+        if(len>15){
+            $(this).val(str.substring(0,15));            
+        }
+    });
+    //限制通讯端口只能一位输入大于0的整数
+    $('#port').bind('input propertychange', function() {
+        var str = $(this).val();
+        var len = str.length;
+        if(len>0){
+            $(this).val(str.substring(0,1).replace(/[^1-9]/ig,""));            
+        }
+    });
+		
+	
+  });
+
+  
+ 
+  
+  function loginInit(){
+     //获取终端号，服务电话
+		g_machineNo=gGetProperties("terminalNo");
+		//g_machineNo = "956315585";
+         var accessToken = window.location.hash.substring(1);//获取路径中的access token
+		//g_machineNo = gGetProperties("terminalNo");
+    	$.ajax({
+          type: 'GET',
+          url: serviceUrl + '/billing/payInfo/v1/getTerminalConfig?terminalNo='+g_machineNo+accessToken,
+          async: false,
+          dataType: "jsonp",
+          jsonp: "getTerminalConfig",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+          jsonpCallback:"getTerminalConfig",//自定义的jsonp回调函数名，默认未jquery自动生成的随机函数名，也可以写“?”jquery会自动处理
+          success: function(data){
+              g_machineNo=data;
+			  if(data.terminalstatus=='无效'){
+				  confirmCysDialog("无效终端，如有疑问请联系客服人员！","","关闭",function(){},function(){});
+				  window.location.href="login.html";
+			  }
+			 $(".TerminalNumber").html("<span><b>终端编号："+g_machineNo.terminalNo+"</b></span>");
+			$(".telephone").html("<span><b>客服电话："+g_machineNo.serverPhone+"</b></span>");
+			$("#login_tian_span").html(g_machineNo.terminalNo);
+          }
+    	});
+		  }
+        jQuery.event.special.tripleclick = {
+			setup: function(data, namespaces) {
+				var elem = this, $elem = jQuery(elem);
+				$elem.bind('click', jQuery.event.special.tripleclick.handler);
+			},
+			teardown: function(namespaces) {
+				var elem = this, $elem = jQuery(elem);
+				$elem.unbind('click', jQuery.event.special.tripleclick.handler);
+			},
+			handler: function(event) {
+				var elem = this, $elem = jQuery(elem), clicks = $elem.data('clicks') || 0;
+				clicks += 1;
+				if ( clicks === 3 ) {
+					clicks = 0;
+					// set event type to "tripleclick"
+					event.type = "tripleclick";
+					// let jQuery handle the triggering of "tripleclick" event handlers
+					jQuery.event.handle.apply(this, arguments)
+				}
+				$elem.data('clicks', clicks);
+			}
+		};
+		$('.telephone').bind('tripleclick', function (event) {
+			// gExitApp();
+		});
+		$('.TerminalNumber').bind('tripleclick', function (event) {
+			 window.location.href="login.html";
+		});
+   </script>
+</html>
